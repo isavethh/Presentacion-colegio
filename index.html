@@ -24,7 +24,6 @@
   color-scheme:light;
 }
 @supports not (height:100svh){:root{--H:calc(100vh - var(--top))}}
-@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--ink)}
 body{margin:0;font-family:Outfit,"Segoe UI",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.5;color:var(--text);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -107,6 +106,8 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(18px,3vh,30px)}
 .pill{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:99px;font-weight:600;font-size:.98rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff}
 .pill svg{width:18px;height:18px;color:var(--rosa)}
+.t-luz .pill,.t-rosa .pill{background:#fff;border-color:var(--line);color:var(--strong);box-shadow:0 8px 20px -14px rgba(40,6,20,.4)}
+.t-luz .pill svg,.t-rosa .pill svg{color:var(--vino)}
 .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(20px,3.6vh,36px)}
 .btn{display:inline-flex;align-items:center;gap:9px;border-radius:12px;padding:14px 22px;font-weight:600;font-size:1rem;text-decoration:none;border:0;transition:transform .2s,background-color .2s}
 .btn:hover{transform:translateY(-2px)}
@@ -279,15 +280,14 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 /* ================= inteligencia artificial ================= */
 .t-ai{background:#0A0610;color:#fff}
 .t-ai::after{opacity:.35}
-.aurora{position:absolute;inset:-10%;z-index:-2;pointer-events:none;filter:blur(70px) saturate(1.2);opacity:.9}
-.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
-.aurora i:nth-child(1){width:55vw;height:55vw;left:-10vw;top:-18vw;background:radial-gradient(circle,rgba(155,42,82,.85),transparent 65%);animation:flota1 18s ease-in-out infinite alternate}
-.aurora i:nth-child(2){width:48vw;height:48vw;right:-12vw;top:10vh;background:radial-gradient(circle,rgba(124,58,237,.6),transparent 65%);animation:flota2 22s ease-in-out infinite alternate}
-.aurora i:nth-child(3){width:40vw;height:40vw;left:30vw;bottom:-22vw;background:radial-gradient(circle,rgba(233,185,200,.45),transparent 65%);animation:flota1 26s ease-in-out infinite alternate-reverse}
+.aurora{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;border-radius:50%;will-change:transform}
+.aurora i:nth-child(1){width:80vw;height:80vw;left:-30vw;top:-42vw;background:radial-gradient(closest-side,rgba(155,42,82,.7),rgba(155,42,82,.25) 55%,rgba(155,42,82,0));animation:flota1 18s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:70vw;height:70vw;right:-28vw;top:0;background:radial-gradient(closest-side,rgba(124,58,237,.5),rgba(124,58,237,.16) 55%,rgba(124,58,237,0));animation:flota2 22s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:60vw;height:60vw;left:22vw;bottom:-34vw;background:radial-gradient(closest-side,rgba(233,185,200,.36),rgba(233,185,200,.1) 55%,rgba(233,185,200,0));animation:flota1 26s ease-in-out infinite alternate-reverse}
 @keyframes flota1{from{transform:translate(0,0) scale(1)}to{transform:translate(8vw,6vh) scale(1.15)}}
 @keyframes flota2{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-10vw,-4vh) scale(.95)}}
-.stars{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1.4px 1.4px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 72%,#fff,transparent),radial-gradient(1.6px 1.6px at 46% 12%,#F6DCE5,transparent),radial-gradient(1px 1px at 63% 44%,#fff,transparent),radial-gradient(1.4px 1.4px at 79% 82%,#E9D5FF,transparent),radial-gradient(1px 1px at 88% 24%,#fff,transparent),radial-gradient(1.2px 1.2px at 6% 88%,#F6DCE5,transparent),radial-gradient(1px 1px at 54% 92%,#fff,transparent);animation:titila 5s ease-in-out infinite alternate}
-@keyframes titila{from{opacity:.35}to{opacity:.9}}
+.stars{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1.4px 1.4px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 72%,#fff,transparent),radial-gradient(1.6px 1.6px at 46% 12%,#F6DCE5,transparent),radial-gradient(1px 1px at 63% 44%,#fff,transparent),radial-gradient(1.4px 1.4px at 79% 82%,#E9D5FF,transparent),radial-gradient(1px 1px at 88% 24%,#fff,transparent),radial-gradient(1.2px 1.2px at 6% 88%,#F6DCE5,transparent),radial-gradient(1px 1px at 54% 92%,#fff,transparent);opacity:.7}
 .grad{background:linear-gradient(90deg,#F6DCE5 0%,#fff 30%,#C4B5FD 60%,#F6DCE5 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brillo 6s linear infinite}
 @keyframes brillo{to{background-position:200% center}}
 .kick.ai{color:#F6DCE5}
@@ -300,7 +300,7 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 
 .ia-stage{position:relative;width:min(100%,920px,calc((var(--H) - 10vh) * 1.3));margin-inline:auto}
 .sigs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1vw,14px)}
-.sig{display:flex;align-items:center;gap:10px;padding:clamp(8px,1.3vh,12px) 12px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:.25;transform:translateY(8px);transition:opacity .5s,transform .6s cubic-bezier(.2,.9,.25,1.2),border-color .5s,box-shadow .5s}
+.sig{display:flex;align-items:center;gap:10px;padding:clamp(8px,1.3vh,12px) 12px;border-radius:14px;background:rgba(40,16,40,.72);border:1px solid rgba(255,255,255,.14);opacity:.25;transform:translateY(8px);transition:opacity .5s,transform .6s cubic-bezier(.2,.9,.25,1.2),border-color .5s,box-shadow .5s}
 .sig i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;flex:none;background:var(--sc);color:#fff}
 .sig i svg{width:17px;height:17px}
 .sig span{display:flex;flex-direction:column;line-height:1.15;min-width:0}
@@ -312,10 +312,11 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 .wires path{fill:none;stroke:url(#hilo);stroke-width:2;stroke-linecap:round;stroke-dasharray:6 10;opacity:0;transition:opacity .6s}
 .ia-stage.s1 .wires path{opacity:1;animation:fluye 1.2s linear infinite}
 @keyframes fluye{to{stroke-dashoffset:-32}}
-.copi-wrap{position:relative;border-radius:22px;padding:1.6px;background:conic-gradient(from var(--ang),#9B2A52,#E9B9C8,#7C3AED,#C4B5FD,#9B2A52);animation:gira 5s linear infinite;box-shadow:0 0 90px -20px rgba(233,185,200,.55),0 50px 100px -40px rgba(0,0,0,.8)}
-@keyframes gira{to{--ang:360deg}}
+.copi-wrap{position:relative;border-radius:22px;padding:1.6px;overflow:hidden;isolation:isolate;box-shadow:0 0 70px -24px rgba(233,185,200,.5),0 40px 80px -40px rgba(0,0,0,.8)}
+.copi-wrap::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:150%;aspect-ratio:1;background:conic-gradient(#9B2A52,#E9B9C8,#7C3AED,#C4B5FD,#9B2A52);transform:translate(-50%,-50%);animation:gira 6s linear infinite;will-change:transform}
+@keyframes gira{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .copi{position:relative;border-radius:20.5px;background:#fff;color:#27272A;padding:clamp(16px,2.6vh,26px) clamp(18px,1.8vw,28px);overflow:hidden}
-.copi::before{content:"";position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;background:rgba(124,29,63,.10);filter:blur(28px)}
+.copi::before{content:"";position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(124,29,63,.16),rgba(124,29,63,0))}
 .copi-h{position:relative;display:flex;align-items:center;gap:12px}
 .copi-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(140deg,#9B2A52,#7C1D3F 55%,#7C3AED);color:#fff;box-shadow:0 8px 20px -8px rgba(124,29,63,.8);flex:none}
 .copi-ic svg{width:20px;height:20px}
@@ -364,7 +365,7 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 
 /* dónde trabaja la IA */
 .caps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(20px,4vh,46px);width:100%;text-align:left}
-.cap3{position:relative;border-radius:22px;padding:clamp(18px,2.8vh,28px) clamp(18px,1.6vw,26px);background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
+.cap3{position:relative;border-radius:22px;padding:clamp(18px,2.8vh,28px) clamp(18px,1.6vw,26px);background:linear-gradient(160deg,rgba(62,26,58,.9),rgba(30,14,32,.9));border:1px solid rgba(255,255,255,.14);overflow:hidden}
 .cap3::before{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(140deg,rgba(233,185,200,.7),transparent 40%,transparent 60%,rgba(196,181,253,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .cap3 .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(140deg,#E9B9C8,#9B2A52 55%,#7C3AED);box-shadow:0 12px 30px -10px rgba(155,42,82,.9)}
 .cap3 .ic svg{width:22px;height:22px;color:#fff}
@@ -396,9 +397,10 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
   .hero .ov.der .tel{animation-delay:-3.5s}
   @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 }
+.slide:not(.on) *,.slide:not(.on) *::before,.slide:not(.on) *::after{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .aurora i,.stars,.grad,.copi-wrap,.wires path{animation:none!important}
+  .aurora i,.grad,.copi-wrap::before,.wires path{animation:none!important}
 }
 @media print{.js .r,.js .spot,.js .lens{opacity:1!important;transform:none!important}.top,.ctrl{display:none}.slide{height:auto;min-height:0;break-inside:avoid;page-break-after:always}}
 
@@ -467,14 +469,14 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <a class="logo" href="#inicio"><i>P</i>PeopleCole</a>
   <nav class="chaps" id="chaps" aria-label="Capítulos">
     <a href="#inscripcion" data-chap="inscripcion" title="Inscripción en línea"><small>01</small><span>Inscripción</span></a>
-    <a href="#pagos" data-chap="pagos" title="Pagos con QR"><small>02</small><span>Pagos QR</span></a>
-    <a href="#familias" data-chap="familias" title="Padres de familia"><small>03</small><span>Familias</span></a>
-    <a href="#talleres" data-chap="talleres" title="Talleres y eventos"><small>04</small><span>Talleres</span></a>
-    <a href="#docentes" data-chap="docentes" title="Docentes"><small>05</small><span>Docentes</span></a>
-    <a href="#enfermeria" data-chap="enfermeria" title="Enfermería"><small>06</small><span>Enfermería</span></a>
-    <a href="#orientacion" data-chap="orientacion" title="Orientación"><small>07</small><span>Orientación</span></a>
-    <a href="#direccion" data-chap="direccion" title="Dirección académica"><small>08</small><span>Dirección</span></a>
-    <a href="#puesta" data-chap="puesta" title="Puesta en marcha"><small>09</small><span>Puesta en marcha</span></a>
+    <a href="#puesta" data-chap="puesta" title="Puesta en marcha"><small>02</small><span>Puesta en marcha</span></a>
+    <a href="#pagos" data-chap="pagos" title="Pagos con QR"><small>03</small><span>Pagos QR</span></a>
+    <a href="#familias" data-chap="familias" title="Padres de familia"><small>04</small><span>Familias</span></a>
+    <a href="#talleres" data-chap="talleres" title="Talleres y eventos"><small>05</small><span>Talleres</span></a>
+    <a href="#docentes" data-chap="docentes" title="Docentes"><small>06</small><span>Docentes</span></a>
+    <a href="#enfermeria" data-chap="enfermeria" title="Enfermería"><small>07</small><span>Enfermería</span></a>
+    <a href="#orientacion" data-chap="orientacion" title="Orientación"><small>08</small><span>Orientación</span></a>
+    <a href="#direccion" data-chap="direccion" title="Dirección académica"><small>09</small><span>Dirección</span></a>
     <a href="#reportes" data-chap="reportes" title="Reportes"><small>10</small><span>Reportes</span></a>
     <a href="#ia" data-chap="ia" class="ai" title="Inteligencia artificial"><small>11</small><span>IA</span></a>
   </nav>
@@ -522,7 +524,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
       </div>
     </div>
   </div>
-  <aside class="note"><b>Para quien presenta</b>Vamos a seguir a una familia: se inscribe, paga, acompaña a su hijo; después el aula, la enfermería, la orientación y, al final, lo que ve la dirección académica.</aside>
+  <aside class="note"><b>Para quien presenta</b>Vamos a seguir a una familia: postula, el colegio ya está armado para recibir a su hijo, paga y lo acompaña desde la app. Después el aula, la enfermería, la orientación y, al final, lo que ve la dirección académica.</aside>
 </section>
 
 <!-- ===================================================== TODO INTEGRADO -->
@@ -573,8 +575,8 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     <div class="vis dr r" style="--i:2">
       <div class="rig">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>Colegio Toborochi · Admisiones 2027</span></div>
-          <div class="scr"><img class="shot" src="pantallas/pub-landing.webp" width="2160" height="1350" alt="Página pública de admisiones del colegio"></div></div>
-        <div class="ov at-r"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-landing-m.webp" width="720" height="1558" alt="La misma página de admisiones en el celular"></div></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-landing.webp" width="2160" height="1350" alt="Página pública de admisiones del colegio"></div></div>
+        <div class="ov at-r"><div class="tel m"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-landing-m.webp" width="720" height="1558" alt="La misma página de admisiones en el celular"></div></div></div>
       </div>
     </div>
   </div>
@@ -590,9 +592,9 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-postular-m.webp" width="720" height="1558" alt="Formulario de postulación: datos del postulante"></div></div><figcaption class="cap"><b>1</b>Llena los datos</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-resumen-m.webp" width="720" height="1558" alt="Postulación: revisar y enviar"></div></div><figcaption class="cap"><b>2</b>Revisa y envía</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-seguimiento-m.webp" width="720" height="1558" alt="Ver mis postulaciones con el código de familia"></div></div><figcaption class="cap"><b>3</b>La sigue con su código</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel m"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-postular-m.webp" width="720" height="1558" alt="Formulario de postulación: datos del postulante"></div></div><figcaption class="cap"><b>1</b>Llena los datos</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel m"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-resumen-m.webp" width="720" height="1558" alt="Postulación: revisar y enviar"></div></div><figcaption class="cap"><b>2</b>Revisa y envía</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel m"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-seguimiento-m.webp" width="720" height="1558" alt="Ver mis postulaciones con el código de familia"></div></div><figcaption class="cap"><b>3</b>La sigue con su código</figcaption></figure>
       </div>
     </div>
   </div>
@@ -608,29 +610,124 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     <div class="vis dl r" style="--i:2">
       <div class="rig" data-spot=".618 .352 .136 .412" data-label="Entró por el portal de familias">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Postulaciones</span></div>
-          <div class="scr"><img class="shot" src="pantallas/adm-post.webp" width="2160" height="1350" alt="Bandeja de postulaciones de Dirección Académica"></div></div>
-        <div class="float at-l r" style="--i:4"><img class="shot" src="pantallas/pub-enviada.webp" width="671" height="492" alt="Confirmación para la familia: tu postulación fue enviada"></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/adm-post.webp" width="2160" height="1350" alt="Bandeja de postulaciones de Dirección Académica"></div></div>
+        <div class="float at-l r" style="--i:4"><img loading="lazy" decoding="async" class="shot" src="pantallas/pub-enviada.webp" width="671" height="492" alt="Confirmación para la familia: tu postulación fue enviada"></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#pagos"><b>02</b>Sigue: Pagos con QR<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#puesta"><b>02</b>Sigue: Puesta en marcha<svg><use href="#i-down"/></svg></a>
   <aside class="note"><b>Para quien presenta</b>Muestra las dos puntas: a la izquierda lo que ve la familia al enviar; detrás, la misma postulación ya en la bandeja del colegio.</aside>
 </section>
 
-<!-- ===================================================== 02 PAGOS -->
-<section class="slide t-vino" id="pagos" data-chap="pagos">
+<!-- ===================================================== 02 PUESTA EN MARCHA -->
+<section class="slide t-vino" id="puesta" data-chap="puesta">
   <span class="ghost" aria-hidden="true">02</span>
+  <div class="in stack">
+    <div class="tx">
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Y el colegio ya está armado para recibirlo.</h2>
+      <p class="lead r" style="--i:2">La puesta en marcha deja todo en su lugar antes de la primera clase: cursos, grupos, materias, SEDUCA, docentes y familias.</p>
+    </div>
+    <div class="bento pm">
+      <figure class="bcard r" style="--i:2"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-estructura.webp" width="2160" height="1350" loading="lazy" alt="Estructura del colegio: sede, niveles, cursos y paralelos"></div><p><b>1</b><span>Estructura<small>Sedes, niveles, cursos y paralelos</small></span></p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-tablero.webp" width="2160" height="1350" loading="lazy" alt="Tablero de agrupaciones por grado"></div><p><b>2</b><span>Grupos y subgrupos<small>Por idioma, laboratorio, taller o nivelación</small></span></p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio"></div><p><b>3</b><span>Creación de materias<small>El pensum de cada curso, con sus versiones</small></span></p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-seduca.webp" width="2160" height="1350" loading="lazy" alt="Equivalencias SEDUCA"></div><p><b>4</b><span>SEDUCA<small>Cada materia con su equivalencia oficial</small></span></p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente de la semana"></div><p><b>5</b><span>Docentes<small>Carga, disponibilidad y horario</small></span></p></figure>
+      <figure class="bcard r" style="--i:5"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-matriculas.webp" width="2160" height="1350" loading="lazy" alt="Matrículas de la gestión"></div><p><b>6</b><span>Estudiantes y familias<small>Matrícula, vínculos y acceso a la app</small></span></p></figure>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>La familia ya postuló: esto es lo que el colegio tiene listo para recibir a su hijo. Cada paso se prueba con el equipo del colegio antes de pasar al siguiente.</aside>
+</section>
+
+<section class="slide t-luz big" id="grupos" data-chap="puesta">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>02</b>Pagos con QR</span>
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Cursos, paralelos, grupos y subgrupos.</h2>
+      <p class="lead r" style="--i:2">Cada paralelo con su cupo y los lugares que quedan. Dentro de cada curso, subgrupos para lo que se enseña aparte.</p>
+      <div class="pills r" style="--i:3">
+        <span class="pill"><svg><use href="#i-check"/></svg>Por idioma</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Laboratorio</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Taller</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Nivelación</span>
+      </div>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".585 .478 .148 .51" data-label="Cupo y lugares libres">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Cursos y paralelos</span></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pm-paralelos.webp" width="2160" height="1350" alt="Cursos y paralelos con su capacidad, inscritos y lugares libres"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-luz" id="seduca" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Cada materia, con su equivalencia SEDUCA.</h2>
+      <p class="lead r" style="--i:2">El colegio enseña con su propia malla. El sistema sabe a qué materia oficial corresponde cada una, con su código, y avisa si algo no coincide.</p>
+    </div>
+    <div class="vis dr r" style="--i:2">
+      <div class="rig">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Materias y pensum</span></div>
+          <div class="scr"><img decoding="async" class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio por área"></div></div>
+        <div class="float at-r r" style="--i:4"><div class="fh"><i><svg><use href="#i-check"/></svg></i>Equivalencias SEDUCA</div><img decoding="async" class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" loading="lazy" alt="Equivalencias SEDUCA: materia oficial, código y sin divergencia"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa big" id="carga" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Docentes con su carga, sin choques ni huecos.</h2>
+      <p class="lead r" style="--i:2">Cuántas horas tiene cada uno, quién está pasado y quién tiene margen. Lo que hay que resolver aparece antes de publicar el horario.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".206 .478 .76 .208" data-label="Qué hay que resolver antes de publicar">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Carga docente</span></div>
+          <div class="scr"><img decoding="async" class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente: horas por semana y lo que hay que resolver"></div></div>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#familias-app"><b>02</b>Sigue: Matrícula y familias<svg><use href="#i-down"/></svg></a>
+</section>
+
+<section class="slide t-rosa" id="familias-app" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Matriculado, y la familia ya tiene su app.</h2>
+      <p class="lead r" style="--i:2">Al confirmar la matrícula, el colegio da acceso a la familia con un clic. Cada persona recibe su usuario por correo y entra a la app con su hijo ya vinculado.</p>
+    </div>
+    <div class="vis r" style="--i:2;padding:0 20% 3% 0">
+      <div class="rig" data-spot=".79 .8 .19 .145" data-label="Cuenta creada y correo enviado" data-end>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Accesos de la familia</span></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pm-accesos.webp" width="1144" height="745" alt="Accesos de la familia: cuenta creada y correo enviado a cada persona"></div></div>
+        <div class="ov r" style="--i:5;right:-22%;bottom:-3%;width:23%"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-apoderado.webp" width="720" height="1600" alt="App del apoderado con su hija ya vinculada"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#pagos"><b>03</b>Sigue: Pagos con QR<svg><use href="#i-down"/></svg></a>
+</section>
+
+<!-- ===================================================== 03 PAGOS -->
+<section class="slide t-vino" id="pagos" data-chap="pagos">
+  <span class="ghost" aria-hidden="true">03</span>
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>03</b>Pagos con QR</span>
       <h2 class="r" style="--i:1">La pensión se paga con QR, desde el celular.</h2>
       <p class="lead r" style="--i:2">La familia ve lo que debe, elige pagar con QR y escanea con la app de su banco. Sin filas en caja ni comprobantes por WhatsApp.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/pago-cuenta.webp" width="720" height="1610" alt="App de la familia: lo que falta pagar"></div></div><figcaption class="cap"><b>1</b>Ve lo que debe</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/pago-elegir.webp" width="720" height="1610" alt="Elegir cómo pagar: QR o caja"></div></div><figcaption class="cap"><b>2</b>Elige pagar con QR</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/pago-qr.webp" width="720" height="1610" alt="Código QR de la cuota, listo para pagar"></div></div><figcaption class="cap"><b>3</b>Escanea y paga</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pago-cuenta.webp" width="720" height="1610" alt="App de la familia: lo que falta pagar"></div></div><figcaption class="cap"><b>1</b>Ve lo que debe</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pago-elegir.webp" width="720" height="1610" alt="Elegir cómo pagar: QR o caja"></div></div><figcaption class="cap"><b>2</b>Elige pagar con QR</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pago-qr.webp" width="720" height="1610" alt="Código QR de la cuota, listo para pagar"></div></div><figcaption class="cap"><b>3</b>Escanea y paga</figcaption></figure>
       </div>
     </div>
   </div>
@@ -640,35 +737,35 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz big" id="caja" data-chap="pagos">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>02</b>Pagos con QR</span>
+      <span class="kick r"><b>03</b>Pagos con QR</span>
       <h2 class="r" style="--i:1">Y el colegio lo ve cobrado, sin revisar comprobantes.</h2>
       <p class="lead r" style="--i:2">Cada pago entra a la caja del día con su medio y quién lo cobró. Al final del día se cuenta y se cierra.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".389 .443 .194 .092" data-z="2.1" data-at="47 60">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Caja del día</span></div>
-          <div class="scr"><img class="shot" src="pantallas/fin-caja-14.webp" width="2160" height="1350" alt="Caja del día: cobros por medio de pago"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fin-caja-14.webp" width="2160" height="1350" alt="Caja del día: cobros por medio de pago"></div></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#familias"><b>03</b>Sigue: Padres de familia<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#familias"><b>04</b>Sigue: Padres de familia<svg><use href="#i-down"/></svg></a>
 </section>
 
-<!-- ===================================================== 03 FAMILIAS -->
+<!-- ===================================================== 04 FAMILIAS -->
 <section class="slide t-vino" id="familias" data-chap="familias">
-  <span class="ghost" aria-hidden="true">03</span>
+  <span class="ghost" aria-hidden="true">04</span>
   <div class="in stack">
     <div class="tx">
-      <span class="kick r"><b>03</b>Padres de familia</span>
+      <span class="kick r"><b>04</b>Padres de familia</span>
       <h2 class="r" style="--i:1">Cada familia, al tanto de todo.</h2>
       <p class="lead r" style="--i:2">Asistencia, notas, tareas y avisos de cada hijo, en la app. Sin esperar a la reunión de padres ni al boletín.</p>
     </div>
     <div class="fan">
-      <figure class="r" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-inicio.webp" width="720" height="1600" alt="App de la familia: inicio"></div></div><figcaption class="cap">Inicio</figcaption></figure>
-      <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-asistencia.webp" width="720" height="1600" alt="App de la familia: seguimiento de asistencia"></div></div><figcaption class="cap">Asistencia</figcaption></figure>
-      <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-notas.webp" width="720" height="1600" alt="App de la familia: seguimiento de notas"></div></div><figcaption class="cap">Notas</figcaption></figure>
-      <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-tareas.webp" width="720" height="1600" alt="App de la familia: tareas corregidas"></div></div><figcaption class="cap">Tareas</figcaption></figure>
-      <figure class="r" style="--i:5"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-avisos.webp" width="720" height="1600" alt="App de la familia: notificaciones"></div></div><figcaption class="cap">Avisos</figcaption></figure>
+      <figure class="r" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-inicio.webp" width="720" height="1600" alt="App de la familia: inicio"></div></div><figcaption class="cap">Inicio</figcaption></figure>
+      <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-asistencia.webp" width="720" height="1600" alt="App de la familia: seguimiento de asistencia"></div></div><figcaption class="cap">Asistencia</figcaption></figure>
+      <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-notas.webp" width="720" height="1600" alt="App de la familia: seguimiento de notas"></div></div><figcaption class="cap">Notas</figcaption></figure>
+      <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-tareas.webp" width="720" height="1600" alt="App de la familia: tareas corregidas"></div></div><figcaption class="cap">Tareas</figcaption></figure>
+      <figure class="r" style="--i:5"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-avisos.webp" width="720" height="1600" alt="App de la familia: notificaciones"></div></div><figcaption class="cap">Avisos</figcaption></figure>
     </div>
   </div>
   <aside class="note"><b>Para quien presenta</b>Es lo que más convence a un director: esto es lo que van a ver sus padres de familia. Si puedes, muéstralo también en tu celular.</aside>
@@ -677,27 +774,27 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa" id="avisos" data-chap="familias">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>03</b>Padres de familia</span>
+      <span class="kick r"><b>04</b>Padres de familia</span>
       <h2 class="r" style="--i:1">El colegio le escribe. La familia responde.</h2>
       <p class="lead r" style="--i:2">Cada aviso dice qué pasó y qué se espera. La familia justifica una falta, elige el horario de una reunión o ve su descuento, desde el mismo aviso.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-falta.webp" width="720" height="1600" alt="Aviso de falta a una clase, el mismo día"></div></div><figcaption class="cap">Faltas, el mismo día</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-reunion.webp" width="720" height="1600" alt="La familia elige el horario de una reunión con el docente"></div></div><figcaption class="cap">Reuniones</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-descuento.webp" width="720" height="1600" alt="Aviso de un descuento aplicado en la cuenta"></div></div><figcaption class="cap">Becas y descuentos</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-falta.webp" width="720" height="1600" alt="Aviso de falta a una clase, el mismo día"></div></div><figcaption class="cap">Faltas, el mismo día</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-reunion.webp" width="720" height="1600" alt="La familia elige el horario de una reunión con el docente"></div></div><figcaption class="cap">Reuniones</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-descuento.webp" width="720" height="1600" alt="Aviso de un descuento aplicado en la cuenta"></div></div><figcaption class="cap">Becas y descuentos</figcaption></figure>
       </div>
     </div>
   </div>
-  <a class="next" href="#talleres"><b>04</b>Sigue: Talleres y eventos<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#talleres"><b>05</b>Sigue: Talleres y eventos<svg><use href="#i-down"/></svg></a>
 </section>
 
-<!-- ===================================================== 04 TALLERES Y EVENTOS -->
+<!-- ===================================================== 05 TALLERES Y EVENTOS -->
 <section class="slide t-vino" id="talleres" data-chap="talleres">
-  <span class="ghost" aria-hidden="true">04</span>
+  <span class="ghost" aria-hidden="true">05</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <span class="kick r"><b>05</b>Talleres y eventos</span>
       <h2 class="r" style="--i:1">Talleres y eventos, con inscripción desde la app.</h2>
       <p class="lead r" style="--i:2">Clubes, talleres, salidas y ferias. La familia inscribe a su hijo desde el celular y sigue todo lo que pasa adentro.</p>
       <div class="pills r" style="--i:3">
@@ -708,9 +805,9 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-oferta.webp" width="720" height="1600" alt="La oferta de talleres del colegio en la app de la familia"></div></div><figcaption class="cap"><b>1</b>Se inscribe</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-avisos.webp" width="720" height="1600" alt="Avisos del instructor del taller de ajedrez"></div></div><figcaption class="cap"><b>2</b>Recibe los avisos</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-tareas.webp" width="720" height="1600" alt="Tareas del taller con su nota"></div></div><figcaption class="cap"><b>3</b>Ve tareas y notas</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-oferta.webp" width="720" height="1600" alt="La oferta de talleres del colegio en la app de la familia"></div></div><figcaption class="cap"><b>1</b>Se inscribe</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-avisos.webp" width="720" height="1600" alt="Avisos del instructor del taller de ajedrez"></div></div><figcaption class="cap"><b>2</b>Recibe los avisos</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-tareas.webp" width="720" height="1600" alt="Tareas del taller con su nota"></div></div><figcaption class="cap"><b>3</b>Ve tareas y notas</figcaption></figure>
       </div>
     </div>
   </div>
@@ -720,14 +817,14 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz big" id="grupos-taller" data-chap="talleres">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <span class="kick r"><b>05</b>Talleres y eventos</span>
       <h2 class="r" style="--i:1">Cada grupo con su cupo, su horario y su precio.</h2>
       <p class="lead r" style="--i:2">Gratis o con cuota mensual. Las familias se anotan solas o por invitación, y con el cupo lleno pasan a lista de espera.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-spot=".466 .803 .172 .108" data-label="Cómo se entra y cuánto cuesta">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Club de Ajedrez</span></div>
-          <div class="scr"><img class="shot" src="pantallas/tal-programa.webp" width="1600" height="1000" alt="Programa de ajedrez con sus grupos, cupos y precios"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-programa.webp" width="1600" height="1000" alt="Programa de ajedrez con sus grupos, cupos y precios"></div></div>
       </div>
     </div>
   </div>
@@ -736,35 +833,35 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa" id="eventos" data-chap="talleres">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <span class="kick r"><b>05</b>Talleres y eventos</span>
       <h2 class="r" style="--i:1">Ferias, salidas y actos, con cupo y lista de espera.</h2>
       <p class="lead r" style="--i:2">Se arman en minutos y, al publicarlos, las familias reciben el aviso. Cada inscripción se aprueba desde una bandeja.</p>
     </div>
     <div class="vis dl r" style="--i:2">
       <div class="rig">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Inscripciones extracurriculares</span></div>
-          <div class="scr"><img class="shot" src="pantallas/tal-inscripciones.webp" width="1600" height="1000" alt="Bandeja de inscripciones: aprobar, rechazar o activar"></div></div>
-        <div class="float at-l r" style="--i:4;width:31%"><img class="shot" src="pantallas/tal-evento.webp" width="1000" height="1289" alt="Formulario de nuevo evento formativo: tipo, fechas, cupo, lista de espera y transporte"></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-inscripciones.webp" width="1600" height="1000" alt="Bandeja de inscripciones: aprobar, rechazar o activar"></div></div>
+        <div class="float at-l r" style="--i:4;width:31%"><img loading="lazy" decoding="async" class="shot" src="pantallas/tal-evento.webp" width="1000" height="1289" alt="Formulario de nuevo evento formativo: tipo, fechas, cupo, lista de espera y transporte"></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#docentes"><b>05</b>Sigue: Docentes<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#docentes"><b>06</b>Sigue: Docentes<svg><use href="#i-down"/></svg></a>
 </section>
 
-<!-- ===================================================== 05 DOCENTES -->
+<!-- ===================================================== 06 DOCENTES -->
 <section class="slide t-vino" id="docentes" data-chap="docentes">
-  <span class="ghost" aria-hidden="true">05</span>
+  <span class="ghost" aria-hidden="true">06</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Docentes</span>
+      <span class="kick r"><b>06</b>Docentes</span>
       <h2 class="r" style="--i:1">El docente pasa lista y califica desde el aula.</h2>
       <p class="lead r" style="--i:2">Su día, sus listas y sus notas en el celular. Cuando cierra la lista, la familia del que faltó recibe el aviso.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/doc-asistencia.webp" width="720" height="1600" alt="App del docente: asistencia de hoy"></div></div><figcaption class="cap"><b>1</b>Su día</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/doc-lista.webp" width="720" height="1600" alt="App del docente: lista del curso con presentes y ausentes"></div></div><figcaption class="cap"><b>2</b>Pasa lista</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/doc-notas.webp" width="720" height="1600" alt="App del docente: calificar una evaluación"></div></div><figcaption class="cap"><b>3</b>Califica</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/doc-asistencia.webp" width="720" height="1600" alt="App del docente: asistencia de hoy"></div></div><figcaption class="cap"><b>1</b>Su día</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/doc-lista.webp" width="720" height="1600" alt="App del docente: lista del curso con presentes y ausentes"></div></div><figcaption class="cap"><b>2</b>Pasa lista</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/doc-notas.webp" width="720" height="1600" alt="App del docente: calificar una evaluación"></div></div><figcaption class="cap"><b>3</b>Califica</figcaption></figure>
       </div>
     </div>
   </div>
@@ -773,35 +870,35 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz" id="cuaderno" data-chap="docentes">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Docentes</span>
+      <span class="kick r"><b>06</b>Docentes</span>
       <h2 class="r" style="--i:1">Califica dentro de la norma de la dirección.</h2>
       <p class="lead r" style="--i:2">El cuaderno le muestra cuánto lleva y qué le falta antes del cierre. Y la nota que carga, el alumno la ve al instante.</p>
     </div>
     <div class="vis dr r" style="--i:2">
       <div class="rig" data-spot=".191 .755 .79 .112" data-label="Lo que pide Dirección Académica" data-below>
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Cuaderno de notas</span></div>
-          <div class="scr"><img class="shot" src="pantallas/doc-cuadernos.webp" width="2160" height="1350" alt="Cuaderno de notas del docente con lo que pide Dirección Académica"></div></div>
-        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/alu-tareas.webp" width="720" height="1600" alt="App del alumno: tareas con su nota"></div></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/doc-cuadernos.webp" width="2160" height="1350" alt="Cuaderno de notas del docente con lo que pide Dirección Académica"></div></div>
+        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/alu-tareas.webp" width="720" height="1600" alt="App del alumno: tareas con su nota"></div></div></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#enfermeria"><b>06</b>Sigue: Enfermería<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#enfermeria"><b>07</b>Sigue: Enfermería<svg><use href="#i-down"/></svg></a>
   <aside class="note"><b>Para quien presenta</b>El trimestre no se puede cerrar con la norma incumplida: el docente puede seguir cargando, pero el sistema le dice qué le falta.</aside>
 </section>
 
-<!-- ===================================================== 06 ENFERMERÍA -->
+<!-- ===================================================== 07 ENFERMERÍA -->
 <section class="slide t-vino big" id="enfermeria" data-chap="enfermeria">
-  <span class="ghost" aria-hidden="true">06</span>
+  <span class="ghost" aria-hidden="true">07</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>06</b>Enfermería</span>
+      <span class="kick r"><b>07</b>Enfermería</span>
       <h2 class="r" style="--i:1">Enfermería sabe quién está, desde qué hora y si volvió al aula.</h2>
       <p class="lead r" style="--i:2">Cada salida del aula queda registrada: de qué clase venía, quién lo atendió y cómo terminó.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-spot=".786 .525 .121 .40" data-label="Si volvió al aula" data-end>
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Bandeja de visitas</span></div>
-          <div class="scr"><img class="shot" src="pantallas/enf-bandeja.webp" width="2160" height="1350" alt="Bandeja de visitas de Enfermería con el estado de cada alumno"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/enf-bandeja.webp" width="2160" height="1350" alt="Bandeja de visitas de Enfermería con el estado de cada alumno"></div></div>
       </div>
     </div>
   </div>
@@ -811,15 +908,15 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz" id="ficha" data-chap="enfermeria">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>06</b>Enfermería</span>
+      <span class="kick r"><b>07</b>Enfermería</span>
       <h2 class="r" style="--i:1">La ficha médica, completa y protegida.</h2>
       <p class="lead r" style="--i:2">Alergias, medicación y qué hacer en una emergencia, a un clic. La familia la actualiza desde la app y Enfermería la confirma. Los datos nacen tapados y cada lectura queda registrada.</p>
     </div>
     <div class="vis dr r" style="--i:2">
       <div class="rig" data-spot=".797 .283 .092 .04" data-label="Datos tapados: cada lectura queda registrada" data-end>
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Ficha de salud</span></div>
-          <div class="scr"><img class="shot" src="pantallas/enf-ficha.webp" width="2160" height="1350" alt="Ficha de salud del alumno: alergias, medicación y notas de emergencia"></div></div>
-        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-salud-hijo.webp" width="720" height="1600" alt="App de la familia: salud de mi hijo"></div></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/enf-ficha.webp" width="2160" height="1350" alt="Ficha de salud del alumno: alergias, medicación y notas de emergencia"></div></div>
+        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/enf-salud-hijo.webp" width="720" height="1600" alt="App de la familia: salud de mi hijo"></div></div></div>
       </div>
     </div>
   </div>
@@ -828,34 +925,34 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa" id="aviso-salud" data-chap="enfermeria">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>06</b>Enfermería</span>
+      <span class="kick r"><b>07</b>Enfermería</span>
       <h2 class="r" style="--i:1">La familia se entera al instante.</h2>
       <p class="lead r" style="--i:2">Recibe el aviso, ve a qué hora salió del aula y cuándo volvió, y lo que Enfermería recomienda para la casa.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-enfermeria.webp" width="720" height="1600" alt="Aviso del informe de la visita a Enfermería"></div></div><figcaption class="cap"><b>1</b>Recibe el aviso</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-visitas.webp" width="720" height="1600" alt="Visitas al área de salud: cada paso con su hora"></div></div><figcaption class="cap"><b>2</b>Ve cada paso</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-informe.webp" width="720" height="1600" alt="Informe de la visita: qué nos contó el área y qué hacer en casa"></div></div><figcaption class="cap"><b>3</b>Sabe qué hacer en casa</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-enfermeria.webp" width="720" height="1600" alt="Aviso del informe de la visita a Enfermería"></div></div><figcaption class="cap"><b>1</b>Recibe el aviso</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/enf-visitas.webp" width="720" height="1600" alt="Visitas al área de salud: cada paso con su hora"></div></div><figcaption class="cap"><b>2</b>Ve cada paso</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/enf-informe.webp" width="720" height="1600" alt="Informe de la visita: qué nos contó el área y qué hacer en casa"></div></div><figcaption class="cap"><b>3</b>Sabe qué hacer en casa</figcaption></figure>
       </div>
     </div>
   </div>
-  <a class="next" href="#orientacion"><b>07</b>Sigue: Orientación<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#orientacion"><b>08</b>Sigue: Orientación<svg><use href="#i-down"/></svg></a>
 </section>
 
-<!-- ===================================================== 07 ORIENTACIÓN -->
+<!-- ===================================================== 08 ORIENTACIÓN -->
 <section class="slide t-ink big" id="orientacion" data-chap="orientacion">
-  <span class="ghost" aria-hidden="true">07</span>
+  <span class="ghost" aria-hidden="true">08</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>07</b>Orientación</span>
+      <span class="kick r"><b>08</b>Orientación</span>
       <h2 class="r" style="--i:1">Orientación ve a tiempo a quien necesita ayuda.</h2>
       <p class="lead r" style="--i:2">Lo que cada docente nota en clase llega a un solo lugar, ordenado por urgencia. Nada se pierde entre cuadernos y mensajes.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-spot=".216 .397 .19 .048" data-label="Lo que espera su revisión" data-below>
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Panel de orientación</span></div>
-          <div class="scr"><img class="shot" src="pantallas/ori-panel.webp" width="2160" height="1350" alt="Panel de orientación: alertas, casos, seguimientos y derivaciones"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/ori-panel.webp" width="2160" height="1350" alt="Panel de orientación: alertas, casos, seguimientos y derivaciones"></div></div>
       </div>
     </div>
   </div>
@@ -864,14 +961,14 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz big" id="casos" data-chap="orientacion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>07</b>Orientación</span>
+      <span class="kick r"><b>08</b>Orientación</span>
       <h2 class="r" style="--i:1">Cada caso avanza por etapas, con un responsable.</h2>
       <p class="lead r" style="--i:2">Reportado, en investigación, resuelto. Se ve quién lo lleva, qué tan grave es y qué quedó sin asignar.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Casos de convivencia</span></div>
-          <div class="scr"><img class="shot" src="pantallas/ori-casos.webp" width="2160" height="1350" alt="Casos de convivencia por etapa: reportado, en investigación, resuelto y archivado"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/ori-casos.webp" width="2160" height="1350" alt="Casos de convivencia por etapa: reportado, en investigación, resuelto y archivado"></div></div>
       </div>
     </div>
   </div>
@@ -880,35 +977,35 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa" id="acompanamiento" data-chap="orientacion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>07</b>Orientación</span>
+      <span class="kick r"><b>08</b>Orientación</span>
       <h2 class="r" style="--i:1">Con la familia, siempre.</h2>
       <p class="lead r" style="--i:2">Cuando hace falta un acompañamiento, el colegio lo propone por la app y la familia decide. Cada sesión le llega como aviso.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-propuesta.webp" width="720" height="1610" alt="El colegio pide permiso a la familia para un acompañamiento"></div></div><figcaption class="cap"><b>1</b>El colegio propone</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-autoriza.webp" width="720" height="1610" alt="La familia autoriza o no autoriza desde la app"></div></div><figcaption class="cap"><b>2</b>La familia decide</figcaption></figure>
-        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-avisos.webp" width="720" height="1600" alt="Avisos de cada sesión del acompañamiento"></div></div><figcaption class="cap"><b>3</b>Sigue cada sesión</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/ori-propuesta.webp" width="720" height="1610" alt="El colegio pide permiso a la familia para un acompañamiento"></div></div><figcaption class="cap"><b>1</b>El colegio propone</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/ori-autoriza.webp" width="720" height="1610" alt="La familia autoriza o no autoriza desde la app"></div></div><figcaption class="cap"><b>2</b>La familia decide</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/ori-avisos.webp" width="720" height="1600" alt="Avisos de cada sesión del acompañamiento"></div></div><figcaption class="cap"><b>3</b>Sigue cada sesión</figcaption></figure>
       </div>
     </div>
   </div>
-  <a class="next" href="#direccion"><b>08</b>Sigue: Dirección académica<svg><use href="#i-down"/></svg></a>
+  <a class="next" href="#direccion"><b>09</b>Sigue: Dirección académica<svg><use href="#i-down"/></svg></a>
   <aside class="note"><b>Para quien presenta</b>La familia puede decir que no, con sus palabras, y queda registrado. El colegio acompaña, no impone.</aside>
 </section>
 
-<!-- ===================================================== 08 DIRECCIÓN ACADÉMICA -->
+<!-- ===================================================== 09 DIRECCIÓN ACADÉMICA -->
 <section class="slide t-ink big" id="direccion" data-chap="direccion">
-  <span class="ghost" aria-hidden="true">08</span>
+  <span class="ghost" aria-hidden="true">09</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>08</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Todo el colegio, en una sola pantalla.</h2>
       <p class="lead r" style="--i:2">Lo que puede impedir el cierre del trimestre, con nombre y apellido. A tiempo para actuar.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".458 .246 .257 .179" data-z="1.75" data-at="38 50">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Panel académico</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-panel.webp" width="2160" height="1350" alt="Panel académico de la dirección"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/da-panel.webp" width="2160" height="1350" alt="Panel académico de la dirección"></div></div>
       </div>
     </div>
   </div>
@@ -918,14 +1015,14 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz big" id="norma" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>08</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Define una vez cómo se evalúa.</h2>
       <p class="lead r" style="--i:2">Escala, nota para aprobar y el peso de cada dimensión. Todos los docentes califican con la misma regla.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".213 .503 .327 .161" data-z="1.5" data-at="50 64">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Configuración de evaluación</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-eval.webp" width="2160" height="1350" alt="Configuración de evaluación por nivel"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/da-eval.webp" width="2160" height="1350" alt="Configuración de evaluación por nivel"></div></div>
       </div>
     </div>
   </div>
@@ -934,14 +1031,14 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa big" id="avance" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>08</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Sabe quién va atrasado, antes del cierre.</h2>
       <p class="lead r" style="--i:2">El avance de notas por curso, materia y docente. Verde: al día. Ámbar: falta.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".671 .706 .19 .27" data-z="1.55" data-at="10 33">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Avance de calificación</span></div>
-          <div class="scr"><img class="shot" src="pantallas/eva-avance.webp" width="2160" height="1350" alt="Avance de calificación por materia y docente"></div></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/eva-avance.webp" width="2160" height="1350" alt="Avance de calificación por materia y docente"></div></div>
       </div>
     </div>
   </div>
@@ -950,16 +1047,16 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-luz" id="decisiones" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>08</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Aprueba, rechaza o cita. Y queda escrito.</h2>
       <p class="lead r" style="--i:2">Licencias, justificaciones y postulaciones esperan su decisión en una bandeja, con la norma a la vista.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="cascade">
         <div class="web back"><div class="bar"><i></i><i></i><i></i><span>PeopleCole · Bandeja de aprobaciones</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-aprob.webp" width="2160" height="1350" loading="lazy" alt="Bandeja de aprobaciones de Dirección Académica"></div></div>
+          <div class="scr"><img decoding="async" class="shot" src="pantallas/da-aprob.webp" width="2160" height="1350" loading="lazy" alt="Bandeja de aprobaciones de Dirección Académica"></div></div>
         <div class="web front"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Solicitudes</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-solic.webp" width="2160" height="1350" loading="lazy" alt="Solicitudes de licencia: aprobar, rechazar o citar a reunión"></div></div>
+          <div class="scr"><img decoding="async" class="shot" src="pantallas/da-solic.webp" width="2160" height="1350" loading="lazy" alt="Solicitudes de licencia: aprobar, rechazar o citar a reunión"></div></div>
       </div>
     </div>
   </div>
@@ -968,74 +1065,19 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 <section class="slide t-rosa big" id="historia" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>08</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Dirección académica</span>
       <h2 class="r" style="--i:1">La historia completa de cada alumno.</h2>
       <p class="lead r" style="--i:2">Desde la postulación hasta la última nota: todo en orden, y cada paso con el módulo del que salió.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig">
         <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Trazabilidad del estudiante</span></div>
-          <div class="scr"><img class="shot" src="pantallas/tra.webp" width="2160" height="1350" loading="lazy" alt="Trazabilidad del estudiante: postulación admitida y matrícula confirmada"></div></div>
-      </div>
-    </div>
-  </div>
-  <a class="next" href="#puesta"><b>09</b>Sigue: Puesta en marcha<svg><use href="#i-down"/></svg></a>
-  <aside class="note"><b>Para quien presenta</b>Cierra el círculo: la historia empieza en la postulación en línea del primer capítulo.</aside>
-</section>
-
-<!-- ===================================================== 09 PUESTA EN MARCHA -->
-<section class="slide t-vino" id="puesta" data-chap="puesta">
-  <span class="ghost" aria-hidden="true">09</span>
-  <div class="in stack">
-    <div class="tx">
-      <span class="kick r"><b>09</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">El colegio, armado en seis pasos.</h2>
-      <p class="lead r" style="--i:2">La puesta en marcha sigue el orden del colegio: primero la estructura y las materias, al final las personas.</p>
-    </div>
-    <div class="bento pm">
-      <figure class="bcard r" style="--i:2"><div class="bshot"><img class="shot" src="pantallas/pm-estructura.webp" width="2160" height="1350" loading="lazy" alt="Estructura del colegio: sede, niveles, cursos y paralelos"></div><p><b>1</b><span>Estructura<small>Sedes, niveles, cursos y paralelos</small></span></p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/pm-agrupaciones.webp" width="2160" height="1350" loading="lazy" alt="Tablero de agrupaciones por grado"></div><p><b>2</b><span>Grupos y subgrupos<small>Por idioma, laboratorio, taller o nivelación</small></span></p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio"></div><p><b>3</b><span>Materias y malla<small>El pensum de cada curso, con sus versiones</small></span></p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/pm-seduca.webp" width="2160" height="1350" loading="lazy" alt="Equivalencias SEDUCA"></div><p><b>4</b><span>SEDUCA<small>Cada materia con su equivalencia oficial</small></span></p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente de la semana"></div><p><b>5</b><span>Docentes<small>Carga, disponibilidad y horario</small></span></p></figure>
-      <figure class="bcard r" style="--i:5"><div class="bshot"><img class="shot" src="pantallas/pm-personas.webp" width="2160" height="1350" loading="lazy" alt="Estudiantes, docentes, apoderados y personal"></div><p><b>6</b><span>Estudiantes y familias<small>Matrícula, vínculos y acceso a la app</small></span></p></figure>
-    </div>
-  </div>
-  <aside class="note"><b>Para quien presenta</b>Cada paso se prueba con el equipo del colegio antes de pasar al siguiente, sin detener la operación.</aside>
-</section>
-
-<section class="slide t-luz" id="seduca" data-chap="puesta">
-  <div class="in split">
-    <div class="tx">
-      <span class="kick r"><b>09</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">Cada materia, con su equivalencia SEDUCA.</h2>
-      <p class="lead r" style="--i:2">El colegio enseña con su propia malla. El sistema sabe a qué materia oficial corresponde cada una, con su código, y avisa si algo no coincide.</p>
-    </div>
-    <div class="vis dr r" style="--i:2">
-      <div class="rig">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Materias y pensum</span></div>
-          <div class="scr"><img class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio por área"></div></div>
-        <div class="float at-r r" style="--i:4"><div class="fh"><i><svg><use href="#i-check"/></svg></i>Equivalencias SEDUCA</div><img class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" loading="lazy" alt="Equivalencias SEDUCA: materia oficial, código y sin divergencia"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide t-rosa big" id="carga" data-chap="puesta">
-  <div class="in split">
-    <div class="tx">
-      <span class="kick r"><b>09</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">Docentes con su carga, sin choques ni huecos.</h2>
-      <p class="lead r" style="--i:2">Cuántas horas tiene cada uno, quién está pasado y quién tiene margen. Lo que hay que resolver aparece antes de publicar el horario.</p>
-    </div>
-    <div class="vis r" style="--i:2">
-      <div class="rig" data-spot=".206 .478 .76 .208" data-label="Qué hay que resolver antes de publicar">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Carga docente</span></div>
-          <div class="scr"><img class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente: horas por semana y lo que hay que resolver"></div></div>
+          <div class="scr"><img decoding="async" class="shot" src="pantallas/tra.webp" width="2160" height="1350" loading="lazy" alt="Trazabilidad del estudiante: postulación admitida y matrícula confirmada"></div></div>
       </div>
     </div>
   </div>
   <a class="next" href="#reportes"><b>10</b>Sigue: Reportes<svg><use href="#i-down"/></svg></a>
+  <aside class="note"><b>Para quien presenta</b>Cierra el círculo: la historia empieza en la postulación en línea del primer capítulo.</aside>
 </section>
 
 <!-- ===================================================== 10 REPORTES -->
@@ -1048,12 +1090,12 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
       <p class="lead r" style="--i:2">Cada uno contesta algo concreto, con el dato real del sistema.</p>
     </div>
     <div class="bento">
-      <figure class="bcard r" style="--i:2"><div class="bshot"><img class="shot" src="pantallas/da-rep-asis.webp" width="2160" height="1350" loading="lazy" alt="Reporte: qué cursos faltan más"></div><p><i></i>¿Qué cursos faltan más?</p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/da-rep-tareas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: quién no está entregando las tareas"></div><p><i></i>¿Quién no entrega las tareas?</p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/da-rep-riesgo.webp" width="2160" height="1350" loading="lazy" alt="Reporte: quiénes están por perder el año"></div><p><i></i>¿Quién está por perder el año?</p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/da-rep-notas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: notas por alumno"></div><p><i></i>Notas por alumno y materia</p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/da-rep-horarios.webp" width="2160" height="1350" loading="lazy" alt="Reporte: horarios docentes"></div><p><i></i>Horarios docentes, sin choques</p></figure>
-      <figure class="bcard r" style="--i:5"><div class="bshot"><img class="shot" src="pantallas/da-rep-aulas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: aulas ocupadas"></div><p><i></i>Aulas ocupadas</p></figure>
+      <figure class="bcard r" style="--i:2"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-asis.webp" width="2160" height="1350" loading="lazy" alt="Reporte: qué cursos faltan más"></div><p><i></i>¿Qué cursos faltan más?</p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-tareas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: quién no está entregando las tareas"></div><p><i></i>¿Quién no entrega las tareas?</p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-riesgo.webp" width="2160" height="1350" loading="lazy" alt="Reporte: quiénes están por perder el año"></div><p><i></i>¿Quién está por perder el año?</p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-notas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: notas por alumno"></div><p><i></i>Notas por alumno y materia</p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-horarios.webp" width="2160" height="1350" loading="lazy" alt="Reporte: horarios docentes"></div><p><i></i>Horarios docentes, sin choques</p></figure>
+      <figure class="bcard r" style="--i:5"><div class="bshot"><img decoding="async" class="shot" src="pantallas/da-rep-aulas.webp" width="2160" height="1350" loading="lazy" alt="Reporte: aulas ocupadas"></div><p><i></i>Aulas ocupadas</p></figure>
     </div>
   </div>
 </section>
@@ -1192,12 +1234,12 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
       <h2 class="r" style="--i:1">Un solo sistema. Todo el colegio conectado.</h2>
     </div>
     <div class="who">
-      <article class="r" style="--i:2"><div class="th"><img src="pantallas/fam-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Familias</h3><p>Se inscriben, pagan con QR y acompañan a sus hijos.</p></div></article>
-      <article class="r" style="--i:3"><div class="th"><img src="pantallas/alu-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Alumnos</h3><p>Su horario, sus tareas y sus notas.</p></div></article>
-      <article class="r" style="--i:4"><div class="th"><img src="pantallas/doc-asistencia.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App y web</small><h3>Docentes</h3><p>Pasan lista y califican desde el aula.</p></div></article>
-      <article class="r" style="--i:5"><div class="th w"><img src="pantallas/enf-ficha.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Enfermería</h3><p>Visitas y ficha médica, siempre a mano.</p></div></article>
-      <article class="r" style="--i:6"><div class="th w"><img src="pantallas/ori-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Orientación</h3><p>Casos y acompañamiento, a tiempo.</p></div></article>
-      <article class="r" style="--i:7"><div class="th w"><img src="pantallas/da-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Dirección</h3><p>Ve todo, decide y actúa a tiempo.</p></div></article>
+      <article class="r" style="--i:2"><div class="th"><img decoding="async" src="pantallas/fam-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Familias</h3><p>Se inscriben, pagan con QR y acompañan a sus hijos.</p></div></article>
+      <article class="r" style="--i:3"><div class="th"><img decoding="async" src="pantallas/alu-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Alumnos</h3><p>Su horario, sus tareas y sus notas.</p></div></article>
+      <article class="r" style="--i:4"><div class="th"><img decoding="async" src="pantallas/doc-asistencia.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App y web</small><h3>Docentes</h3><p>Pasan lista y califican desde el aula.</p></div></article>
+      <article class="r" style="--i:5"><div class="th w"><img decoding="async" src="pantallas/enf-ficha.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Enfermería</h3><p>Visitas y ficha médica, siempre a mano.</p></div></article>
+      <article class="r" style="--i:6"><div class="th w"><img decoding="async" src="pantallas/ori-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Orientación</h3><p>Casos y acompañamiento, a tiempo.</p></div></article>
+      <article class="r" style="--i:7"><div class="th w"><img decoding="async" src="pantallas/da-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Dirección</h3><p>Ve todo, decide y actúa a tiempo.</p></div></article>
     </div>
     <div class="cta r" style="--i:8">
       <p>Agendemos una demostración <strong>con los datos de su colegio.</strong></p>
@@ -1214,7 +1256,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <button id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
 </nav>
 
-<div class="lb" id="lb" hidden><button id="lbClose">Cerrar</button><img id="lbImg" alt=""></div>
+<div class="lb" id="lb" hidden><button id="lbClose">Cerrar</button><img loading="lazy" decoding="async" id="lbImg" alt=""></div>
 
 <script src="presentacion.js"></script>
 </body>
