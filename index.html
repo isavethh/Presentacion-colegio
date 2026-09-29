@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PeopleCole — Todo el colegio en un solo sistema</title>
-<meta name="description" content="Presentación de PeopleCole: inscripción en línea, pagos con QR, app para familias y docentes, y el panel de Dirección Académica.">
+<meta name="description" content="Presentación de PeopleCole: 45 módulos integrados, inscripción en línea, pagos con QR, apps para familias y docentes, enfermería, orientación, dirección académica, reportes e inteligencia artificial.">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +18,13 @@
   --rosa:#E9B9C8;--rosa-l:#F6DCE5;--tinte:#F7EBEF;--tinte-2:#EFD8E0;
   --paper:#FAF8F9;--white:#fff;--line:#E9E4E7;--text:#2B2629;--strong:#171316;--muted:#6E676C;--faint:#A39CA1;
   --ink:#110D10;--on-dark:#F6F1F3;--on-dark-2:#D2C4CB;
+  --lila:#C4B5FD;--violeta:#7C3AED;
   --top:64px;
   --H:calc(100svh - var(--top));
   color-scheme:light;
 }
 @supports not (height:100svh){:root{--H:calc(100vh - var(--top))}}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;background:var(--ink)}
 body{margin:0;font-family:Outfit,"Segoe UI",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.5;color:var(--text);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -39,16 +41,17 @@ html[data-tone="dark"] .top{background:rgba(17,9,13,.30);color:#fff;border-color
 html[data-tone="light"] .top{background:rgba(250,248,249,.84);color:var(--strong);border-color:rgba(233,228,231,.9)}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,var(--vino-l),var(--vino-d));color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:.95rem;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset}
-.chaps{display:flex;gap:2px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none}
+.chaps{display:flex;gap:1px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none}
 .chaps::-webkit-scrollbar{display:none}
-.chaps a{display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:99px;font-size:.9rem;font-weight:500;text-decoration:none;white-space:nowrap;opacity:.66;transition:opacity .2s,background-color .3s}
-.chaps a small{font-size:.72rem;font-weight:700;letter-spacing:.04em;opacity:.8;font-variant-numeric:tabular-nums}
-.chaps a:hover{opacity:1}
-.chaps a.on{opacity:1}
+.chaps a{display:flex;align-items:center;gap:6px;padding:7px 11px;border-radius:99px;font-size:.88rem;font-weight:500;text-decoration:none;white-space:nowrap;opacity:.62;transition:opacity .2s,background-color .3s}
+.chaps a small{font-size:.7rem;font-weight:700;letter-spacing:.04em;opacity:.85;font-variant-numeric:tabular-nums}
+.chaps a:hover,.chaps a.on{opacity:1}
+.chaps a.ai small{color:#E9B9C8}
+html[data-tone="light"] .chaps a.ai small{color:var(--violeta)}
 html[data-tone="dark"] .chaps a.on{background:rgba(255,255,255,.14)}
 html[data-tone="light"] .chaps a.on{background:var(--tinte);color:var(--vino)}
 .tools{display:flex;gap:6px;flex:none}
-.ib{width:38px;height:38px;border-radius:10px;border:1px solid currentColor;border-color:rgba(127,127,127,.28);background:transparent;display:grid;place-items:center;transition:background-color .2s}
+.ib{width:38px;height:38px;border-radius:10px;border:1px solid rgba(127,127,127,.28);background:transparent;display:grid;place-items:center;transition:background-color .2s}
 .ib:hover{background:rgba(127,127,127,.14)}
 .ib svg{width:17px;height:17px}
 .ib[aria-pressed="true"]{background:#FDF3E3;border-color:#F1D3A6;color:#B45309}
@@ -74,7 +77,7 @@ html[data-tone="light"] .ctrl{background:rgba(255,255,255,.9);color:var(--strong
 .t-vino{background:radial-gradient(1200px 700px at 92% 112%,rgba(233,185,200,.26),transparent 58%),radial-gradient(900px 600px at -12% -18%,rgba(0,0,0,.32),transparent 60%),linear-gradient(128deg,var(--vino-xd) 0%,var(--vino-d) 28%,var(--vino) 62%,var(--vino-l) 100%);color:#fff}
 .t-luz{background:radial-gradient(1000px 620px at 104% -10%,var(--tinte),transparent 62%),var(--paper)}
 .t-rosa{background:radial-gradient(900px 600px at -8% 110%,rgba(233,185,200,.55),transparent 60%),linear-gradient(180deg,var(--tinte) 0%,#FBF5F7 100%)}
-.t-ink h1,.t-ink h2,.t-ink h3,.t-vino h1,.t-vino h2,.t-vino h3{color:#fff}
+.t-ink h1,.t-ink h2,.t-ink h3,.t-vino h1,.t-vino h2,.t-vino h3,.t-ai h2,.t-ai h3{color:#fff}
 .slide::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:26px 26px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
 .t-luz::after,.t-rosa::after{background-image:radial-gradient(rgba(124,29,63,.07) 1px,transparent 1.2px)}
 
@@ -84,22 +87,22 @@ html[data-tone="light"] .ctrl{background:rgba(255,255,255,.9);color:var(--strong
 
 .in{width:min(1660px,100%);margin:0 auto}
 .split{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.7fr);gap:clamp(28px,3.6vw,76px);align-items:center}
-.split.rev{grid-template-columns:minmax(0,1.7fr) minmax(0,.7fr)}
-.split.rev>.tx{order:2}
 .stack{display:flex;flex-direction:column;align-items:center;text-align:center}
-.stack .tx{max-width:980px;display:flex;flex-direction:column;align-items:center}
+.stack .tx{max-width:1000px;display:flex;flex-direction:column;align-items:center}
 .vis{position:relative;min-width:0;display:flex;justify-content:center;align-items:center}
+.vis.dr{padding:0 6% 8% 0}
+.vis.dl{padding:0 0 8% 6%}
 
 /* texto */
 .kick{display:inline-flex;align-items:center;gap:11px;font-size:.8rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--vino)}
 .kick b{display:grid;place-items:center;min-width:36px;height:26px;padding:0 9px;border-radius:99px;background:var(--vino);color:#fff;font-size:.78rem;letter-spacing:.03em}
 .t-ink .kick,.t-vino .kick{color:var(--rosa)}
 .t-ink .kick b,.t-vino .kick b{background:var(--rosa);color:var(--vino-d)}
-h1{font-size:clamp(2.5rem,min(4.9vw,8.6vh),5.6rem);font-weight:800;letter-spacing:-.034em;word-spacing:.04em;line-height:.98;margin-top:20px}
+h1{font-size:clamp(2.4rem,min(4.3vw,8vh),5.2rem);font-weight:800;letter-spacing:-.034em;word-spacing:.04em;line-height:.98;margin-top:20px}
 h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacing:-.03em;word-spacing:.04em;line-height:1.04;margin-top:18px}
 .lead{font-size:clamp(1rem,min(1.24vw,2.25vh),1.32rem);line-height:1.5;color:var(--muted);margin-top:clamp(12px,2.2vh,22px);max-width:36ch}
-.stack .lead{max-width:54ch}
-.t-ink .lead{color:var(--on-dark-2)}
+.stack .lead{max-width:56ch}
+.t-ink .lead,.t-ai .lead{color:var(--on-dark-2)}
 .t-vino .lead{color:#F7E6EC}
 .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(18px,3vh,30px)}
 .pill{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:99px;font-weight:600;font-size:.98rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff}
@@ -109,14 +112,16 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 .btn:hover{transform:translateY(-2px)}
 .btn svg{width:18px;height:18px}
 .btn-w{background:#fff;color:var(--vino)}
-.btn-g{background:rgba(255,255,255,.1);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.3) inset}
-.btn-g:hover{background:rgba(255,255,255,.18)}
+.real{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:.8rem;color:var(--faint)}
+.real i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
 
 /* enlace al capítulo siguiente, al pie de la última diapositiva de cada capítulo */
 .next{position:absolute;left:clamp(18px,4vw,72px);bottom:clamp(16px,3vh,32px);display:inline-flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;text-decoration:none;color:var(--muted);padding:8px 14px 8px 8px;border-radius:99px;background:rgba(255,255,255,.7);box-shadow:0 0 0 1px var(--line) inset;transition:color .2s,box-shadow .2s}
 .next b{display:grid;place-items:center;height:26px;min-width:34px;padding:0 8px;border-radius:99px;background:var(--vino);color:#fff;font-size:.75rem}
 .next:hover{color:var(--vino);box-shadow:0 0 0 1px var(--vino) inset}
 .next svg{width:16px;height:16px}
+.t-ink .next,.t-vino .next,.t-ai .next{background:rgba(255,255,255,.1);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.2) inset}
+.t-ink .next b,.t-vino .next b,.t-ai .next b{background:#fff;color:var(--vino)}
 
 /* ================= dispositivos ================= */
 /* ventana del sistema web */
@@ -140,16 +145,24 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 .tel.m .scr::before{content:"9:41";display:block;height:9.5cqw;padding:3.3cqw 0 0 8.5cqw;font:600 3.7cqw/1 Outfit,system-ui,sans-serif;color:#141414;background:#F4F7F9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 12'%3E%3Cg fill='%23141414'%3E%3Crect x='0' y='8' width='3' height='4' rx='.8'/%3E%3Crect x='4.5' y='6' width='3' height='6' rx='.8'/%3E%3Crect x='9' y='3.5' width='3' height='8.5' rx='.8'/%3E%3Crect x='13.5' y='1' width='3' height='11' rx='.8'/%3E%3Cpath d='M28 3.2c2.3 0 4.4.9 6 2.4l1.3-1.4A10.2 10.2 0 0 0 28 1.3c-2.8 0-5.3 1.1-7.3 2.9l1.3 1.4a8.3 8.3 0 0 1 6-2.4zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.3-1.4A6.8 6.8 0 0 0 28 4.9c-1.8 0-3.4.7-4.7 1.8l1.3 1.4c.9-.8 2.1-1.3 3.4-1.3zm0 3.5 1.9-2a2.8 2.8 0 0 0-3.8 0z'/%3E%3Crect x='40' y='1.5' width='17' height='9' rx='2.5' fill='none' stroke='%23141414' stroke-opacity='.45'/%3E%3Crect x='41.8' y='3.3' width='12' height='5.4' rx='1.3'/%3E%3Crect x='58' y='4.5' width='1.6' height='3' rx='.8' fill-opacity='.45'/%3E%3C/g%3E%3C/svg%3E") no-repeat right 7cqw top 3.4cqw / 17cqw auto}
 
 /* composición: ventana web con piezas apoyadas encima */
-.rig{position:relative;width:100%}
+.rig{position:relative;width:min(100%,calc((var(--H) - 20vh - 34px) * 1.6))}
+.big .rig{width:min(100%,calc((var(--H) - 13vh - 34px) * 1.6))}
 .ov{position:absolute;z-index:3}
 .ov .tel{width:100%}
+.ov.at-r{right:-7%;bottom:-9%;width:21%}
 .float{position:absolute;z-index:3;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 70px -28px rgba(40,6,20,.55),0 0 0 1px rgba(24,10,17,.08)}
 .float img{width:100%;height:auto}
+.float.at-l{left:-7%;bottom:-8%;width:33%}
+.float.at-r{right:-6%;bottom:-10%;width:54%}
+.float .fh{display:flex;align-items:center;gap:9px;padding:11px 16px;font-size:clamp(.78rem,.9vw,.95rem);font-weight:700;color:var(--strong);background:linear-gradient(180deg,#fff,#FBF7F9);border-bottom:1px solid var(--line)}
+.float .fh i{display:grid;place-items:center;width:22px;height:22px;border-radius:7px;background:#E8F5EC;color:#15803D}
+.float .fh i svg{width:13px;height:13px}
 
-/* foco y lupa sobre una zona de la captura (los arma presentacion.js desde data-lens) */
+/* foco y lupa sobre una zona de la captura (los arma presentacion.js desde data-spot y data-lens) */
 .spot{position:absolute;z-index:2;border-radius:12px;box-shadow:0 0 0 3px var(--vino),0 0 0 9px rgba(124,29,63,.18),0 0 0 200vmax rgba(24,10,17,.2);pointer-events:none}
 .spot em{position:absolute;left:-3px;bottom:calc(100% + 12px);white-space:nowrap;font-style:normal;font-size:clamp(11px,.95vw,14px);font-weight:600;color:#fff;background:var(--vino);padding:5px 11px;border-radius:8px;box-shadow:0 8px 20px -8px rgba(40,6,20,.6)}
 .spot.below em{bottom:auto;top:calc(100% + 12px)}
+.spot.end em{left:auto;right:-3px}
 .lens{position:absolute;z-index:4;border-radius:16px;background-color:#fff;background-repeat:no-repeat;box-shadow:0 0 0 4px #fff,0 0 0 5px rgba(24,10,17,.08),0 36px 70px -22px rgba(30,6,16,.6);cursor:zoom-in}
 
 /* filas de teléfonos */
@@ -173,65 +186,203 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
 .fan figure:nth-child(3) .tel{--pw:min(300px,calc((var(--H) - 33vh - 40px) / 2.3))}
 .fan .cap{font-size:.95rem}
 
-/* ================= diapositivas particulares ================= */
-/* portada */
+/* ================= portada ================= */
 .hero .split{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr)}
-.hero h1{font-size:clamp(2.4rem,min(4.3vw,8vh),5.2rem)}
-.hero{padding-bottom:calc(clamp(26px,5vh,60px) + 42px)}
 .hero .vis{padding:0 5% 7% 8%}
-.hero .rig{width:min(100%,calc((var(--H) - 26vh) * 1.6))}
+.hero .rig{width:min(100%,calc((var(--H) - 22vh) * 1.6))}
 .hero .ov.izq{left:-9%;bottom:-11%;width:21%}
 .hero .ov.der{right:-6%;bottom:-6%;width:18.5%}
-.index{list-style:none;margin:clamp(22px,4.6vh,54px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:1px solid rgba(255,255,255,.14)}
-.index a{display:flex;flex-direction:column;gap:6px;padding:clamp(12px,2vh,20px) 16px 4px 0;text-decoration:none;color:var(--on-dark-2);transition:color .2s}
-.index a:hover{color:#fff}
-.index b{font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--rosa)}
-.index span{font-size:clamp(.95rem,1.1vw,1.12rem);font-weight:600;line-height:1.25}
+.hero .pill svg{color:var(--rosa)}
+.pill.ai{background:linear-gradient(90deg,rgba(155,42,82,.55),rgba(124,58,237,.45));border-color:rgba(233,185,200,.45)}
 
-/* inscripción */
-.s-landing .vis{padding:0 5% 8% 0}
-.s-landing .rig{width:min(100%,calc((var(--H) - 20vh - 34px) * 1.6))}
-.s-landing .ov{right:-6%;bottom:-10%;width:22%}
-.s-bandeja .vis{padding:0 0 6% 6%}
-.s-bandeja .rig{width:min(100%,calc((var(--H) - 18vh - 34px) * 1.6))}
-.s-bandeja .float{left:-7%;bottom:-8%;width:33%}
-
-/* ventana web sola, lo más grande posible */
-.big .rig{width:min(100%,calc((var(--H) - 13vh - 34px) * 1.6))}
-
-/* docente: cuaderno + teléfono del alumno */
-.s-cuaderno .vis{padding:0 6% 7% 0}
-.s-cuaderno .rig{width:min(100%,calc((var(--H) - 19vh - 34px) * 1.6))}
-.s-cuaderno .ov{right:-7%;bottom:-9%;width:21%}
+/* ================= todo integrado ================= */
+.int-head{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(24px,4vw,70px);flex-wrap:wrap}
+.int-head .lead{max-width:44ch}
+.nums{display:flex;gap:clamp(16px,2.4vw,46px);flex-wrap:wrap}
+.nums div{display:flex;flex-direction:column}
+.nums b{font-size:clamp(2.3rem,min(4.2vw,7.4vh),4.4rem);font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--vino);font-variant-numeric:tabular-nums}
+.nums b sup{font-size:.5em;vertical-align:.7em;margin-left:1px}
+.nums span{margin-top:6px;font-size:clamp(.82rem,.9vw,.95rem);color:var(--muted);line-height:1.25;max-width:13ch}
+.map{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(8px,.9vw,14px);margin-top:clamp(18px,3.4vh,40px)}
+.area{background:#fff;border-radius:14px;padding:clamp(10px,1.6vh,16px) clamp(10px,.9vw,15px);box-shadow:0 0 0 1px var(--line),0 14px 30px -24px rgba(40,6,20,.4);border-top:4px solid var(--c);text-align:left}
+.area h3{font-size:clamp(.82rem,.92vw,1rem);font-weight:700;display:flex;justify-content:space-between;align-items:baseline;gap:6px;line-height:1.2;letter-spacing:-.01em}
+.area h3 small{color:var(--c);font-weight:800;font-size:1.05em}
+.area ul{list-style:none;margin:clamp(6px,1.2vh,12px) 0 0;padding:0;display:grid;gap:clamp(3px,.6vh,6px)}
+.area li{font-size:clamp(.7rem,min(.76vw,1.5vh),.86rem);line-height:1.25;color:var(--text);padding-left:11px;position:relative}
+.area li::before{content:"";position:absolute;left:0;top:.45em;width:5px;height:5px;border-radius:50%;background:var(--c)}
+.glue{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:clamp(12px,2.4vh,24px);font-size:clamp(.9rem,1vw,1.05rem);color:var(--muted)}
+.glue i{height:1px;flex:1;max-width:220px;background:linear-gradient(90deg,transparent,var(--rosa))}
+.glue i:last-child{background:linear-gradient(90deg,var(--rosa),transparent)}
+.glue b{color:var(--vino);font-weight:700}
 
 /* bandejas en cascada */
 .cascade{position:relative;width:min(100%,calc((var(--H) - 20vh - 34px) * 1.6 * 1.08));padding:0 8% 7% 0}
 .cascade .back{position:absolute;right:0;top:-5%;width:92%;opacity:.96;filter:saturate(.92)}
 .cascade .front{position:relative;z-index:2;width:92%}
 
-/* reportes */
+/* tarjetas con captura (reportes y puesta en marcha) */
 .bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,22px);margin-top:clamp(20px,4vh,46px);width:min(100%,calc(((var(--H) - 32vh) / 2 - 58px) * 1.9 * 3 + 44px))}
+.bento.pm{width:min(100%,calc(((var(--H) - 36vh) / 2 - 76px) * 1.9 * 3 + 44px))}
 .bcard{display:flex;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;text-align:left;box-shadow:0 30px 60px -28px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.08);transition:transform .25s}
 .bcard:hover{transform:translateY(-4px)}
 .bshot{position:relative;aspect-ratio:16/8.4;overflow:hidden;border-bottom:1px solid var(--line)}
-/* se corta la barra lateral, la superior y la mitad derecha: queda el título del reporte y sus números */
+/* se corta la barra lateral, la superior y la mitad derecha: queda el título y lo principal */
 .bshot img{position:absolute;width:191.6%;height:auto;max-width:none;left:-34.1%;top:-32.6%}
 .bcard p{padding:clamp(10px,1.6vh,16px) 18px;font-weight:600;font-size:clamp(.92rem,1.05vw,1.1rem);color:var(--strong);display:flex;align-items:center;gap:10px}
 .bcard p i{width:8px;height:8px;border-radius:50%;background:var(--vino);flex:none}
+.bcard p b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--vino);color:#fff;font-size:.82rem;flex:none}
+.bcard p span{display:flex;flex-direction:column;line-height:1.2}
+.bcard p small{font-weight:400;font-size:.84em;color:var(--muted);margin-top:3px}
+
+/* catálogo de reportes */
+.cat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(18px,3.4vh,40px);text-align:left;width:100%}
+.grp{background:#fff;border-radius:16px;padding:clamp(14px,2vh,22px) clamp(14px,1.2vw,22px);box-shadow:0 0 0 1px var(--line),0 18px 40px -30px rgba(40,6,20,.45)}
+.grp.w2{grid-column:span 2}
+.grp h3{display:flex;align-items:center;gap:10px;font-size:clamp(.95rem,1.05vw,1.12rem);font-weight:700;letter-spacing:-.01em}
+.grp h3 b{display:grid;place-items:center;min-width:30px;height:24px;padding:0 8px;border-radius:99px;background:var(--tinte);color:var(--vino);font-size:.8rem}
+.grp ul{list-style:none;margin:clamp(8px,1.4vh,14px) 0 0;padding:0;display:grid;gap:clamp(4px,.8vh,8px)}
+.grp.w2 ul{grid-template-columns:1fr 1fr;column-gap:22px}
+.grp li{font-size:clamp(.78rem,min(.86vw,1.7vh),.95rem);line-height:1.3;padding-left:14px;position:relative;color:var(--text)}
+.grp li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:2px;background:var(--vino);opacity:.7}
+.grp.total{background:linear-gradient(140deg,var(--vino-l),var(--vino-d));color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 30px 60px -30px rgba(95,23,48,.8)}
+.grp.total b{font-size:clamp(3rem,min(5vw,9vh),5.4rem);font-weight:800;letter-spacing:-.05em;line-height:1}
+.grp.total span{margin-top:8px;font-size:clamp(.95rem,1.05vw,1.15rem);color:#F7E6EC;line-height:1.35}
+
+/* lo más sobresaliente */
+.feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:clamp(20px,4vh,44px);text-align:left;width:100%}
+.feat article{background:#fff;border-radius:18px;padding:clamp(16px,2.4vh,26px) clamp(16px,1.4vw,24px);box-shadow:0 0 0 1px var(--line),0 24px 50px -34px rgba(40,6,20,.5);transition:transform .25s}
+.feat article:hover{transform:translateY(-4px)}
+.feat i{display:grid;place-items:center;width:clamp(40px,4.4vh,50px);height:clamp(40px,4.4vh,50px);border-radius:14px;background:linear-gradient(140deg,var(--vino-l),var(--vino-d));color:#fff;box-shadow:0 10px 24px -10px rgba(95,23,48,.7)}
+.feat i svg{width:52%;height:52%}
+.feat h3{font-size:clamp(1rem,1.2vw,1.3rem);font-weight:700;margin-top:clamp(10px,1.8vh,18px);letter-spacing:-.015em;line-height:1.15}
+.feat p{margin-top:6px;font-size:clamp(.86rem,.95vw,1rem);color:var(--muted);line-height:1.4}
+.feat article.ai{background:linear-gradient(150deg,#1B0E1A,#2A1030 60%,#3A1240);box-shadow:0 0 0 1px rgba(233,185,200,.25),0 24px 50px -30px rgba(80,20,90,.8)}
+.feat article.ai i{background:linear-gradient(140deg,#E9B9C8,#9B2A52 55%,#7C3AED)}
+.feat article.ai h3{color:#fff}
+.feat article.ai p{color:#D9C8D2}
 
 /* cierre */
-.who{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(22px,4.4vh,50px);width:min(100%,1320px)}
+.who{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.2vw,20px);margin-top:clamp(22px,4.4vh,50px);width:min(100%,1560px)}
 .who article{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;overflow:hidden;text-align:left;display:flex;flex-direction:column}
-.who .th{height:clamp(110px,19vh,210px);overflow:hidden;background:rgba(255,255,255,.06);display:flex;justify-content:center;padding-top:clamp(12px,2vh,22px)}
-.who .th img{width:62%;height:auto;align-self:flex-start;border-radius:14px 14px 0 0;box-shadow:0 16px 40px -10px rgba(0,0,0,.5)}
-.who .th.w img{width:100%;border-radius:0;box-shadow:none;margin-top:calc(-1 * clamp(12px,2vh,22px))}
-.who .bd{padding:clamp(14px,2.2vh,22px) 20px clamp(16px,2.4vh,24px)}
-.who small{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rosa)}
-.who h3{font-size:clamp(1.15rem,1.5vw,1.5rem);font-weight:700;margin-top:4px;letter-spacing:-.02em}
-.who p{margin-top:6px;color:#F7E6EC;font-size:clamp(.9rem,1vw,1.02rem);line-height:1.4}
-.cta{margin-top:clamp(22px,4.4vh,48px);display:flex;flex-direction:column;align-items:center;gap:6px}
+.who .th{height:clamp(100px,17vh,190px);overflow:hidden;background:rgba(255,255,255,.06);display:flex;justify-content:center;padding-top:clamp(12px,2vh,20px)}
+.who .th img{width:66%;height:auto;align-self:flex-start;border-radius:14px 14px 0 0;box-shadow:0 16px 40px -10px rgba(0,0,0,.5)}
+.who .th.w{padding:clamp(12px,2vh,20px) 0 0 clamp(12px,2vh,20px)}
+.who .th.w img{width:150%;max-width:none;border-radius:10px 0 0 0}
+.who .bd{padding:clamp(12px,2vh,20px) 18px clamp(14px,2.2vh,22px)}
+.who small{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rosa)}
+.who h3{font-size:clamp(1.05rem,1.3vw,1.4rem);font-weight:700;margin-top:4px;letter-spacing:-.02em}
+.who p{margin-top:6px;color:#F7E6EC;font-size:clamp(.84rem,.92vw,.98rem);line-height:1.4}
+.cta{margin-top:clamp(22px,4.4vh,48px)}
 .cta p{font-size:clamp(1.1rem,1.6vw,1.6rem);font-weight:300;color:#fff}
 .cta p strong{font-weight:700;color:var(--rosa)}
+
+/* ================= inteligencia artificial ================= */
+.t-ai{background:#0A0610;color:#fff}
+.t-ai::after{opacity:.35}
+.aurora{position:absolute;inset:-10%;z-index:-2;pointer-events:none;filter:blur(70px) saturate(1.2);opacity:.9}
+.aurora i{position:absolute;border-radius:50%;mix-blend-mode:screen}
+.aurora i:nth-child(1){width:55vw;height:55vw;left:-10vw;top:-18vw;background:radial-gradient(circle,rgba(155,42,82,.85),transparent 65%);animation:flota1 18s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:48vw;height:48vw;right:-12vw;top:10vh;background:radial-gradient(circle,rgba(124,58,237,.6),transparent 65%);animation:flota2 22s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:40vw;height:40vw;left:30vw;bottom:-22vw;background:radial-gradient(circle,rgba(233,185,200,.45),transparent 65%);animation:flota1 26s ease-in-out infinite alternate-reverse}
+@keyframes flota1{from{transform:translate(0,0) scale(1)}to{transform:translate(8vw,6vh) scale(1.15)}}
+@keyframes flota2{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-10vw,-4vh) scale(.95)}}
+.stars{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1.4px 1.4px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 72%,#fff,transparent),radial-gradient(1.6px 1.6px at 46% 12%,#F6DCE5,transparent),radial-gradient(1px 1px at 63% 44%,#fff,transparent),radial-gradient(1.4px 1.4px at 79% 82%,#E9D5FF,transparent),radial-gradient(1px 1px at 88% 24%,#fff,transparent),radial-gradient(1.2px 1.2px at 6% 88%,#F6DCE5,transparent),radial-gradient(1px 1px at 54% 92%,#fff,transparent);animation:titila 5s ease-in-out infinite alternate}
+@keyframes titila{from{opacity:.35}to{opacity:.9}}
+.grad{background:linear-gradient(90deg,#F6DCE5 0%,#fff 30%,#C4B5FD 60%,#F6DCE5 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brillo 6s linear infinite}
+@keyframes brillo{to{background-position:200% center}}
+.kick.ai{color:#F6DCE5}
+.kick.ai b{background:linear-gradient(90deg,#E9B9C8,#C4B5FD);color:#2A0C1C}
+.kick.ai svg{width:16px;height:16px}
+.t-ai .lead{max-width:40ch}
+.replay{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(18px,3vh,30px);padding:10px 16px;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;font-size:.9rem;font-weight:500}
+.replay:hover{background:rgba(255,255,255,.14)}
+.replay svg{width:16px;height:16px}
+
+.ia-stage{position:relative;width:min(100%,920px,calc((var(--H) - 10vh) * 1.3));margin-inline:auto}
+.sigs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1vw,14px)}
+.sig{display:flex;align-items:center;gap:10px;padding:clamp(8px,1.3vh,12px) 12px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:.25;transform:translateY(8px);transition:opacity .5s,transform .6s cubic-bezier(.2,.9,.25,1.2),border-color .5s,box-shadow .5s}
+.sig i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;flex:none;background:var(--sc);color:#fff}
+.sig i svg{width:17px;height:17px}
+.sig span{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.sig small{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#CDBBC6;font-weight:600}
+.sig b{font-size:clamp(.8rem,.9vw,.98rem);font-weight:600;color:#fff;line-height:1.2}
+.ia-stage.s1 .sig{opacity:1;transform:none;border-color:rgba(233,185,200,.45);box-shadow:0 0 30px -8px var(--sc)}
+.ia-stage.s1 .sig:nth-child(2){transition-delay:.15s}.ia-stage.s1 .sig:nth-child(3){transition-delay:.3s}.ia-stage.s1 .sig:nth-child(4){transition-delay:.45s}
+.wires{display:block;width:100%;height:clamp(34px,6vh,64px);overflow:visible}
+.wires path{fill:none;stroke:url(#hilo);stroke-width:2;stroke-linecap:round;stroke-dasharray:6 10;opacity:0;transition:opacity .6s}
+.ia-stage.s1 .wires path{opacity:1;animation:fluye 1.2s linear infinite}
+@keyframes fluye{to{stroke-dashoffset:-32}}
+.copi-wrap{position:relative;border-radius:22px;padding:1.6px;background:conic-gradient(from var(--ang),#9B2A52,#E9B9C8,#7C3AED,#C4B5FD,#9B2A52);animation:gira 5s linear infinite;box-shadow:0 0 90px -20px rgba(233,185,200,.55),0 50px 100px -40px rgba(0,0,0,.8)}
+@keyframes gira{to{--ang:360deg}}
+.copi{position:relative;border-radius:20.5px;background:#fff;color:#27272A;padding:clamp(16px,2.6vh,26px) clamp(18px,1.8vw,28px);overflow:hidden}
+.copi::before{content:"";position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;background:rgba(124,29,63,.10);filter:blur(28px)}
+.copi-h{position:relative;display:flex;align-items:center;gap:12px}
+.copi-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(140deg,#9B2A52,#7C1D3F 55%,#7C3AED);color:#fff;box-shadow:0 8px 20px -8px rgba(124,29,63,.8);flex:none}
+.copi-ic svg{width:20px;height:20px}
+.copi-h b{display:flex;align-items:center;gap:8px;font-size:1.05rem;font-weight:700;color:#18181B}
+.copi-h em{font-style:normal;font-size:.68rem;font-weight:600;color:var(--vino);background:rgba(124,29,63,.09);padding:3px 8px;border-radius:99px}
+.copi-h small{display:block;font-size:.8rem;color:#71717A;margin-top:1px}
+.copi-btn{margin-left:auto;display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:10px;background:var(--vino);color:#fff;font-size:.85rem;font-weight:600;white-space:nowrap;transition:opacity .3s}
+.copi-btn svg{width:15px;height:15px}
+.copi-btn .spin{display:none;animation:rota .9s linear infinite}
+@keyframes rota{to{transform:rotate(360deg)}}
+.ia-stage.s2 .copi-btn .spin{display:block}
+.ia-stage.s2 .copi-btn .spark{display:none}
+.ia-stage.s3 .copi-btn{opacity:0}
+.copi-st{position:relative;display:flex;align-items:center;gap:11px;margin-top:clamp(12px,2vh,18px);padding:10px 12px;border-radius:12px;background:#FAF7F8;border:1px solid #F0E6EA}
+.copi-st i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#F7EBEF;color:var(--vino);font-style:normal;font-weight:700;font-size:.85rem;flex:none}
+.copi-st b{display:block;font-size:.95rem;color:#18181B}
+.copi-st small{font-size:.8rem;color:#71717A}
+.copi-st .risk{margin-left:auto;font-size:.72rem;font-weight:600;color:#B45309;background:#FDF3E3;padding:4px 10px;border-radius:99px}
+.copi-body{position:relative;margin-top:clamp(12px,2vh,18px);min-height:0}
+.skel{display:grid;gap:9px;position:absolute;inset:0 0 auto 0;opacity:0;transition:opacity .3s}
+.skel i{display:block;height:13px;border-radius:6px;background:linear-gradient(90deg,rgba(124,29,63,.08),rgba(124,29,63,.2),rgba(124,29,63,.08));background-size:200% 100%;animation:shimmer 1.2s linear infinite}
+.skel i:nth-child(2){width:92%}.skel i:nth-child(3){width:96%}.skel i:nth-child(4){width:60%}
+@keyframes shimmer{to{background-position:-200% 0}}
+.ia-stage.s2 .skel{opacity:1}
+.ia-stage.s3 .skel{opacity:0}
+.copi-txt{position:relative;font-size:clamp(.95rem,min(1.12vw,2.15vh),1.2rem);line-height:1.6;color:#27272A}
+.copi-txt .full{visibility:hidden}
+.copi-txt .typed{position:absolute;inset:0}
+.copi-txt .typed::after{content:"";display:inline-block;width:2px;height:1.1em;margin-left:2px;vertical-align:-.18em;background:var(--vino);animation:parpadea .8s steps(1) infinite;opacity:0}
+.ia-stage.s3 .copi-txt .typed::after{opacity:1}
+.ia-stage.s4 .copi-txt .typed::after{display:none}
+@keyframes parpadea{50%{background:transparent}}
+.copi-more{display:grid;gap:clamp(8px,1.4vh,12px);margin-top:clamp(10px,1.8vh,16px);opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
+.ia-stage.s4 .copi-more{opacity:1;transform:none}
+.copi-src{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:.78rem;color:#71717A}
+.copi-src span{background:#F4F4F5;color:#3F3F46;padding:3px 9px;border-radius:99px;font-size:.74rem}
+.copi-lim{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;border-radius:10px;background:#F7F6F7;font-size:.74rem;color:#71717A;line-height:1.4}
+.copi-lim svg{width:14px;height:14px;flex:none;margin-top:1px}
+.copi-foot{display:flex;align-items:center;gap:8px;font-size:.8rem;color:#52525B}
+.copi-foot span{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:9px;border:1px solid #E4E4E7}
+.copi-foot span.gh{border-color:transparent}
+.copi-foot svg{width:14px;height:14px}
+.copi-foot .th{margin-left:auto;display:flex;gap:4px}
+.copi-foot .th span{padding:6px 8px;border-color:transparent}
+.ia-note{margin-top:clamp(10px,1.8vh,16px);text-align:center;font-size:.78rem;color:#B9A9B3}
+
+/* dónde trabaja la IA */
+.caps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(20px,4vh,46px);width:100%;text-align:left}
+.cap3{position:relative;border-radius:22px;padding:clamp(18px,2.8vh,28px) clamp(18px,1.6vw,26px);background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow:hidden}
+.cap3::before{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(140deg,rgba(233,185,200,.7),transparent 40%,transparent 60%,rgba(196,181,253,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.cap3 .ic{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(140deg,#E9B9C8,#9B2A52 55%,#7C3AED);box-shadow:0 12px 30px -10px rgba(155,42,82,.9)}
+.cap3 .ic svg{width:22px;height:22px;color:#fff}
+.cap3 small{display:block;margin-top:clamp(12px,2vh,18px);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#E9B9C8}
+.cap3 h3{font-size:clamp(1.2rem,1.6vw,1.7rem);font-weight:700;margin-top:6px;letter-spacing:-.02em}
+.cap3 p{margin-top:8px;font-size:clamp(.88rem,.98vw,1.02rem);color:#D9C8D2;line-height:1.45}
+.mini{margin-top:clamp(14px,2.4vh,22px);padding:14px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);min-height:clamp(84px,13vh,120px);display:grid;gap:8px;align-content:center}
+.mini .ln{height:9px;border-radius:5px;background:linear-gradient(90deg,rgba(233,185,200,.2),rgba(233,185,200,.55),rgba(233,185,200,.2));background-size:200% 100%;animation:shimmer 2s linear infinite}
+.mini .ln:nth-child(2){width:88%}.mini .ln:nth-child(3){width:70%}
+.mini .fx{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:10px;font-size:.74rem;color:#E7DCE2}
+.mini .fx i{display:block;height:8px;border-radius:4px;background:linear-gradient(90deg,#E9B9C8,#C4B5FD);transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.on .mini .fx i{transform:scaleX(var(--v))}
+.on .mini .fx:nth-child(2) i{transition-delay:.2s}.on .mini .fx:nth-child(3) i{transition-delay:.4s}
+.mini .ok{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:#A7F3D0;margin-top:2px}
+.mini .ok svg{width:13px;height:13px}
+.rails{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:clamp(18px,3.4vh,36px)}
+.rails span{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);font-size:clamp(.82rem,.92vw,.95rem);font-weight:500;color:#F3E8EE}
+.rails svg{width:15px;height:15px;color:#86EFAC}
 
 /* ================= animación de entrada ================= */
 @media (prefers-reduced-motion:no-preference){
@@ -245,12 +396,15 @@ h2{font-size:clamp(1.9rem,min(3.1vw,6.1vh),4.1rem);font-weight:800;letter-spacin
   .hero .ov.der .tel{animation-delay:-3.5s}
   @keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .aurora i,.stars,.grad,.copi-wrap,.wires path{animation:none!important}
+}
 @media print{.js .r,.js .spot,.js .lens{opacity:1!important;transform:none!important}.top,.ctrl{display:none}.slide{height:auto;min-height:0;break-inside:avoid;page-break-after:always}}
 
 /* ================= guion para quien presenta ================= */
 .note{display:none}
-body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px);bottom:clamp(14px,2.4vh,26px);z-index:46;max-width:min(430px,calc(100vw - 150px));background:#FFF8EC;border:1px dashed #E3B77A;border-radius:14px;padding:13px 17px;color:#3F3A36;font-size:.95rem;line-height:1.45;box-shadow:0 16px 40px -16px rgba(0,0,0,.4)}
+body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,28px);bottom:clamp(14px,2.4vh,26px);z-index:46;max-width:min(430px,calc(100vw - 150px));background:#FFF8EC;border:1px dashed #E3B77A;border-radius:14px;padding:13px 17px;color:#3F3A36;font-size:.95rem;line-height:1.45;box-shadow:0 16px 40px -16px rgba(0,0,0,.4)}
 .note b{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#B45309;margin-bottom:4px}
 
 /* ================= visor ================= */
@@ -259,22 +413,24 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
 .lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:18px;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:10px;padding:9px 15px}
 
 /* ================= pantallas chicas ================= */
-@media (max-width:1180px){
-  .chaps a{padding:7px 10px}
-  .chaps a span{display:none}
+@media (max-width:1760px){.chaps a:not(.on) span{display:none}}
+@media (max-width:1400px){
+  .who .bd{padding-inline:14px}
 }
 @media (max-width:999px),(max-height:619px){
   .slide{min-height:auto;padding-top:calc(var(--top) + 36px);padding-bottom:64px}
-  .split,.split.rev,.hero .split{grid-template-columns:minmax(0,1fr);gap:34px}
-  .split.rev>.tx{order:0}
+  .split,.hero .split{grid-template-columns:minmax(0,1fr);gap:34px}
   .vis{padding-top:4px}
   .hero .vis{padding:0 7% 12% 9%}
-  .rig,.hero .rig,.s-landing .rig,.s-bandeja .rig,.s-cuaderno .rig,.big .rig,.cascade{width:100%}
+  .rig,.hero .rig,.big .rig,.cascade{width:100%}
   .split .row .tel{--pw:min(260px,30vw)}
   .fan .tel,.fan figure:nth-child(3) .tel{--pw:min(230px,27vw)}
   .bento{width:100%}
-  .index{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .who{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .caps3{grid-template-columns:minmax(0,1fr)}
   .next{position:static;margin-top:34px;align-self:flex-start}
   .ghost{font-size:11rem}
 }
@@ -289,13 +445,19 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
   .row{gap:10px}
   .split .row .tel{--pw:29vw}
   .cap{font-size:.8rem;gap:6px;white-space:normal;text-align:center;flex-direction:column}
-  .who{grid-template-columns:minmax(0,1fr)}
+  .who{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat,.feat{grid-template-columns:minmax(0,1fr)}
+  .grp.w2{grid-column:auto}
+  .grp.w2 ul{grid-template-columns:minmax(0,1fr)}
+  .sigs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .copi-btn{display:none}
   .spot em{display:none}
   .ctrl span{min-width:50px}
 }
 @media (max-width:480px){
-  .index{grid-template-columns:minmax(0,1fr)}
   .bento{grid-template-columns:minmax(0,1fr)}
+  .who{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 </head>
@@ -304,11 +466,17 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
 <header class="top">
   <a class="logo" href="#inicio"><i>P</i>PeopleCole</a>
   <nav class="chaps" id="chaps" aria-label="Capítulos">
-    <a href="#inscripcion" data-chap="inscripcion"><small>01</small><span>Inscripción</span></a>
-    <a href="#pagos" data-chap="pagos"><small>02</small><span>Pagos QR</span></a>
-    <a href="#familias" data-chap="familias"><small>03</small><span>Familias</span></a>
-    <a href="#docentes" data-chap="docentes"><small>04</small><span>Docentes</span></a>
-    <a href="#direccion" data-chap="direccion"><small>05</small><span>Dirección académica</span></a>
+    <a href="#inscripcion" data-chap="inscripcion" title="Inscripción en línea"><small>01</small><span>Inscripción</span></a>
+    <a href="#pagos" data-chap="pagos" title="Pagos con QR"><small>02</small><span>Pagos QR</span></a>
+    <a href="#familias" data-chap="familias" title="Padres de familia"><small>03</small><span>Familias</span></a>
+    <a href="#talleres" data-chap="talleres" title="Talleres y eventos"><small>04</small><span>Talleres</span></a>
+    <a href="#docentes" data-chap="docentes" title="Docentes"><small>05</small><span>Docentes</span></a>
+    <a href="#enfermeria" data-chap="enfermeria" title="Enfermería"><small>06</small><span>Enfermería</span></a>
+    <a href="#orientacion" data-chap="orientacion" title="Orientación"><small>07</small><span>Orientación</span></a>
+    <a href="#direccion" data-chap="direccion" title="Dirección académica"><small>08</small><span>Dirección</span></a>
+    <a href="#puesta" data-chap="puesta" title="Puesta en marcha"><small>09</small><span>Puesta en marcha</span></a>
+    <a href="#reportes" data-chap="reportes" title="Reportes"><small>10</small><span>Reportes</span></a>
+    <a href="#ia" data-chap="ia" class="ai" title="Inteligencia artificial"><small>11</small><span>IA</span></a>
   </nav>
   <div class="tools">
     <button class="ib" id="notesBtn" aria-pressed="false" title="Guion para quien presenta (tecla N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></button>
@@ -316,6 +484,16 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
   </div>
   <div class="prog"><i id="prog"></i></div>
 </header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="2.4"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 4.9L19 9.7l-5.2 1.8L12 16.5l-1.8-5L5 9.7l5.2-1.8z" fill="currentColor"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <linearGradient id="hilo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9B9C8"/><stop offset="1" stop-color="#C4B5FD"/></linearGradient>
+  </defs>
+</svg>
 
 <main id="deck">
 
@@ -327,30 +505,59 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
         <span class="kick r">PeopleCole · Gestión escolar</span>
         <h1 class="r" style="--i:1">Todo el colegio, en un solo sistema.</h1>
         <p class="lead r" style="--i:2">La web para el colegio y la app para cada familia, docente y alumno. Todos con la misma información, al instante.</p>
-        <div class="btns r" style="--i:3"><a class="btn btn-w" href="#inscripcion">Empezar el recorrido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="pills r" style="--i:3">
+          <span class="pill">45 módulos</span>
+          <span class="pill">Web y app</span>
+          <span class="pill ai"><svg><use href="#i-spark"/></svg>Con inteligencia artificial</span>
+        </div>
+        <div class="btns r" style="--i:4"><a class="btn btn-w" href="#integrado">Empezar el recorrido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
       <div class="vis r" style="--i:2">
         <div class="rig">
-          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Panel de admisiones</span></div>
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Panel de admisiones</span></div>
             <div class="scr"><img class="shot" src="pantallas/adm-panel.webp" width="2160" height="1350" alt="Panel de admisiones del sistema web de PeopleCole"></div></div>
           <div class="ov izq"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-notas.webp" width="720" height="1600" alt="App de la familia: seguimiento de notas"></div></div></div>
           <div class="ov der"><div class="tel"><div class="scr"><img class="shot" src="pantallas/doc-asistencia.webp" width="720" height="1600" alt="App del docente: asistencia de hoy"></div></div></div>
         </div>
       </div>
     </div>
-    <ol class="index r" style="--i:4">
-      <li><a href="#inscripcion"><b>01</b><span>Inscripción en línea</span></a></li>
-      <li><a href="#pagos"><b>02</b><span>Pagos con QR</span></a></li>
-      <li><a href="#familias"><b>03</b><span>Padres de familia</span></a></li>
-      <li><a href="#docentes"><b>04</b><span>Docentes</span></a></li>
-      <li><a href="#direccion"><b>05</b><span>Dirección académica</span></a></li>
-    </ol>
   </div>
-  <aside class="note"><b>Para quien presenta</b>Vamos a seguir a una familia: se inscribe, paga, acompaña a su hijo; después el docente y, al final, lo que ve la dirección académica.</aside>
+  <aside class="note"><b>Para quien presenta</b>Vamos a seguir a una familia: se inscribe, paga, acompaña a su hijo; después el aula, la enfermería, la orientación y, al final, lo que ve la dirección académica.</aside>
+</section>
+
+<!-- ===================================================== TODO INTEGRADO -->
+<section class="slide t-luz" id="integrado" data-chap="inicio">
+  <div class="in">
+    <div class="int-head">
+      <div class="tx">
+        <span class="kick r">Un solo sistema</span>
+        <h2 class="r" style="--i:1">45 módulos que trabajan juntos.</h2>
+        <p class="lead r" style="--i:2">Lo que se carga en un lugar aparece en todos los que lo necesitan. Sin planillas paralelas ni datos repetidos.</p>
+      </div>
+      <div class="nums r" style="--i:2">
+        <div><b>45</b><span>módulos integrados</span></div>
+        <div><b>7</b><span>áreas del colegio</span></div>
+        <div><b>15<sup>+</sup></b><span>perfiles, cada uno con su menú</span></div>
+        <div><b>30<sup>+</sup></b><span>reportes listos</span></div>
+        <div><b>2</b><span>formas de entrar: web y app</span></div>
+      </div>
+    </div>
+    <div class="map">
+      <article class="area r" style="--c:#7C1D3F;--i:2"><h3>Académico <small>7</small></h3><ul><li>Admisiones y matrícula</li><li>Pensum y malla curricular</li><li>Horarios y asignación docente</li><li>Asistencia</li><li>Notas, boletines y promoción</li><li>Planificación docente</li><li>Calendario institucional</li></ul></article>
+      <article class="area r" style="--c:#2F7D4F;--i:3"><h3>Económico <small>9</small></h3><ul><li>Pensiones y aranceles</li><li>Becas, descuentos y convenios</li><li>Mora y cobranza</li><li>Pagos por QR y en línea</li><li>Caja y bancos</li><li>Compras y proveedores</li><li>Cuentas por pagar</li><li>Caja chica</li><li>Integración contable</li></ul></article>
+      <article class="area r" style="--c:#C2410C;--i:4"><h3>Vida escolar <small>6</small></h3><ul><li>Convivencia y disciplina</li><li>Orientación y bienestar</li><li>Enfermería y salud escolar</li><li>Actividades extracurriculares</li><li>Biblioteca</li><li>Comedor y alimentación</li></ul></article>
+      <article class="area r" style="--c:#57534E;--i:5"><h3>Campus y servicios <small>7</small></h3><ul><li>Transporte escolar</li><li>Portería y retiro de estudiantes</li><li>Inventario y almacenes</li><li>Activos y equipamiento</li><li>Reserva de aulas y laboratorios</li><li>Mantenimiento</li><li>Tienda escolar</li></ul></article>
+      <article class="area r" style="--c:#0F766E;--i:6"><h3>Comunidad y familias <small>5</small></h3><ul><li>App para padres</li><li>Comunicados y circulares</li><li>Certificados y trámites</li><li>Marketing y postulantes</li><li>Contratos y convenios</li></ul></article>
+      <article class="area r" style="--c:#4338CA;--i:7"><h3>Dirección e inteligencia <small>5</small></h3><ul><li>Tablero de dirección</li><li>Alertas de riesgo académico</li><li>Asistente con inteligencia artificial</li><li>Calidad y acreditación</li><li>Personal y docentes</li></ul></article>
+      <article class="area r" style="--c:#18181B;--i:8"><h3>Base del sistema <small>6</small></h3><ul><li>Estudiantes y familias</li><li>Sedes, niveles y cursos</li><li>Documentos y firma digital</li><li>Aprobaciones y pendientes</li><li>Configuración y reglas</li><li>Permisos, historial y privacidad</li></ul></article>
+    </div>
+    <p class="glue r" style="--i:9"><i></i>Un alumno, una familia, una sola ficha: <b>cada dato se carga una vez</b><i></i></p>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Este es el tamaño del sistema. No hace falta leer la lista: lo importante es que todo comparte la misma información. El recorrido que sigue muestra los módulos que más usa un colegio cada día.</aside>
 </section>
 
 <!-- ===================================================== 01 INSCRIPCIÓN -->
-<section class="slide t-vino s-landing" id="inscripcion" data-chap="inscripcion">
+<section class="slide t-vino" id="inscripcion" data-chap="inscripcion">
   <span class="ghost" aria-hidden="true">01</span>
   <div class="in split">
     <div class="tx">
@@ -359,15 +566,15 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
       <p class="lead r" style="--i:2">El colegio abre sus admisiones en una página con su propia imagen. La familia postula desde el celular, sin filas ni papeles.</p>
       <div class="pills r" style="--i:3">
         <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>15 minutos</span>
-        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sin costo</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Sin costo</span>
         <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Desde el celular</span>
       </div>
     </div>
-    <div class="vis r" style="--i:2">
+    <div class="vis dr r" style="--i:2">
       <div class="rig">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Colegio Toborochi · Admisiones 2027</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>Colegio Toborochi · Admisiones 2027</span></div>
           <div class="scr"><img class="shot" src="pantallas/pub-landing.webp" width="2160" height="1350" alt="Página pública de admisiones del colegio"></div></div>
-        <div class="ov"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-landing-m.webp" width="720" height="1558" alt="La misma página de admisiones en el celular"></div></div></div>
+        <div class="ov at-r"><div class="tel m"><div class="scr"><img class="shot" src="pantallas/pub-landing-m.webp" width="720" height="1558" alt="La misma página de admisiones en el celular"></div></div></div>
       </div>
     </div>
   </div>
@@ -391,22 +598,22 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
   </div>
 </section>
 
-<section class="slide t-luz s-bandeja" id="bandeja" data-chap="inscripcion">
+<section class="slide t-luz" id="bandeja" data-chap="inscripcion">
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>01</b>Inscripción en línea</span>
       <h2 class="r" style="--i:1">Y llega sola a la bandeja del colegio.</h2>
       <p class="lead r" style="--i:2">La familia recibe su confirmación al instante. Dirección académica ve cada postulación con su estado, sus documentos y por dónde entró.</p>
     </div>
-    <div class="vis r" style="--i:2">
+    <div class="vis dl r" style="--i:2">
       <div class="rig" data-spot=".618 .352 .136 .412" data-label="Entró por el portal de familias">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Postulaciones</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Postulaciones</span></div>
           <div class="scr"><img class="shot" src="pantallas/adm-post.webp" width="2160" height="1350" alt="Bandeja de postulaciones de Dirección Académica"></div></div>
-        <div class="float r" style="--i:4"><img class="shot" src="pantallas/pub-enviada.webp" width="671" height="492" alt="Confirmación para la familia: tu postulación fue enviada"></div>
+        <div class="float at-l r" style="--i:4"><img class="shot" src="pantallas/pub-enviada.webp" width="671" height="492" alt="Confirmación para la familia: tu postulación fue enviada"></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#pagos"><b>02</b>Sigue: Pagos con QR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  <a class="next" href="#pagos"><b>02</b>Sigue: Pagos con QR<svg><use href="#i-down"/></svg></a>
   <aside class="note"><b>Para quien presenta</b>Muestra las dos puntas: a la izquierda lo que ve la familia al enviar; detrás, la misma postulación ya en la bandeja del colegio.</aside>
 </section>
 
@@ -439,12 +646,12 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".389 .443 .194 .092" data-z="2.1" data-at="47 60">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Caja del día</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Caja del día</span></div>
           <div class="scr"><img class="shot" src="pantallas/fin-caja-14.webp" width="2160" height="1350" alt="Caja del día: cobros por medio de pago"></div></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#familias"><b>03</b>Sigue: Padres de familia<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  <a class="next" href="#familias"><b>03</b>Sigue: Padres de familia<svg><use href="#i-down"/></svg></a>
 </section>
 
 <!-- ===================================================== 03 FAMILIAS -->
@@ -472,25 +679,84 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
     <div class="tx">
       <span class="kick r"><b>03</b>Padres de familia</span>
       <h2 class="r" style="--i:1">El colegio le escribe. La familia responde.</h2>
-      <p class="lead r" style="--i:2">Cada aviso dice qué pasó y qué se espera. La familia autoriza, confirma o ve el detalle desde el mismo aviso.</p>
+      <p class="lead r" style="--i:2">Cada aviso dice qué pasó y qué se espera. La familia justifica una falta, elige el horario de una reunión o ve su descuento, desde el mismo aviso.</p>
     </div>
     <div class="vis">
       <div class="row">
-        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-enfermeria.webp" width="720" height="1600" alt="Aviso de Enfermería con el informe de la visita"></div></div><figcaption class="cap">Enfermería</figcaption></figure>
-        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-permiso.webp" width="720" height="1610" alt="El colegio pide una autorización a la familia"></div></div><figcaption class="cap">Autorizaciones</figcaption></figure>
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-falta.webp" width="720" height="1600" alt="Aviso de falta a una clase, el mismo día"></div></div><figcaption class="cap">Faltas, el mismo día</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-reunion.webp" width="720" height="1600" alt="La familia elige el horario de una reunión con el docente"></div></div><figcaption class="cap">Reuniones</figcaption></figure>
         <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-descuento.webp" width="720" height="1600" alt="Aviso de un descuento aplicado en la cuenta"></div></div><figcaption class="cap">Becas y descuentos</figcaption></figure>
       </div>
     </div>
   </div>
-  <a class="next" href="#docentes"><b>04</b>Sigue: Docentes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  <a class="next" href="#talleres"><b>04</b>Sigue: Talleres y eventos<svg><use href="#i-down"/></svg></a>
 </section>
 
-<!-- ===================================================== 04 DOCENTES -->
-<section class="slide t-vino" id="docentes" data-chap="docentes">
+<!-- ===================================================== 04 TALLERES Y EVENTOS -->
+<section class="slide t-vino" id="talleres" data-chap="talleres">
   <span class="ghost" aria-hidden="true">04</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>04</b>Docentes</span>
+      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <h2 class="r" style="--i:1">Talleres y eventos, con inscripción desde la app.</h2>
+      <p class="lead r" style="--i:2">Clubes, talleres, salidas y ferias. La familia inscribe a su hijo desde el celular y sigue todo lo que pasa adentro.</p>
+      <div class="pills r" style="--i:3">
+        <span class="pill"><svg><use href="#i-check"/></svg>Gratis o con costo</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Cupo y lista de espera</span>
+        <span class="pill"><svg><use href="#i-check"/></svg>Abiertos o por invitación</span>
+      </div>
+    </div>
+    <div class="vis">
+      <div class="row">
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-oferta.webp" width="720" height="1600" alt="La oferta de talleres del colegio en la app de la familia"></div></div><figcaption class="cap"><b>1</b>Se inscribe</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-avisos.webp" width="720" height="1600" alt="Avisos del instructor del taller de ajedrez"></div></div><figcaption class="cap"><b>2</b>Recibe los avisos</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/tal-tareas.webp" width="720" height="1600" alt="Tareas del taller con su nota"></div></div><figcaption class="cap"><b>3</b>Ve tareas y notas</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Buen argumento para colegios con muchos talleres: la familia se anota, se cobra y se califica sin grupos de mensajes.</aside>
+</section>
+
+<section class="slide t-luz big" id="grupos-taller" data-chap="talleres">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <h2 class="r" style="--i:1">Cada grupo con su cupo, su horario y su precio.</h2>
+      <p class="lead r" style="--i:2">Gratis o con cuota mensual. Las familias se anotan solas o por invitación, y con el cupo lleno pasan a lista de espera.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".466 .803 .172 .108" data-label="Cómo se entra y cuánto cuesta">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Club de Ajedrez</span></div>
+          <div class="scr"><img class="shot" src="pantallas/tal-programa.webp" width="1600" height="1000" alt="Programa de ajedrez con sus grupos, cupos y precios"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa" id="eventos" data-chap="talleres">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>04</b>Talleres y eventos</span>
+      <h2 class="r" style="--i:1">Ferias, salidas y actos, con cupo y lista de espera.</h2>
+      <p class="lead r" style="--i:2">Se arman en minutos y, al publicarlos, las familias reciben el aviso. Cada inscripción se aprueba desde una bandeja.</p>
+    </div>
+    <div class="vis dl r" style="--i:2">
+      <div class="rig">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Inscripciones extracurriculares</span></div>
+          <div class="scr"><img class="shot" src="pantallas/tal-inscripciones.webp" width="1600" height="1000" alt="Bandeja de inscripciones: aprobar, rechazar o activar"></div></div>
+        <div class="float at-l r" style="--i:4;width:31%"><img class="shot" src="pantallas/tal-evento.webp" width="1000" height="1289" alt="Formulario de nuevo evento formativo: tipo, fechas, cupo, lista de espera y transporte"></div>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#docentes"><b>05</b>Sigue: Docentes<svg><use href="#i-down"/></svg></a>
+</section>
+
+<!-- ===================================================== 05 DOCENTES -->
+<section class="slide t-vino" id="docentes" data-chap="docentes">
+  <span class="ghost" aria-hidden="true">05</span>
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>05</b>Docentes</span>
       <h2 class="r" style="--i:1">El docente pasa lista y califica desde el aula.</h2>
       <p class="lead r" style="--i:2">Su día, sus listas y sus notas en el celular. Cuando cierra la lista, la familia del que faltó recibe el aviso.</p>
     </div>
@@ -504,37 +770,144 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
   </div>
 </section>
 
-<section class="slide t-luz s-cuaderno" id="cuaderno" data-chap="docentes">
+<section class="slide t-luz" id="cuaderno" data-chap="docentes">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>04</b>Docentes</span>
+      <span class="kick r"><b>05</b>Docentes</span>
       <h2 class="r" style="--i:1">Califica dentro de la norma de la dirección.</h2>
       <p class="lead r" style="--i:2">El cuaderno le muestra cuánto lleva y qué le falta antes del cierre. Y la nota que carga, el alumno la ve al instante.</p>
     </div>
-    <div class="vis r" style="--i:2">
+    <div class="vis dr r" style="--i:2">
       <div class="rig" data-spot=".191 .755 .79 .112" data-label="Lo que pide Dirección Académica" data-below>
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Cuaderno de notas</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Cuaderno de notas</span></div>
           <div class="scr"><img class="shot" src="pantallas/doc-cuadernos.webp" width="2160" height="1350" alt="Cuaderno de notas del docente con lo que pide Dirección Académica"></div></div>
-        <div class="ov r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/alu-tareas.webp" width="720" height="1600" alt="App del alumno: tareas con su nota"></div></div></div>
+        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/alu-tareas.webp" width="720" height="1600" alt="App del alumno: tareas con su nota"></div></div></div>
       </div>
     </div>
   </div>
-  <a class="next" href="#direccion"><b>05</b>Sigue: Dirección académica<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  <a class="next" href="#enfermeria"><b>06</b>Sigue: Enfermería<svg><use href="#i-down"/></svg></a>
   <aside class="note"><b>Para quien presenta</b>El trimestre no se puede cerrar con la norma incumplida: el docente puede seguir cargando, pero el sistema le dice qué le falta.</aside>
 </section>
 
-<!-- ===================================================== 05 DIRECCIÓN ACADÉMICA -->
-<section class="slide t-ink big" id="direccion" data-chap="direccion">
-  <span class="ghost" aria-hidden="true">05</span>
+<!-- ===================================================== 06 ENFERMERÍA -->
+<section class="slide t-vino big" id="enfermeria" data-chap="enfermeria">
+  <span class="ghost" aria-hidden="true">06</span>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
+      <span class="kick r"><b>06</b>Enfermería</span>
+      <h2 class="r" style="--i:1">Enfermería sabe quién está, desde qué hora y si volvió al aula.</h2>
+      <p class="lead r" style="--i:2">Cada salida del aula queda registrada: de qué clase venía, quién lo atendió y cómo terminó.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".786 .525 .121 .40" data-label="Si volvió al aula" data-end>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Bandeja de visitas</span></div>
+          <div class="scr"><img class="shot" src="pantallas/enf-bandeja.webp" width="2160" height="1350" alt="Bandeja de visitas de Enfermería con el estado de cada alumno"></div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Pregunta: «si ahora llama una mamá preguntando por su hijo que está en Enfermería, ¿quién le contesta y con qué dato?». Aquí está la respuesta.</aside>
+</section>
+
+<section class="slide t-luz" id="ficha" data-chap="enfermeria">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>06</b>Enfermería</span>
+      <h2 class="r" style="--i:1">La ficha médica, completa y protegida.</h2>
+      <p class="lead r" style="--i:2">Alergias, medicación y qué hacer en una emergencia, a un clic. La familia la actualiza desde la app y Enfermería la confirma. Los datos nacen tapados y cada lectura queda registrada.</p>
+    </div>
+    <div class="vis dr r" style="--i:2">
+      <div class="rig" data-spot=".797 .283 .092 .04" data-label="Datos tapados: cada lectura queda registrada" data-end>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Ficha de salud</span></div>
+          <div class="scr"><img class="shot" src="pantallas/enf-ficha.webp" width="2160" height="1350" alt="Ficha de salud del alumno: alergias, medicación y notas de emergencia"></div></div>
+        <div class="ov at-r r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-salud-hijo.webp" width="720" height="1600" alt="App de la familia: salud de mi hijo"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa" id="aviso-salud" data-chap="enfermeria">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>06</b>Enfermería</span>
+      <h2 class="r" style="--i:1">La familia se entera al instante.</h2>
+      <p class="lead r" style="--i:2">Recibe el aviso, ve a qué hora salió del aula y cuándo volvió, y lo que Enfermería recomienda para la casa.</p>
+    </div>
+    <div class="vis">
+      <div class="row">
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/fam-enfermeria.webp" width="720" height="1600" alt="Aviso del informe de la visita a Enfermería"></div></div><figcaption class="cap"><b>1</b>Recibe el aviso</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-visitas.webp" width="720" height="1600" alt="Visitas al área de salud: cada paso con su hora"></div></div><figcaption class="cap"><b>2</b>Ve cada paso</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/enf-informe.webp" width="720" height="1600" alt="Informe de la visita: qué nos contó el área y qué hacer en casa"></div></div><figcaption class="cap"><b>3</b>Sabe qué hacer en casa</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#orientacion"><b>07</b>Sigue: Orientación<svg><use href="#i-down"/></svg></a>
+</section>
+
+<!-- ===================================================== 07 ORIENTACIÓN -->
+<section class="slide t-ink big" id="orientacion" data-chap="orientacion">
+  <span class="ghost" aria-hidden="true">07</span>
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>07</b>Orientación</span>
+      <h2 class="r" style="--i:1">Orientación ve a tiempo a quien necesita ayuda.</h2>
+      <p class="lead r" style="--i:2">Lo que cada docente nota en clase llega a un solo lugar, ordenado por urgencia. Nada se pierde entre cuadernos y mensajes.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".216 .397 .19 .048" data-label="Lo que espera su revisión" data-below>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Panel de orientación</span></div>
+          <div class="scr"><img class="shot" src="pantallas/ori-panel.webp" width="2160" height="1350" alt="Panel de orientación: alertas, casos, seguimientos y derivaciones"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-luz big" id="casos" data-chap="orientacion">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>07</b>Orientación</span>
+      <h2 class="r" style="--i:1">Cada caso avanza por etapas, con un responsable.</h2>
+      <p class="lead r" style="--i:2">Reportado, en investigación, resuelto. Se ve quién lo lleva, qué tan grave es y qué quedó sin asignar.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Casos de convivencia</span></div>
+          <div class="scr"><img class="shot" src="pantallas/ori-casos.webp" width="2160" height="1350" alt="Casos de convivencia por etapa: reportado, en investigación, resuelto y archivado"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa" id="acompanamiento" data-chap="orientacion">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>07</b>Orientación</span>
+      <h2 class="r" style="--i:1">Con la familia, siempre.</h2>
+      <p class="lead r" style="--i:2">Cuando hace falta un acompañamiento, el colegio lo propone por la app y la familia decide. Cada sesión le llega como aviso.</p>
+    </div>
+    <div class="vis">
+      <div class="row">
+        <figure class="r" style="--i:2"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-propuesta.webp" width="720" height="1610" alt="El colegio pide permiso a la familia para un acompañamiento"></div></div><figcaption class="cap"><b>1</b>El colegio propone</figcaption></figure>
+        <figure class="r up" style="--i:3"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-autoriza.webp" width="720" height="1610" alt="La familia autoriza o no autoriza desde la app"></div></div><figcaption class="cap"><b>2</b>La familia decide</figcaption></figure>
+        <figure class="r" style="--i:4"><div class="tel"><div class="scr"><img class="shot" src="pantallas/ori-avisos.webp" width="720" height="1600" alt="Avisos de cada sesión del acompañamiento"></div></div><figcaption class="cap"><b>3</b>Sigue cada sesión</figcaption></figure>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#direccion"><b>08</b>Sigue: Dirección académica<svg><use href="#i-down"/></svg></a>
+  <aside class="note"><b>Para quien presenta</b>La familia puede decir que no, con sus palabras, y queda registrado. El colegio acompaña, no impone.</aside>
+</section>
+
+<!-- ===================================================== 08 DIRECCIÓN ACADÉMICA -->
+<section class="slide t-ink big" id="direccion" data-chap="direccion">
+  <span class="ghost" aria-hidden="true">08</span>
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>08</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Todo el colegio, en una sola pantalla.</h2>
       <p class="lead r" style="--i:2">Lo que puede impedir el cierre del trimestre, con nombre y apellido. A tiempo para actuar.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".458 .246 .257 .179" data-z="1.75" data-at="38 50">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Panel académico</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Panel académico</span></div>
           <div class="scr"><img class="shot" src="pantallas/da-panel.webp" width="2160" height="1350" alt="Panel académico de la dirección"></div></div>
       </div>
     </div>
@@ -545,13 +918,13 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
 <section class="slide t-luz big" id="norma" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
+      <span class="kick r"><b>08</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Define una vez cómo se evalúa.</h2>
       <p class="lead r" style="--i:2">Escala, nota para aprobar y el peso de cada dimensión. Todos los docentes califican con la misma regla.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".213 .503 .327 .161" data-z="1.5" data-at="50 64">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Configuración de evaluación</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Configuración de evaluación</span></div>
           <div class="scr"><img class="shot" src="pantallas/da-eval.webp" width="2160" height="1350" alt="Configuración de evaluación por nivel"></div></div>
       </div>
     </div>
@@ -561,25 +934,118 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
 <section class="slide t-rosa big" id="avance" data-chap="direccion">
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
+      <span class="kick r"><b>08</b>Dirección académica</span>
       <h2 class="r" style="--i:1">Sabe quién va atrasado, antes del cierre.</h2>
       <p class="lead r" style="--i:2">El avance de notas por curso, materia y docente. Verde: al día. Ámbar: falta.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig" data-lens=".671 .706 .19 .27" data-z="1.55" data-at="10 33">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Avance de calificación</span></div>
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Avance de calificación</span></div>
           <div class="scr"><img class="shot" src="pantallas/eva-avance.webp" width="2160" height="1350" alt="Avance de calificación por materia y docente"></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide t-ink" id="reportes" data-chap="direccion">
+<section class="slide t-luz" id="decisiones" data-chap="direccion">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>08</b>Dirección académica</span>
+      <h2 class="r" style="--i:1">Aprueba, rechaza o cita. Y queda escrito.</h2>
+      <p class="lead r" style="--i:2">Licencias, justificaciones y postulaciones esperan su decisión en una bandeja, con la norma a la vista.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="cascade">
+        <div class="web back"><div class="bar"><i></i><i></i><i></i><span>PeopleCole · Bandeja de aprobaciones</span></div>
+          <div class="scr"><img class="shot" src="pantallas/da-aprob.webp" width="2160" height="1350" loading="lazy" alt="Bandeja de aprobaciones de Dirección Académica"></div></div>
+        <div class="web front"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Solicitudes</span></div>
+          <div class="scr"><img class="shot" src="pantallas/da-solic.webp" width="2160" height="1350" loading="lazy" alt="Solicitudes de licencia: aprobar, rechazar o citar a reunión"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa big" id="historia" data-chap="direccion">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>08</b>Dirección académica</span>
+      <h2 class="r" style="--i:1">La historia completa de cada alumno.</h2>
+      <p class="lead r" style="--i:2">Desde la postulación hasta la última nota: todo en orden, y cada paso con el módulo del que salió.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Trazabilidad del estudiante</span></div>
+          <div class="scr"><img class="shot" src="pantallas/tra.webp" width="2160" height="1350" loading="lazy" alt="Trazabilidad del estudiante: postulación admitida y matrícula confirmada"></div></div>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#puesta"><b>09</b>Sigue: Puesta en marcha<svg><use href="#i-down"/></svg></a>
+  <aside class="note"><b>Para quien presenta</b>Cierra el círculo: la historia empieza en la postulación en línea del primer capítulo.</aside>
+</section>
+
+<!-- ===================================================== 09 PUESTA EN MARCHA -->
+<section class="slide t-vino" id="puesta" data-chap="puesta">
+  <span class="ghost" aria-hidden="true">09</span>
   <div class="in stack">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
+      <span class="kick r"><b>09</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">El colegio, armado en seis pasos.</h2>
+      <p class="lead r" style="--i:2">La puesta en marcha sigue el orden del colegio: primero la estructura y las materias, al final las personas.</p>
+    </div>
+    <div class="bento pm">
+      <figure class="bcard r" style="--i:2"><div class="bshot"><img class="shot" src="pantallas/pm-estructura.webp" width="2160" height="1350" loading="lazy" alt="Estructura del colegio: sede, niveles, cursos y paralelos"></div><p><b>1</b><span>Estructura<small>Sedes, niveles, cursos y paralelos</small></span></p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/pm-agrupaciones.webp" width="2160" height="1350" loading="lazy" alt="Tablero de agrupaciones por grado"></div><p><b>2</b><span>Grupos y subgrupos<small>Por idioma, laboratorio, taller o nivelación</small></span></p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio"></div><p><b>3</b><span>Materias y malla<small>El pensum de cada curso, con sus versiones</small></span></p></figure>
+      <figure class="bcard r" style="--i:3"><div class="bshot"><img class="shot" src="pantallas/pm-seduca.webp" width="2160" height="1350" loading="lazy" alt="Equivalencias SEDUCA"></div><p><b>4</b><span>SEDUCA<small>Cada materia con su equivalencia oficial</small></span></p></figure>
+      <figure class="bcard r" style="--i:4"><div class="bshot"><img class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente de la semana"></div><p><b>5</b><span>Docentes<small>Carga, disponibilidad y horario</small></span></p></figure>
+      <figure class="bcard r" style="--i:5"><div class="bshot"><img class="shot" src="pantallas/pm-personas.webp" width="2160" height="1350" loading="lazy" alt="Estudiantes, docentes, apoderados y personal"></div><p><b>6</b><span>Estudiantes y familias<small>Matrícula, vínculos y acceso a la app</small></span></p></figure>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Cada paso se prueba con el equipo del colegio antes de pasar al siguiente, sin detener la operación.</aside>
+</section>
+
+<section class="slide t-luz" id="seduca" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>09</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Cada materia, con su equivalencia SEDUCA.</h2>
+      <p class="lead r" style="--i:2">El colegio enseña con su propia malla. El sistema sabe a qué materia oficial corresponde cada una, con su código, y avisa si algo no coincide.</p>
+    </div>
+    <div class="vis dr r" style="--i:2">
+      <div class="rig">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Materias y pensum</span></div>
+          <div class="scr"><img class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio por área"></div></div>
+        <div class="float at-r r" style="--i:4"><div class="fh"><i><svg><use href="#i-check"/></svg></i>Equivalencias SEDUCA</div><img class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" loading="lazy" alt="Equivalencias SEDUCA: materia oficial, código y sin divergencia"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide t-rosa big" id="carga" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>09</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Docentes con su carga, sin choques ni huecos.</h2>
+      <p class="lead r" style="--i:2">Cuántas horas tiene cada uno, quién está pasado y quién tiene margen. Lo que hay que resolver aparece antes de publicar el horario.</p>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="rig" data-spot=".206 .478 .76 .208" data-label="Qué hay que resolver antes de publicar">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Carga docente</span></div>
+          <div class="scr"><img class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente: horas por semana y lo que hay que resolver"></div></div>
+      </div>
+    </div>
+  </div>
+  <a class="next" href="#reportes"><b>10</b>Sigue: Reportes<svg><use href="#i-down"/></svg></a>
+</section>
+
+<!-- ===================================================== 10 REPORTES -->
+<section class="slide t-ink" id="reportes" data-chap="reportes">
+  <span class="ghost" aria-hidden="true">10</span>
+  <div class="in stack">
+    <div class="tx">
+      <span class="kick r"><b>10</b>Reportes</span>
       <h2 class="r" style="--i:1">Reportes que responden preguntas.</h2>
-      <p class="lead r" style="--i:2">Cada uno contesta algo concreto, con el dato real del sistema y listo para exportar.</p>
+      <p class="lead r" style="--i:2">Cada uno contesta algo concreto, con el dato real del sistema.</p>
     </div>
     <div class="bento">
       <figure class="bcard r" style="--i:2"><div class="bshot"><img class="shot" src="pantallas/da-rep-asis.webp" width="2160" height="1350" loading="lazy" alt="Reporte: qué cursos faltan más"></div><p><i></i>¿Qué cursos faltan más?</p></figure>
@@ -592,39 +1058,130 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
   </div>
 </section>
 
-<section class="slide t-luz" id="decisiones" data-chap="direccion">
+<section class="slide t-luz" id="catalogo" data-chap="reportes">
+  <div class="in stack">
+    <div class="tx">
+      <span class="kick r"><b>10</b>Reportes</span>
+      <h2 class="r" style="--i:1">Más de 30 reportes, en cada área.</h2>
+    </div>
+    <div class="cat">
+      <article class="grp w2 r" style="--i:2"><h3>Dirección académica <b>12</b></h3><ul>
+        <li>Asistencia por curso</li><li>Tareas sin entregar</li><li>Quiénes están por perder el año</li><li>Visitas por alumno</li><li>Cómo viene la convivencia</li><li>Cursos y paralelos</li>
+        <li>Materias y cobertura curricular</li><li>Horarios docentes</li><li>Alumnos inscritos</li><li>Estadístico anual</li><li>Notas por alumno</li><li>Aulas ocupadas</li></ul></article>
+      <article class="grp r" style="--i:3"><h3>Notas y boletines <b>5</b></h3><ul><li>Avance de calificación</li><li>Distribución de notas</li><li>Aplazados</li><li>Cobertura curricular</li><li>Boletines: vista previa, publicación e impresión</li></ul></article>
+      <article class="grp r" style="--i:4"><h3>Orientación y convivencia <b>7</b></h3><ul><li>Qué se está durmiendo</li><li>En qué cursos y a qué hora pasan las cosas</li><li>Reportes de triaje</li><li>Indicadores de convivencia</li><li>Indicadores de tutoría</li><li>Panel de riesgo</li><li>Paquete de evidencia</li></ul></article>
+      <article class="grp r" style="--i:3"><h3>Enfermería <b>4</b></h3><ul><li>Panel anual de enfermería</li><li>Atenciones por curso</li><li>Fichas médicas por curso</li><li>Alergias y condiciones</li></ul></article>
+      <article class="grp r" style="--i:4"><h3>Admisión y asistencia <b>2</b></h3><ul><li>Resumen de admisión</li><li>Resumen de asistencia</li></ul></article>
+      <article class="grp r" style="--i:5"><h3>Finanzas <b>3</b></h3><ul><li>Caja del día</li><li>Cuentas por cobrar</li><li>Conciliación bancaria</li></ul></article>
+      <article class="grp total r" style="--i:6"><b>33</b><span>reportes, cada uno con el dato real del sistema.</span></article>
+    </div>
+  </div>
+  <a class="next" href="#ia"><b>11</b>Sigue: Inteligencia artificial<svg><use href="#i-down"/></svg></a>
+  <aside class="note"><b>Para quien presenta</b>No hace falta leerlos: pregunta qué dato necesita hoy la dirección y muestra que ya existe un reporte para eso.</aside>
+</section>
+
+<!-- ===================================================== 11 INTELIGENCIA ARTIFICIAL -->
+<section class="slide t-ai" id="ia" data-chap="ia">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="stars" aria-hidden="true"></div>
   <div class="in split">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
-      <h2 class="r" style="--i:1">Aprueba, rechaza o cita. Y queda escrito.</h2>
-      <p class="lead r" style="--i:2">Licencias, justificaciones y postulaciones esperan su decisión en una bandeja, con la norma a la vista.</p>
+      <span class="kick ai r"><b>11</b><svg><use href="#i-spark"/></svg>Inteligencia artificial</span>
+      <h2 class="r" style="--i:1">La IA une los puntos. <span class="grad">Una persona decide.</span></h2>
+      <p class="lead r" style="--i:2">Notas, asistencia, enfermería y aula viven en módulos distintos. La IA los lee juntos y le cuenta a orientación, en segundos, lo que está pasando con cada alumno.</p>
+      <button class="replay r" style="--i:3" id="iaReplay" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Verlo de nuevo</button>
     </div>
     <div class="vis r" style="--i:2">
-      <div class="cascade">
-        <div class="web back"><div class="bar"><i></i><i></i><i></i><span>PeopleCole · Bandeja de aprobaciones</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-aprob.webp" width="2160" height="1350" loading="lazy" alt="Bandeja de aprobaciones de Dirección Académica"></div></div>
-        <div class="web front"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Solicitudes</span></div>
-          <div class="scr"><img class="shot" src="pantallas/da-solic.webp" width="2160" height="1350" loading="lazy" alt="Solicitudes de licencia: aprobar, rechazar o citar a reunión"></div></div>
+      <div class="ia-stage" id="iaStage">
+        <div class="sigs">
+          <div class="sig" style="--sc:#7C1D3F"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></i><span><small>Notas</small><b>Promedio 84</b></span></div>
+          <div class="sig" style="--sc:#B45309"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4"/></svg></i><span><small>Asistencia</small><b>2 faltas sin justificar</b></span></div>
+          <div class="sig" style="--sc:#BE123C"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg></i><span><small>Enfermería</small><b>3 visitas en 2 días</b></span></div>
+          <div class="sig" style="--sc:#6D28D9"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></i><span><small>Aula</small><b>Reporte del docente</b></span></div>
+        </div>
+        <svg class="wires" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C50 34 200 26 200 60" vector-effect="non-scaling-stroke"/><path d="M150 0 C150 30 200 34 200 60" vector-effect="non-scaling-stroke"/><path d="M250 0 C250 30 200 34 200 60" vector-effect="non-scaling-stroke"/><path d="M350 0 C350 34 200 26 200 60" vector-effect="non-scaling-stroke"/></svg>
+        <div class="copi-wrap">
+          <div class="copi">
+            <div class="copi-h">
+              <span class="copi-ic"><svg><use href="#i-spark"/></svg></span>
+              <div><b>Copiloto IA <em>Apoyo · no decide</em></b><small>Resume la situación del estudiante en segundos.</small></div>
+              <span class="copi-btn"><svg class="spark"><use href="#i-spark"/></svg><svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg><span>Redactar con IA</span></span>
+            </div>
+            <div class="copi-st"><i>AT</i><div><b>Adrián Ticona Chambi</b><small>3ro Primaria · 3P-A</small></div><span class="risk">Riesgo medio</span></div>
+            <div class="copi-body">
+              <div class="skel" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <p class="copi-txt"><span class="full" id="iaFull">Adrián mantiene un buen rendimiento: su promedio general es 84. Lo que llama la atención es lo demás: 2 faltas sin justificar, 3 visitas a Enfermería en dos días y un reporte de su docente por una situación familiar. Por separado parecen poca cosa; juntas, forman un patrón que conviene mirar a tiempo. Se sugiere una conversación con la familia esta semana y seguir de cerca su asistencia.</span><span class="typed" id="iaTyped" aria-hidden="true"></span></p>
+              <div class="copi-more">
+                <div class="copi-src">Fuentes: <span>Notas</span><span>Asistencia</span><span>Alertas activas</span></div>
+                <p class="copi-lim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>La IA resume y sugiere a partir de datos ya registrados. No cambia notas ni estados, no notifica a la familia y no reemplaza tu criterio.</p>
+                <div class="copi-foot"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copiar</span><span class="gh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg>Regenerar</span><span class="th"><span>👍</span><span>👎</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="ia-note">Ejemplo con datos de prueba · el panel es el del sistema, en la ficha 360 del estudiante</p>
       </div>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Deja que el texto se escriba solo. El mensaje: la IA junta lo que hoy está en cuatro cuadernos distintos, y siempre decide una persona.</aside>
+</section>
+
+<section class="slide t-ai" id="ia-donde" data-chap="ia">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="in stack">
+    <div class="tx">
+      <span class="kick ai r"><b>11</b><svg><use href="#i-spark"/></svg>Inteligencia artificial</span>
+      <h2 class="r" style="--i:1">Dónde trabaja la IA.</h2>
+      <p class="lead r" style="--i:2">En los tres momentos en que más tiempo se pierde: entender a un alumno, explicar una alerta y escribir un comentario.</p>
+    </div>
+    <div class="caps3">
+      <article class="cap3 r" style="--i:2">
+        <span class="ic"><svg><use href="#i-spark"/></svg></span>
+        <small>Orientación</small><h3>Resume a cada alumno</h3>
+        <p>El Copiloto IA junta notas, asistencia y alertas en un párrafo, y dice de dónde sacó cada dato.</p>
+        <div class="mini" aria-hidden="true"><i class="ln"></i><i class="ln"></i><i class="ln"></i></div>
+      </article>
+      <article class="cap3 r" style="--i:3">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v3M11 14h.01"/></svg></span>
+        <small>Alertas de riesgo</small><h3>Explica cada alerta</h3>
+        <p>¿Por qué se marcó a este estudiante? Los factores que más pesaron, en lenguaje humano.</p>
+        <div class="mini" aria-hidden="true"><div class="fx">Asistencia<i style="--v:.9"></i></div><div class="fx">Aula<i style="--v:.62"></i></div><div class="fx">Notas<i style="--v:.35"></i></div></div>
+      </article>
+      <article class="cap3 r" style="--i:4">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+        <small>Docentes</small><h3>Sugiere la retroalimentación</h3>
+        <p>Un borrador de comentario para cada estudiante, que el docente revisa y corrige antes de usarlo.</p>
+        <div class="mini" aria-hidden="true"><i class="ln"></i><i class="ln"></i><span class="ok"><svg><use href="#i-check"/></svg>Revisado por el docente</span></div>
+      </article>
+    </div>
+    <div class="rails r" style="--i:5">
+      <span><svg><use href="#i-check"/></svg>Cita sus fuentes</span>
+      <span><svg><use href="#i-check"/></svg>No cambia notas ni estados</span>
+      <span><svg><use href="#i-check"/></svg>No avisa a la familia por su cuenta</span>
+      <span><svg><use href="#i-check"/></svg>Siempre decide una persona</span>
     </div>
   </div>
 </section>
 
-<section class="slide t-rosa big" id="historia" data-chap="direccion">
-  <div class="in split">
+<!-- ===================================================== LO MÁS SOBRESALIENTE -->
+<section class="slide t-rosa" id="destacado" data-chap="cierre">
+  <div class="in stack">
     <div class="tx">
-      <span class="kick r"><b>05</b>Dirección académica</span>
-      <h2 class="r" style="--i:1">La historia completa de cada alumno.</h2>
-      <p class="lead r" style="--i:2">Desde la postulación hasta la última nota: todo en orden, y cada paso con el módulo del que salió.</p>
+      <span class="kick r">En resumen</span>
+      <h2 class="r" style="--i:1">Lo que hace distinto a PeopleCole.</h2>
     </div>
-    <div class="vis r" style="--i:2">
-      <div class="rig">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>PeopleCole · Trazabilidad del estudiante</span></div>
-          <div class="scr"><img class="shot" src="pantallas/tra.webp" width="2160" height="1350" loading="lazy" alt="Trazabilidad del estudiante: postulación admitida y matrícula confirmada"></div></div>
-      </div>
+    <div class="feat">
+      <article class="r" style="--i:2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></i><h3>Inscripción 100 % en línea</h3><p>La familia postula desde el celular y sigue su trámite con un código.</p></article>
+      <article class="r" style="--i:3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M20 20h-3"/></svg></i><h3>Pagos con QR</h3><p>La cuota se marca pagada sola y entra a la caja del día.</p></article>
+      <article class="r" style="--i:4"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M22 20c-.5-2.3-1.8-4-3.6-4.8"/></svg></i><h3>Una app para cada persona</h3><p>Familias, alumnos y docentes, cada uno con lo suyo.</p></article>
+      <article class="r" style="--i:5"><i><svg><use href="#i-check"/></svg></i><h3>SEDUCA sin doble carga</h3><p>Cada materia del colegio, con su equivalencia oficial.</p></article>
+      <article class="r" style="--i:3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></svg></i><h3>Alertas a tiempo</h3><p>Quién va atrasado o en riesgo, antes del cierre y no después.</p></article>
+      <article class="r" style="--i:4"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><h3>Salud protegida</h3><p>La ficha médica nace tapada y cada lectura queda registrada.</p></article>
+      <article class="r" style="--i:5"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></i><h3>Todo queda escrito</h3><p>La historia de cada alumno, y quién hizo qué y cuándo.</p></article>
+      <article class="ai r" style="--i:6"><i><svg><use href="#i-spark"/></svg></i><h3>IA con criterio</h3><p>Resume y explica, cita sus fuentes. Siempre decide una persona.</p></article>
     </div>
   </div>
-  <aside class="note"><b>Para quien presenta</b>Cierra el círculo: la historia empieza en la postulación en línea del primer capítulo.</aside>
 </section>
 
 <!-- ===================================================== CIERRE -->
@@ -635,24 +1192,25 @@ body.notes .slide.on .note{display:block;position:fixed;left:clamp(14px,2vw,28px
       <h2 class="r" style="--i:1">Un solo sistema. Todo el colegio conectado.</h2>
     </div>
     <div class="who">
-      <article class="r" style="--i:2"><div class="th"><img src="pantallas/fam-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Familias</h3><p>Se inscriben, pagan con QR y siguen a sus hijos.</p></div></article>
-      <article class="r" style="--i:3"><div class="th"><img src="pantallas/alu-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Alumnos</h3><p>Su día, su horario, sus tareas y sus notas.</p></div></article>
-      <article class="r" style="--i:4"><div class="th"><img src="pantallas/doc-asistencia.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App y web</small><h3>Docentes</h3><p>Pasan lista, califican y avisan desde el aula.</p></div></article>
-      <article class="r" style="--i:5"><div class="th w"><img src="pantallas/adm-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Dirección</h3><p>Ve todo, decide y actúa a tiempo.</p></div></article>
+      <article class="r" style="--i:2"><div class="th"><img src="pantallas/fam-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Familias</h3><p>Se inscriben, pagan con QR y acompañan a sus hijos.</p></div></article>
+      <article class="r" style="--i:3"><div class="th"><img src="pantallas/alu-inicio.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App</small><h3>Alumnos</h3><p>Su horario, sus tareas y sus notas.</p></div></article>
+      <article class="r" style="--i:4"><div class="th"><img src="pantallas/doc-asistencia.webp" width="720" height="1600" loading="lazy" alt=""></div><div class="bd"><small>App y web</small><h3>Docentes</h3><p>Pasan lista y califican desde el aula.</p></div></article>
+      <article class="r" style="--i:5"><div class="th w"><img src="pantallas/enf-ficha.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Enfermería</h3><p>Visitas y ficha médica, siempre a mano.</p></div></article>
+      <article class="r" style="--i:6"><div class="th w"><img src="pantallas/ori-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Orientación</h3><p>Casos y acompañamiento, a tiempo.</p></div></article>
+      <article class="r" style="--i:7"><div class="th w"><img src="pantallas/da-panel.webp" width="2160" height="1350" loading="lazy" alt=""></div><div class="bd"><small>Web</small><h3>Dirección</h3><p>Ve todo, decide y actúa a tiempo.</p></div></article>
     </div>
-    <div class="cta r" style="--i:6">
+    <div class="cta r" style="--i:8">
       <p>Agendemos una demostración <strong>con los datos de su colegio.</strong></p>
-      <div class="btns"><a class="btn btn-w" href="#inicio">Volver al inicio</a><a class="btn btn-g" href="detalle.html">Ver el recorrido detallado por módulos</a></div>
     </div>
   </div>
-  <aside class="note"><b>Para quien presenta</b>Cierra preguntando por dónde quieren empezar y cuántos estudiantes y sedes tienen. El recorrido detallado sirve para las preguntas por módulo.</aside>
+  <aside class="note"><b>Para quien presenta</b>Cierra preguntando por dónde quieren empezar y cuántos estudiantes y sedes tienen.</aside>
 </section>
 
 </main>
 
 <nav class="ctrl" aria-label="Navegación de diapositivas">
   <button id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-  <span id="count">1 / 17</span>
+  <span id="count">1 / 1</span>
   <button id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
 </nav>
 
