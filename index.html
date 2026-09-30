@@ -1033,22 +1033,11 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
         <li><i><svg><use href="#i-door"/></svg></i><span><b>Un aula</b>, una sola clase por bloque</span></li>
       </ul>
     </div>
-    <div class="vis r" style="--i:2">
-      <div class="choque">
-        <div class="ch-card ui">
-          <div class="ch-h"><span class="lbl">Ejemplo</span><b>¿En qué bloque puede ir una clase de Ciencias Naturales de 3ro A?</b></div>
-          <table class="ch-t">
-            <thead><tr><th></th><th>Lunes<br>08:00</th><th>Lunes<br>12:15</th><th>Martes<br>12:15</th><th>Miércoles<br>12:15</th></tr></thead>
-            <tbody>
-              <tr><th><i><svg><use href="#i-users"/></svg></i>Curso 3ro A</th><td class="x">Matemática</td><td class="ok">Libre</td><td class="ok">Libre</td><td class="ok">Libre</td></tr>
-              <tr><th><i><svg><use href="#i-user"/></svg></i>Patricia Mendoza</th><td class="ok">Libre</td><td class="x">En otro curso</td><td class="ok">Libre</td><td class="ok">Libre</td></tr>
-              <tr><th><i><svg><use href="#i-door"/></svg></i>Aula 13</th><td class="ok">Libre</td><td class="ok">Libre</td><td class="x">Ocupada</td><td class="ok">Libre</td></tr>
-            </tbody>
-            <tfoot><tr><th>Resultado</th><td><span class="res curso">Curso ocupado</span></td><td><span class="res docente">Docente ocupado</span></td><td><span class="res aula">Sin aula</span></td><td><span class="res libre">Libre</span></td></tr></tfoot>
-          </table>
-          <p class="ch-ok"><svg><use href="#i-check"/></svg><span>La clase solo se puede poner el <b>miércoles a las 12:15, en el aula 13</b>.</span></p>
-        </div>
-        <figure class="ch-real r" style="--i:4"><figcaption>Así lo muestra el sistema al armar el horario</figcaption><img loading="lazy" decoding="async" class="shot" src="pantallas/hor-leyenda.webp" width="1035" height="285" alt="Leyenda de Armar horario: libre, sin aula, curso ocupado, docente ocupado y esta clase"></figure>
+    <div class="vis dr r" style="--i:2">
+      <div class="rig ar" style="--ar:1.6" data-spot=".333 .505 .42 .45" data-label="Cada bloque dice si el curso, el docente y un aula están libres">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole &middot; Armar horario &middot; Ciencias Naturales de 3ro A</span></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/hor-armar-grilla.webp" width="2160" height="1350" alt="Armar horario de Ciencias Naturales en 3ro A: la semana con los bloques libres, los ocupados por el curso y las clases ya puestas"></div></div>
+        <div class="float at-l r" style="--i:4;width:25%"><div class="fh"><i><svg><use href="#i-door"/></svg></i>Y qué aula queda libre</div><img loading="lazy" decoding="async" class="shot" src="pantallas/hor-aulas-horas.webp" width="620" height="752" alt="Aulas y sus horas tomadas: Aula 11, Aula 12, Aula 13, Gimnasio y Laboratorio con las horas que ya tienen ocupadas"></div>
       </div>
     </div>
   </div>
