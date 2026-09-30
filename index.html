@@ -8,7 +8,8 @@
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Playfair+Display:ital,wght@1,900&family=Special+Elite&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%C3%81%C3%89%C3%8D%C3%93%C3%9A%C3%91%C3%A1%C3%A9%C3%AD%C3%B3%C3%BA%C3%B1" rel="stylesheet">
 <link rel="preload" as="image" href="pantallas/adm-panel.webp">
 <style>
 [hidden]{display:none!important}
@@ -17,7 +18,7 @@
   --vino:#7C1D3F;--vino-h:#6A1936;--vino-l:#9B2A52;--vino-d:#5F1730;--vino-xd:#3A0E1F;
   --rosa:#E9B9C8;--rosa-l:#F6DCE5;--tinte:#F7EBEF;--tinte-2:#EFD8E0;
   --paper:#FAF8F9;--white:#fff;--line:#E9E4E7;--text:#2B2629;--strong:#171316;--muted:#5F585D;--faint:#A39CA1;
-  --f-display:Fraunces,Georgia,"Times New Roman",serif;--f-body:"Plus Jakarta Sans","Segoe UI",ui-sans-serif,system-ui,sans-serif;--f-ui:Outfit,"Segoe UI",ui-sans-serif,system-ui,sans-serif;
+  --f-display:"Rubik Doodle Shadow","Segoe Print","Comic Sans MS",cursive;--f-body:"Plus Jakarta Sans","Segoe UI",ui-sans-serif,system-ui,sans-serif;--f-ui:Outfit,"Segoe UI",ui-sans-serif,system-ui,sans-serif;
   --ink:#110D10;--on-dark:#F6F1F3;--on-dark-2:#D2C4CB;
 
   --top:64px;
@@ -91,9 +92,9 @@ html[data-tone="light"] .ctrl{background:rgba(255,255,255,.9);color:var(--strong
 .kick b{display:grid;place-items:center;min-width:36px;height:26px;padding:0 9px;border-radius:99px;background:var(--vino);color:#fff;font-size:.78rem;letter-spacing:.03em}
 .t-ink .kick,.t-vino .kick{color:var(--rosa)}
 .t-ink .kick b,.t-vino .kick b{background:var(--rosa);color:var(--vino-d)}
-h1{font-family:var(--f-display);font-size:clamp(2.5rem,min(4.4vw,8.2vh),5.4rem);font-weight:600;letter-spacing:-.022em;line-height:1.02;margin-top:20px}
-h2{font-family:var(--f-display);font-size:clamp(2rem,min(3.1vw,6.1vh),4rem);font-weight:600;letter-spacing:-.018em;line-height:1.06;margin-top:18px}
-h1 em,h2 em{font-style:italic;font-weight:500;color:var(--vino)}
+h1{font-family:var(--f-display);font-size:clamp(2.4rem,min(4.1vw,7.8vh),5rem);font-weight:400;font-synthesis:none;letter-spacing:0;line-height:1.08;margin-top:20px}
+h2{font-family:var(--f-display);font-size:clamp(1.8rem,min(2.75vw,5.5vh),3.6rem);font-weight:400;font-synthesis:none;letter-spacing:0;line-height:1.12;margin-top:18px}
+h1 em,h2 em{font-style:normal;font-weight:inherit;color:var(--vino)}
 .t-ink h1 em,.t-ink h2 em,.t-vino h1 em,.t-vino h2 em{color:var(--rosa)}
 .lead{font-size:clamp(1.02rem,min(1.28vw,2.3vh),1.38rem);line-height:1.55;color:var(--muted);margin-top:clamp(12px,2.2vh,22px);max-width:38ch}
 .stack .lead{max-width:56ch}
@@ -198,7 +199,7 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--vino)}
 .int-head .lead{max-width:44ch}
 .nums{display:flex;gap:clamp(16px,2.4vw,46px);flex-wrap:wrap}
 .nums div{display:flex;flex-direction:column}
-.nums b{font-family:var(--f-display);font-size:clamp(2.4rem,min(4.3vw,7.6vh),4.6rem);font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--vino);font-variant-numeric:tabular-nums}
+.nums b{font-family:var(--f-display);font-size:clamp(2.4rem,min(4.3vw,7.6vh),4.6rem);font-weight:400;letter-spacing:0;line-height:1;color:var(--vino);font-variant-numeric:tabular-nums}
 .nums b sup{font-size:.5em;vertical-align:.7em;margin-left:1px}
 .nums span{margin-top:6px;font-size:clamp(.82rem,.9vw,.95rem);color:var(--muted);line-height:1.25;max-width:13ch}
 .map{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(8px,.9vw,14px);margin-top:clamp(18px,3.4vh,40px)}
@@ -241,13 +242,13 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--vino)}
 .grp li{font-size:clamp(.78rem,min(.86vw,1.7vh),.95rem);line-height:1.3;padding-left:14px;position:relative;color:var(--text)}
 .grp li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:2px;background:var(--vino);opacity:.7}
 .grp.total{background:linear-gradient(140deg,var(--vino-l),var(--vino-d));color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 30px 60px -30px rgba(95,23,48,.8)}
-.grp.total b{font-family:var(--f-display);font-size:clamp(3rem,min(5vw,9vh),5.6rem);font-weight:600;letter-spacing:-.03em;line-height:1}
+.grp.total b{font-family:var(--f-display);font-size:clamp(3rem,min(5vw,9vh),5.6rem);font-weight:400;letter-spacing:0;line-height:1}
 .grp.total span{margin-top:8px;font-size:clamp(.95rem,1.05vw,1.15rem);color:#F7E6EC;line-height:1.35}
 
 /* lo más importante: lista numerada, sin íconos */
 .ocho{list-style:none;margin:clamp(18px,3.6vh,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,72px);width:min(100%,1240px);text-align:left;counter-reset:o}
 .ocho li{counter-increment:o;display:grid;grid-template-columns:2.6em 1fr;gap:0 .9em;padding:clamp(11px,1.9vh,19px) 0;border-top:1px solid #E5D5DB}
-.ocho li::before{content:counter(o,decimal-leading-zero);grid-row:1/3;font-family:var(--f-display);font-size:clamp(1.25rem,1.6vw,1.8rem);font-weight:600;color:var(--vino);line-height:1.1}
+.ocho li::before{content:counter(o,decimal-leading-zero);grid-row:1/3;font-family:var(--f-display);font-size:clamp(1.3rem,1.7vw,1.9rem);font-weight:400;color:var(--vino);line-height:1.1}
 .ocho b{font-size:clamp(1rem,1.12vw,1.22rem);font-weight:700;color:var(--strong)}
 .ocho span{margin-top:3px;color:var(--muted);font-size:clamp(.86rem,.94vw,1rem);line-height:1.4}
 
@@ -257,6 +258,55 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--vino)}
 .fin .rig{width:min(100%,calc((var(--H) - 26vh) * 1.6))}
 .fin .ov.izq{left:-9%;bottom:-11%;width:21%}
 .fin .ov.der{right:-6%;bottom:-6%;width:18.5%}
+
+/* letras recortadas de revista (las arma presentacion.js a partir de .recorte) */
+.recorte{display:inline-flex;align-items:center;gap:.05em;white-space:nowrap;vertical-align:-.04em;margin:0 .06em;filter:drop-shadow(0 .05em .05em rgba(20,6,12,.35))}
+.recorte .rl{display:inline-block;font-family:var(--ff);font-weight:var(--fw);font-style:var(--fs);font-size:var(--s);line-height:1;letter-spacing:0;padding:.1em .12em .05em;background:var(--bg);color:var(--fg);transform:rotate(var(--r)) translateY(var(--y));clip-path:var(--cp)}
+.recorte .sp{display:inline-block;width:.24em}
+
+/* ================= puesta en marcha, paso a paso ================= */
+.pasos{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(24px,3.4vw,68px);align-items:center}
+.ps-tx .lead b{color:#fff}
+.ps-list{list-style:none;margin:clamp(12px,2.4vh,26px) 0 0;padding:0;display:grid;gap:clamp(2px,.5vh,6px)}
+.ps-item{position:relative;width:100%;display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:start;text-align:left;padding:clamp(7px,1.1vh,11px) 14px;border:0;border-radius:12px;background:transparent;color:#fff;overflow:hidden;transition:background-color .35s,box-shadow .35s}
+.ps-item:not(.act):hover{background:rgba(255,255,255,.08)}
+.ps-item>b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);font-size:.85rem;font-weight:700;transition:background-color .35s,border-color .35s,color .35s}
+.ps-item strong{display:block;font-size:clamp(.98rem,1.1vw,1.16rem);font-weight:700;line-height:30px}
+.ps-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.ps-more>span{overflow:hidden}
+.ps-item small{display:block;font-size:clamp(.86rem,.95vw,1.02rem);color:var(--muted);line-height:1.4;padding-top:2px}
+.ps-item em{display:block;margin:8px 0 4px;padding:8px 11px;border-radius:8px;background:var(--tinte);font-style:normal;font-size:clamp(.84rem,.92vw,.98rem);font-weight:600;color:var(--vino);line-height:1.35}
+.ps-item em::before{content:"En el ejemplo: ";font-weight:500;color:var(--muted)}
+.ps-item.act{background:#fff;color:var(--strong);box-shadow:0 24px 50px -28px rgba(0,0,0,.7)}
+.ps-item.act>b{background:var(--vino);border-color:var(--vino);color:#fff}
+.ps-item.act .ps-more{grid-template-rows:1fr}
+.ps-bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--vino);transform-origin:left;transform:scaleX(0)}
+.ps-item.run .ps-bar{animation:llenar 7s linear forwards}
+@keyframes llenar{to{transform:scaleX(1)}}
+.ps-vis{display:grid;align-items:center;justify-items:center;min-width:0}
+.sv{grid-area:1/1;width:100%;margin:0;display:flex;justify-content:center;opacity:0;transform:translateY(16px) scale(.985);transition:opacity .45s,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.sv.act{opacity:1;transform:none;pointer-events:auto}
+.sv .rig{width:min(100%,calc((var(--H) - 16vh - 34px) * var(--ar,1.6)))}
+.sv-grupos{margin-bottom:12%}
+.sub{left:4%;bottom:-40%;width:44%;padding:1em 1.1em;font-size:clamp(11px,min(.84vw,1.6vh),15px)}
+.sg-top{display:flex;justify-content:space-between;align-items:baseline;margin-top:.55em;padding:.6em .8em;border-radius:.6em;background:#F7EBEF}
+.sg-top small,.sg-kids small{color:#71717A}
+.sg-lines{display:block;width:100%;height:1.6em}
+.sg-lines path{fill:none;stroke:#D6A3B5;stroke-width:1.6;vector-effect:non-scaling-stroke}
+.sg-kids{display:grid;grid-template-columns:1fr 1fr;gap:.6em}
+.sg-kids span{display:flex;justify-content:space-between;align-items:baseline;padding:.55em .7em;border-radius:.6em;border:1px solid #EDE6EA}
+.sv-fam{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.4vw,40px);width:100%}
+.sv-fam .tel{--pw:min(300px,calc((var(--H) - 20vh) / 2.25))}
+.fam-cards{display:flex;flex-direction:column;align-items:stretch;width:min(420px,48%);font-size:clamp(12px,min(.95vw,1.8vh),16px)}
+.fc{display:flex;gap:.8em;align-items:center;padding:.9em 1em;border-radius:14px;background:#fff;box-shadow:0 24px 50px -30px rgba(0,0,0,.7)}
+.fc>i{flex:none;display:grid;place-items:center;width:2.4em;height:2.4em;border-radius:.7em;background:#F7EBEF;color:#7C1D3F}
+.fc>i svg{width:1.2em;height:1.2em}
+.fc b{display:block;font-size:1.05em}
+.fc small{display:block;color:#71717A;font-size:.85em}
+.fc-arrow{align-self:center;width:2px;height:clamp(14px,2.4vh,26px);background:rgba(255,255,255,.55);position:relative}
+.fc-arrow::after{content:"";position:absolute;left:50%;bottom:-3px;width:8px;height:8px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);transform:translateX(-50%) rotate(45deg)}
+.js .on .sv:not(.act) .spot{opacity:0;transition-delay:0s}
+.js .on .sv.act .spot{opacity:1;transition-delay:.35s}
 
 /* ================= inteligencia artificial ================= */
 .replay{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(18px,3vh,30px);padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--strong);font-size:.9rem;font-weight:600}
@@ -598,7 +648,10 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   .split,.hero .split,.fin .split{grid-template-columns:minmax(0,1fr);gap:34px}
   .vis{padding-top:4px}
   .hero .vis,.fin .vis{padding:0 7% 12% 9%}
-  .rig,.hero .rig,.fin .rig,.big .rig,.cascade{width:100%}
+  .rig,.hero .rig,.fin .rig,.big .rig,.cascade,.sv .rig{width:100%}
+  .pasos{grid-template-columns:minmax(0,1fr)}
+  .sub{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}
+  .sv-grupos{margin-bottom:0}
   .drawer{position:relative;right:auto;bottom:auto;width:100%;margin-top:14px}
   .pred,.prop{grid-template-columns:minmax(0,1fr)}
   .stud{grid-template-columns:minmax(0,1fr)}
@@ -626,6 +679,9 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   .cap{font-size:.8rem;gap:6px;white-space:normal;text-align:center;flex-direction:column}
   .map{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cat,.ocho,.mods{grid-template-columns:minmax(0,1fr)}
+  .sv-fam{flex-direction:column}
+  .fam-cards{width:100%}
+  .sv-fam .tel{--pw:60vw}
   .asis-tabs{display:none}
   .prop-grid{grid-template-columns:minmax(0,1fr)}
   .audit li{grid-template-columns:3.4em 1fr auto}
@@ -726,7 +782,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     <div class="int-head">
       <div class="tx">
         <span class="kick r">Un solo sistema</span>
-        <h2 class="r" style="--i:1">45 módulos que trabajan juntos.</h2>
+        <h2 class="r" style="--i:1"><span class="recorte">45 módulos</span> que trabajan juntos.</h2>
         <p class="lead r" style="--i:2">Lo que se carga en un módulo aparece en los demás que lo necesitan, sin volver a cargarlo.</p>
       </div>
       <div class="nums r" style="--i:2">
@@ -809,22 +865,72 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
 
 <!-- ===================================================== 02 PUESTA EN MARCHA -->
 <section class="slide t-vino" id="puesta" data-chap="puesta">
-  <div class="in stack">
-    <div class="tx">
+  <div class="in pasos" id="pasos">
+    <div class="ps-tx">
       <span class="kick r"><b>02</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">El colegio queda configurado <em>antes del primer día.</em></h2>
-      <p class="lead r" style="--i:2">Se configura en este orden: estructura, grupos, materias, equivalencias SEDUCA, docentes y, por último, estudiantes y familias.</p>
+      <h2 class="r" style="--i:1">Así se <span class="recorte">arma</span> el colegio, paso a paso.</h2>
+      <p class="lead r" style="--i:2">Son seis pasos, siempre en este orden. Para que se entienda, seguimos un solo curso de principio a fin: <b>3ro de primaria A</b>.</p>
+      <ol class="ps-list r" style="--i:3">
+        <li><button class="ps-item act" type="button"><b>1</b><span><strong>Estructura</strong><span class="ps-more"><span><small>Se crean las sedes, los niveles, los cursos y sus paralelos.</small><em>Sede Central › Primaria › 3ro de primaria › paralelo 3ro A.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>2</b><span><strong>Grupos y subgrupos</strong><span class="ps-more"><span><small>Cada paralelo tiene su cupo. Lo que se enseña por separado se arma en subgrupos.</small><em>3ro A: 30 cupos, 10 estudiantes y 20 lugares libres.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>3</b><span><strong>Materias</strong><span class="ps-more"><span><small>Se cargan las materias de cada curso con sus horas por semana.</small><em>3ro A lleva 6 materias. Matemática y Comunicación, 5 horas cada una.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>4</b><span><strong>Equivalencias SEDUCA</strong><span class="ps-more"><span><small>Cada materia del colegio se vincula con la materia oficial y su código.</small><em>Ciencias Sociales queda como PCV1-CSO, sin diferencias con SEDUCA.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>5</b><span><strong>Docentes y horario</strong><span class="ps-more"><span><small>Se asigna quién dicta cada materia y se arma el horario, sin choques.</small><em>Patricia Mendoza dicta Comunicación y Ciencias Naturales en el aula 13.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>6</b><span><strong>Estudiantes y familias</strong><span class="ps-more"><span><small>Se matricula a cada estudiante y su familia recibe el acceso a la app.</small><em>Adrián Ticona entra a 3ro A y su mamá, Gladys, ya lo ve en su celular.</em></span></span></span><i class="ps-bar"></i></button></li>
+      </ol>
     </div>
-    <div class="bento pm">
-      <figure class="bcard r" style="--i:2"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-estructura.webp" width="2160" height="1350" loading="lazy" alt="Estructura del colegio: sede, niveles, cursos y paralelos"></div><p><b>1</b><span>Estructura<small>Sedes, niveles, cursos y paralelos</small></span></p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-tablero.webp" width="2160" height="1350" loading="lazy" alt="Tablero de agrupaciones por grado"></div><p><b>2</b><span>Grupos y subgrupos<small>Por idioma, laboratorio, taller o nivelación</small></span></p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio"></div><p><b>3</b><span>Creación de materias<small>El pensum de cada curso, con sus versiones</small></span></p></figure>
-      <figure class="bcard r" style="--i:3"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-seduca.webp" width="2160" height="1350" loading="lazy" alt="Equivalencias SEDUCA"></div><p><b>4</b><span>SEDUCA<small>Cada materia con su equivalencia oficial</small></span></p></figure>
-      <figure class="bcard r" style="--i:4"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-carga.webp" width="2160" height="1350" loading="lazy" alt="Carga docente de la semana"></div><p><b>5</b><span>Docentes<small>Carga, disponibilidad y horario</small></span></p></figure>
-      <figure class="bcard r" style="--i:5"><div class="bshot"><img decoding="async" class="shot" src="pantallas/pm-matriculas.webp" width="2160" height="1350" loading="lazy" alt="Matrículas de la gestión"></div><p><b>6</b><span>Estudiantes y familias<small>Matrícula, vínculos y acceso a la app</small></span></p></figure>
+    <div class="ps-vis r" style="--i:2">
+      <figure class="sv act" style="--ar:1.4">
+        <div class="rig" data-spot=".1 .45 .52 .1" data-label="3ro de primaria" data-end>
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Estructura del colegio</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-estructura.webp" width="1120" height="800" alt="Estructura del colegio: sede, niveles y cursos con sus paralelos"></div></div>
+        </div>
+      </figure>
+      <figure class="sv" style="--ar:2.72">
+        <div class="rig sv-grupos" data-spot=".636 .145 .272 .41" data-label="Paralelo 3ro A">
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Tablero de agrupaciones</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-tablero.webp" width="1700" height="626" alt="Paralelos agrupados por grado, con su cupo y los lugares libres"></div></div>
+          <div class="float sub ui">
+            <span class="lbl">Subgrupos · un ejemplo en secundaria</span>
+            <div class="sg-top"><b>1ro de secundaria A-1</b><small>30 estudiantes</small></div>
+            <svg class="sg-lines" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 V8 H25 V20 M50 8 H75 V20"/></svg>
+            <div class="sg-kids"><span><b>Inglés avanzado</b><small>14</small></span><span><b>Inglés inicial</b><small>16</small></span></div>
+          </div>
+        </div>
+      </figure>
+      <figure class="sv" style="--ar:1.9">
+        <div class="rig" data-spot=".012 .29 .255 .7" data-label="Las 6 materias de 3ro A">
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · 3ro Primaria · Paralelo 3ro A</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-materias.webp" width="1700" height="893" alt="Materias de 3ro A con su área, su docente y sus horas por semana"></div></div>
+        </div>
+      </figure>
+      <figure class="sv" style="--ar:2.27">
+        <div class="rig" data-spot=".005 .265 .99 .15" data-label="Código oficial: PCV1-CSO" data-end>
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Equivalencias SEDUCA</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" alt="Equivalencias SEDUCA: materia oficial, código y estado"></div></div>
+        </div>
+      </figure>
+      <figure class="sv" style="--ar:2.08">
+        <div class="rig" data-spot=".068 .285 .185 .08" data-label="Patricia Mendoza · aula 13">
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Horario de 3ro A</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-horario.webp" width="1700" height="816" alt="Horario semanal de 3ro A con cada materia, su docente y su aula"></div></div>
+        </div>
+      </figure>
+      <figure class="sv">
+        <div class="sv-fam">
+          <div class="fam-cards ui">
+            <div class="fc"><i><svg><use href="#i-check"/></svg></i><div><span class="lbl">Matrícula confirmada</span><b>Adrián Ticona Chambi</b><small>3ro Primaria · paralelo 3ro A</small></div></div>
+            <div class="fc-arrow" aria-hidden="true"></div>
+            <div class="fc"><i><svg><use href="#i-users"/></svg></i><div><span class="lbl">Familia vinculada</span><b>Gladys Mamani Quispe</b><small>Apoderada · tutora legal</small></div></div>
+            <div class="fc-arrow" aria-hidden="true"></div>
+            <div class="fc"><i><svg><use href="#i-send"/></svg></i><div><span class="lbl">Acceso enviado por correo</span><b>Usuario y clave temporal</b><small>Al entrar, ya ve a Adrián en la app</small></div></div>
+          </div>
+          <div class="tel"><div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/fam-inicio.webp" width="720" height="1600" alt="App de la familia de Adrián: estudiante en seguimiento, 3ro Primaria 3P-A"></div></div>
+        </div>
+      </figure>
     </div>
   </div>
-  <aside class="note"><b>Para quien presenta</b>La familia ya postuló: esto es lo que el colegio tiene listo para recibir a su hijo. Cada paso se prueba con el equipo del colegio antes de pasar al siguiente.</aside>
+  <aside class="note"><b>Para quien presenta</b>Los pasos avanzan solos cada siete segundos. Si quieres detenerte en uno, haz clic en él y se queda fijo.</aside>
 </section>
 
 <section class="slide t-luz big" id="grupos" data-chap="puesta">
@@ -847,7 +953,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>02</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">Cada materia, con su equivalencia SEDUCA.</h2>
+      <h2 class="r" style="--i:1">Cada materia, con su equivalencia <span class="recorte">SEDUCA</span>.</h2>
       <p class="lead r" style="--i:2">El colegio trabaja con su propia malla, y cada materia queda vinculada a su materia oficial y a su código. Si algo no coincide, el sistema lo marca.</p>
     </div>
     <div class="vis dr r" style="--i:2">
@@ -864,7 +970,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>02</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">La carga de cada docente, antes de publicar el horario.</h2>
+      <h2 class="r" style="--i:1">La <span class="recorte">carga</span> de cada docente, antes de publicar el horario.</h2>
       <p class="lead r" style="--i:2">Horas por semana, quién supera su tope y quién tiene margen. Los choques y los huecos aparecen antes de publicar.</p>
     </div>
     <div class="vis r" style="--i:2">
@@ -1186,7 +1292,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>09</b>Dirección académica</span>
-      <h2 class="r" style="--i:1">La dirección define cómo se evalúa.</h2>
+      <h2 class="r" style="--i:1">La dirección define cómo se <span class="recorte">evalúa</span>.</h2>
       <p class="lead r" style="--i:2">Escala, nota de aprobación y peso de cada dimensión. Todos los docentes califican con esa misma regla.</p>
     </div>
     <div class="vis r" style="--i:2">
@@ -1218,7 +1324,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>09</b>Dirección académica</span>
-      <h2 class="r" style="--i:1">Las solicitudes llegan a una bandeja de la dirección.</h2>
+      <h2 class="r" style="--i:1">Las solicitudes llegan a una <span class="recorte">bandeja</span> de la dirección.</h2>
       <p class="lead r" style="--i:2">Licencias, justificaciones y postulaciones. Cada decisión, aprobar, rechazar o citar a reunión, queda registrada con su motivo.</p>
     </div>
     <div class="vis r" style="--i:2">
@@ -1273,7 +1379,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in stack">
     <div class="tx">
       <span class="kick r"><b>10</b>Reportes</span>
-      <h2 class="r" style="--i:1">33 reportes en todas las áreas.</h2>
+      <h2 class="r" style="--i:1"><span class="recorte">33 reportes</span> en todas las áreas.</h2>
     </div>
     <div class="cat">
       <article class="grp w2 r" style="--i:2"><h3>Dirección académica <b>12</b></h3><ul>
@@ -1557,7 +1663,7 @@ Dirección Académica</p>
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>11</b>Configuración de la IA</span>
-      <h2 class="r" style="--i:1">El colegio decide qué puede hacer la IA.</h2>
+      <h2 class="r" style="--i:1">El colegio decide qué puede hacer <span class="recorte">la IA</span>.</h2>
       <p class="lead r" style="--i:2">Se configura por perfil y por módulo. Cada consulta queda registrada, nunca se mezclan datos de otra sede o de otro colegio, y un interruptor general la apaga.</p>
     </div>
     <div class="vis r" style="--i:2">

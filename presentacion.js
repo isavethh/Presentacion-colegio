@@ -13,6 +13,36 @@ var calmo=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)
    data-lens además agranda esa zona: data-z = cuánto, data-at = "izquierda arriba" en % del conjunto. */
 function zona(s){var v=s.trim().split(/\s+/).map(Number);return {x:v[0],y:v[1],w:v[2],h:v[3]};}
 
+/* ---------- letras recortadas de revista ----------
+   Cada letra de un .recorte sale de otra tipografía, otro papel y otro ángulo.
+   El azar tiene semilla fija: la palabra se ve igual cada vez que se abre. */
+(function(){
+  var TIPOS=[["'Abril Fatface',serif",400],["'Alfa Slab One',serif",400],["Anton,sans-serif",400],["'Special Elite',monospace",400],
+    ["'Archivo Black',sans-serif",400],["'Playfair Display',serif",900,"italic"],["'Courier Prime',monospace",700],["'Bebas Neue',sans-serif",400]];
+  var PAPEL=[["#FBF8F1","#141214"],["#141214","#FBF8F1"],["#E6DFD3","#26211F"],["#7C1D3F","#FFFFFF"],
+    ["#F4D6E0","#5F1730"],["#FFFFFF","#7C1D3F"],["#CFC8BE","#141214"],["#26211F","#F4D6E0"]];
+  function azar(sem){return function(){sem=(sem*1664525+1013904223)>>>0;return sem/4294967296;};}
+  /* esquina con un corte irregular: desde (x,y) hacia adentro, hasta 7 % */
+  function esquina(r,x,y){return Math.abs(x-r()*7).toFixed(1)+'% '+Math.abs(y-r()*7).toFixed(1)+'%';}
+  Array.prototype.forEach.call(document.querySelectorAll('.recorte'),function(el,n){
+    var txt=el.textContent,r=azar(n*7919+17),antes=-1;
+    el.setAttribute('role','text');el.setAttribute('aria-label',txt);el.textContent='';
+    Array.prototype.forEach.call(txt,function(c){
+      if(c===' '){var sp=document.createElement('span');sp.className='sp';el.appendChild(sp);return;}
+      var t=TIPOS[Math.floor(r()*TIPOS.length)],k;
+      do{k=Math.floor(r()*PAPEL.length);}while(k===antes);
+      antes=k;
+      var p=PAPEL[k],l=document.createElement('span');
+      l.className='rl';l.setAttribute('aria-hidden','true');
+      l.textContent=/[a-záéíóúñ]/i.test(c)?(r()<.45?c.toUpperCase():c.toLowerCase()):c;
+      var cp='polygon('+[esquina(r,0,0),esquina(r,100,0),esquina(r,100,100),esquina(r,0,100)].join(',')+')';
+      l.style.cssText='--ff:'+t[0]+';--fw:'+t[1]+';--fs:'+(t[2]||'normal')+';--bg:'+p[0]+';--fg:'+p[1]+
+        ';--r:'+((r()-.5)*12).toFixed(1)+'deg;--y:'+((r()-.5)*.12).toFixed(2)+'em;--s:'+(.86+r()*.22).toFixed(2)+'em;--cp:'+cp;
+      el.appendChild(l);
+    });
+  });
+})();
+
 /* data-zoom = "x y ancho alto": la ventana muestra solo esa parte de la captura, más grande.
    El foco y la lupa siguen midiéndose sobre la captura entera. */
 Array.prototype.forEach.call(document.querySelectorAll('.rig[data-zoom]'),function(rig){
@@ -197,7 +227,32 @@ var busca=(function(){
   });
 })();
 
-var ganchos={'ia':asis,'ia-copiloto':ia,'ia-redacta':redacta,'plataforma':busca};
+/* ---------- puesta en marcha: los seis pasos avanzan solos; un clic fija el paso ---------- */
+var pasos=(function(){
+  var raiz=$('pasos');if(!raiz)return null;
+  var items=raiz.querySelectorAll('.ps-item'),vis=raiz.querySelectorAll('.sv');
+  var k=0,timer=null,auto=true,activo=false,DUR=7000;
+  function mostrar(n){
+    k=n;
+    Array.prototype.forEach.call(items,function(it,i){it.classList.toggle('act',i===n);it.classList.remove('run');});
+    Array.prototype.forEach.call(vis,function(v,i){v.classList.toggle('act',i===n);});
+    if(auto&&!calmo){void items[n].offsetWidth;items[n].classList.add('run');}
+  }
+  function seguir(){
+    clearTimeout(timer);
+    if(!auto||calmo)return;
+    timer=setTimeout(function(){mostrar((k+1)%items.length);seguir();},DUR);
+  }
+  Array.prototype.forEach.call(items,function(it,i){
+    it.addEventListener('click',function(){auto=false;clearTimeout(timer);mostrar(i);});
+  });
+  return {
+    entra:function(){if(activo)return;activo=true;auto=true;mostrar(0);seguir();},
+    sale:function(){activo=false;clearTimeout(timer);auto=true;mostrar(0);}
+  };
+})();
+
+var ganchos={'ia':asis,'ia-copiloto':ia,'ia-redacta':redacta,'plataforma':busca,'puesta':pasos};
 
 if('IntersectionObserver' in window){
   /* la animación de entrada se dispara al aparecer y se rearma al salir del todo */
