@@ -12,16 +12,33 @@ var calmo=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)
    En un .rig: data-spot o data-lens = "x y ancho alto" de la zona, en fracciones de la captura.
    data-lens además agranda esa zona: data-z = cuánto, data-at = "izquierda arriba" en % del conjunto. */
 function zona(s){var v=s.trim().split(/\s+/).map(Number);return {x:v[0],y:v[1],w:v[2],h:v[3]};}
+
+/* data-zoom = "x y ancho alto": la ventana muestra solo esa parte de la captura, más grande.
+   El foco y la lupa siguen midiéndose sobre la captura entera. */
+Array.prototype.forEach.call(document.querySelectorAll('.rig[data-zoom]'),function(rig){
+  var scr=rig.querySelector('.web .scr'),img=scr&&scr.querySelector('img');
+  if(!img)return;
+  var z=zona(rig.getAttribute('data-zoom'));
+  var W=+img.getAttribute('width'),H=+img.getAttribute('height');
+  var pic=document.createElement('div');
+  pic.className='pic';
+  pic.style.cssText='position:absolute;width:'+(100/z.w)+'%;left:'+(-z.x/z.w*100)+'%;top:'+(-z.y/z.h*100)+'%';
+  img.parentNode.insertBefore(pic,img);
+  pic.appendChild(img);
+  scr.style.aspectRatio=(z.w*W)+' / '+(z.h*H);
+});
+
 Array.prototype.forEach.call(document.querySelectorAll('.rig[data-spot],.rig[data-lens]'),function(rig){
   var scr=rig.querySelector('.web .scr'),img=scr&&scr.querySelector('img');
   if(!img)return;
+  var capa=scr.querySelector('.pic')||scr;
   var r=zona(rig.getAttribute('data-spot')||rig.getAttribute('data-lens'));
   var sp=document.createElement('div');
   sp.className='spot'+(rig.hasAttribute('data-below')?' below':'')+(rig.hasAttribute('data-end')?' end':'');
   sp.style.cssText='left:'+r.x*100+'%;top:'+r.y*100+'%;width:'+r.w*100+'%;height:'+r.h*100+'%';
   var txt=rig.getAttribute('data-label');
   if(txt){var em=document.createElement('em');em.textContent=txt;sp.appendChild(em);}
-  scr.appendChild(sp);
+  capa.appendChild(sp);
   if(!rig.hasAttribute('data-lens'))return;
   var z=parseFloat(rig.getAttribute('data-z')||'1.8');
   var at=(rig.getAttribute('data-at')||'50 50').split(/\s+/).map(Number);
@@ -79,7 +96,108 @@ var ia=(function(){
   $('iaReplay').addEventListener('click',correr);
   return {entra:function(){if(!corriendo)correr();},sale:reset};
 })();
-var ganchos={ia:ia};
+
+/* ---------- escenas: se arman al entrar a la diapositiva y se limpian al salir ---------- */
+function escena(limpiar,correr){
+  var timers=[],corriendo=false;
+  function t(fn,ms){timers.push(setTimeout(fn,ms));}
+  function parar(){timers.forEach(clearTimeout);timers=[];corriendo=false;limpiar();}
+  function arrancar(){parar();corriendo=true;correr(t);}
+  return {entra:function(){if(!corriendo)arrancar();},sale:parar,otra:arrancar};
+}
+/* escribe de a dos letras; un número en la lista es una cita [n] que aparece en su lugar */
+function escribir(t,el,partes,vel,alCitar,listo){
+  el.textContent='';
+  var i=0,j=0,nodo=null;
+  (function paso(){
+    if(i>=partes.length){if(listo)listo();return;}
+    var p=partes[i];
+    if(typeof p==='number'){
+      var c=document.createElement('sup');c.className='cite';c.textContent=p;el.appendChild(c);
+      if(alCitar)alCitar(p);
+      i++;nodo=null;t(paso,160);return;
+    }
+    if(!nodo){nodo=document.createTextNode('');el.appendChild(nodo);j=0;}
+    j=Math.min(p.length,j+2);nodo.data=p.slice(0,j);
+    if(j>=p.length){i++;nodo=null;}
+    t(paso,/[.:]/.test(p.charAt(j-1))?150:vel);
+  })();
+}
+function textoFinal(el,partes){
+  el.innerHTML=partes.map(function(p){return typeof p==='number'?'<sup class="cite">'+p+'</sup>':p.replace(/&/g,'&amp;').replace(/</g,'&lt;');}).join('');
+}
+
+/* ---------- asistente: responde a tres perfiles, uno detrás de otro ---------- */
+var asis=(function(){
+  var raiz=$('asis');if(!raiz)return null;
+  var PERFILES=[
+    {rol:'Familia',q:'¿Hasta cuándo puedo pagar la cuota de octubre sin recargo?',
+     a:['Hasta el viernes 10 de octubre. Desde el día 11 se suma el recargo del 5 % que fija el reglamento de pensiones',1,'. Tu saldo pendiente es de Bs 2.750 y ya lo puedes pagar con QR desde la app',2,'.'],
+     src:['Reglamento de pensiones 2026 · Art. 12','Estado de cuenta · Adrián Ticona'],act:['Pagar con QR','Hablar con administración']},
+    {rol:'Docente',q:'¿Qué me falta para cerrar el trimestre en 3ro A?',
+     a:['Dos cosas en Ciencias Naturales: la nota de «Hacer» de 4 estudiantes y la lista del jueves 18',1,'. El plazo para cargar notas vence el viernes 26 de septiembre',2,'.'],
+     src:['Cuaderno de notas · Ciencias Naturales 3ro A','Calendario académico 2026'],act:['Abrir el cuaderno','Ver la norma de evaluación']},
+    {rol:'Dirección',q:'¿Qué cursos pueden no cerrar a tiempo?',
+     a:['Dos: 3ro A tiene 4 materias con notas incompletas y 1ro de secundaria A-1 tiene 2',1,'. La mayor demora está en Ciencias Naturales, con 66 % de avance',2,'.'],
+     src:['Panel académico · hoy 08:40','Avance de calificación'],act:['Preparar un recordatorio','Abrir el panel']}
+  ];
+  var tabs=raiz.querySelectorAll('.asis-tabs span'),q=$('asisQ'),a=$('asisA'),src=$('asisSrc'),act=$('asisAct'),rol=$('asisRol');
+  function pintar(k){
+    var d=PERFILES[k];
+    Array.prototype.forEach.call(tabs,function(x,i){x.classList.toggle('on',i===k);});
+    rol.textContent=d.rol;
+    src.innerHTML=d.src.map(function(s,i){return '<span data-c="'+(i+1)+'"><b>'+(i+1)+'</b>'+s+'</span>';}).join('');
+    act.innerHTML=d.act.map(function(s,i){return '<span'+(i?'':' class="p"')+'>'+s+'</span>';}).join('');
+  }
+  function limpiar(){raiz.classList.remove('buscando','listo');q.textContent='';a.textContent='';}
+  function perfil(t,k){
+    var d=PERFILES[k];limpiar();pintar(k);
+    escribir(t,q,[d.q],18,null,function(){
+      raiz.classList.add('buscando');
+      t(function(){
+        raiz.classList.remove('buscando');
+        escribir(t,a,d.a,22,function(n){var c=src.querySelector('[data-c="'+n+'"]');if(c)c.classList.add('on');},function(){
+          raiz.classList.add('listo');
+          t(function(){perfil(t,(k+1)%PERFILES.length);},4600);
+        });
+      },1200);
+    });
+  }
+  return escena(function(){limpiar();pintar(0);q.textContent=PERFILES[0].q;textoFinal(a,PERFILES[0].a);},function(t){
+    if(calmo){limpiar();pintar(0);q.textContent=PERFILES[0].q;textoFinal(a,PERFILES[0].a);Array.prototype.forEach.call(src.children,function(c){c.classList.add('on');});raiz.classList.add('listo');return;}
+    perfil(t,0);
+  });
+})();
+
+/* ---------- redacción: el borrador se escribe, cita sus fuentes y pasa a revisión ---------- */
+var redacta=(function(){
+  var raiz=$('stud');if(!raiz)return null;
+  var txt=$('docTxt'),src=$('docSrc');
+  var PARTES=['Estimadas familias de 3ro de secundaria:\n\nEl jueves 16 de octubre visitaremos el Museo Nacional de Etnografía y Folklore, como parte de la unidad «Nuestras culturas» de Ciencias Sociales',1,
+    '. Saldremos del colegio a las 8:30 y volveremos a las 12:30',2,'.\n\nLes pedimos autorizar la salida desde la app hasta el martes 14 de octubre.\n\nDirección Académica'];
+  function limpiar(){raiz.classList.remove('hecho');Array.prototype.forEach.call(src.children,function(c){c.classList.remove('on');});}
+  return escena(function(){limpiar();textoFinal(txt,PARTES);},function(t){
+    limpiar();
+    if(calmo){textoFinal(txt,PARTES);Array.prototype.forEach.call(src.children,function(c){c.classList.add('on');});raiz.classList.add('hecho');return;}
+    txt.textContent='';
+    t(function(){
+      escribir(t,txt,PARTES,14,function(n){var c=src.querySelector('[data-c="'+n+'"]');if(c)c.classList.add('on');},function(){t(function(){raiz.classList.add('hecho');},400);});
+    },700);
+  });
+})();
+
+/* ---------- búsqueda institucional: se escribe el nombre y aparecen los resultados ---------- */
+var busca=(function(){
+  var raiz=$('plat'),campo=$('busca');if(!raiz)return null;
+  return escena(function(){raiz.classList.add('hallado');campo.textContent='Adrián';},function(t){
+    raiz.classList.remove('hallado');
+    if(calmo){campo.textContent='Adrián';raiz.classList.add('hallado');return;}
+    campo.textContent='';
+    t(function(){escribir(t,campo,['Adrián'],110,null,function(){t(function(){raiz.classList.add('hallado');},250);});},900);
+  });
+})();
+
+var ganchos={'ia':asis,'ia-copiloto':ia,'ia-redacta':redacta,'plataforma':busca};
 
 if('IntersectionObserver' in window){
   /* la animación de entrada se dispara al aparecer y se rearma al salir del todo */
