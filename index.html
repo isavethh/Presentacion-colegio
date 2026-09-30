@@ -308,6 +308,55 @@ h1 em,h2 em{font-style:normal;font-weight:inherit;color:var(--vino)}
 .js .on .sv:not(.act) .spot{opacity:0;transition-delay:0s}
 .js .on .sv.act .spot{opacity:1;transition-delay:.35s}
 
+/* ventana web con la proporción de su captura */
+.rig.ar{width:min(100%,calc((var(--H) - 22vh - 34px) * var(--ar)))}
+
+/* plan de estudio: el recorrido de sus tres pestañas */
+.flujo{list-style:none;margin:clamp(16px,2.8vh,28px) 0 0;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.flujo li{display:inline-flex;align-items:center;gap:8px;padding:7px 13px 7px 7px;border-radius:99px;background:#fff;box-shadow:0 0 0 1px var(--line),0 8px 20px -14px rgba(40,6,20,.4);font-size:clamp(.84rem,.92vw,.98rem);font-weight:600;color:var(--strong)}
+.flujo li b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--vino);color:#fff;font-size:.78rem}
+
+/* horarios: las tres reglas y cómo decide el sistema */
+.reglas{list-style:none;margin:clamp(16px,2.8vh,28px) 0 0;padding:0;display:grid;gap:10px}
+.reglas li{display:flex;align-items:center;gap:12px;font-size:clamp(.95rem,1.06vw,1.12rem);color:var(--text)}
+.reglas b{color:var(--strong)}
+.reglas i{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#fff;color:var(--vino);box-shadow:0 0 0 1px var(--line),0 10px 22px -16px rgba(40,6,20,.5)}
+.reglas i svg{width:20px;height:20px}
+.choque{width:min(100%,920px,calc((var(--H) - 12vh) * 1.35));display:grid;gap:clamp(12px,2vh,20px)}
+.ch-card{background:#fff;border-radius:16px;padding:1.2em 1.3em 1.1em;box-shadow:0 40px 80px -40px rgba(46,8,24,.5),0 0 0 1px rgba(24,10,17,.07);font-size:clamp(12px,min(.98vw,1.85vh),17px)}
+.ch-h b{display:block;margin-top:.2em;font-size:1.12em}
+.ch-t{width:100%;border-collapse:separate;border-spacing:.4em;margin:.5em -.4em 0;table-layout:fixed}
+.ch-t thead th{font-size:.8em;font-weight:600;color:#71717A;text-align:center;line-height:1.25}
+.ch-t thead th:first-child{width:30%}
+.ch-t tbody th,.ch-t tfoot th{text-align:left;font-weight:600;font-size:.92em;color:#27272A;white-space:nowrap}
+.ch-t tbody th i{display:inline-grid;place-items:center;width:1.7em;height:1.7em;margin-right:.45em;border-radius:.5em;background:#F7EBEF;color:#7C1D3F;vertical-align:middle}
+.ch-t tbody th i svg{width:1em;height:1em}
+.ch-t td{text-align:center;font-size:.86em;font-weight:600;padding:.6em .3em;border-radius:.55em}
+.ch-t td.ok{background:#EEF7F1;color:#15803D}
+.ch-t td.x{background:#FDECEC;color:#B91C1C}
+.ch-t tfoot th{color:#71717A;font-weight:500}
+.res{display:inline-flex;align-items:center;justify-content:center;gap:.3em;width:100%;padding:.55em .3em;border-radius:.55em;font-size:.95em;font-weight:700;white-space:nowrap}
+.res.curso{background:#F1F1F3;color:#52525B}
+.res.docente{background:#EEF2FF;color:#4338CA}
+.res.aula{background:#FDF3E3;color:#B45309}
+.res.libre{background:#15803D;color:#fff}
+.ch-t tfoot td{padding:0;background:none}
+.ch-ok{display:flex;align-items:center;gap:.6em;margin-top:.5em;padding:.7em .9em;border-radius:.7em;background:#E8F5EC;color:#14532D;font-size:.98em}
+.ch-ok svg{width:1.2em;height:1.2em;flex:none}
+.ch-real{margin:0 0 0 auto;width:74%;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(46,8,24,.5),0 0 0 1px rgba(24,10,17,.07)}
+.ch-real figcaption{padding:.6em 1em;font-size:clamp(.78rem,.84vw,.9rem);font-weight:600;color:var(--muted);border-bottom:1px solid var(--line);background:#FCFAFB}
+.ch-real img{width:100%;height:auto}
+@media (prefers-reduced-motion:no-preference){
+  .js .ch-t td,.js .ch-t .res{opacity:0;transform:translateY(6px);transition:opacity .4s,transform .45s cubic-bezier(.2,.9,.25,1.3)}
+  .js .on .ch-t td,.js .on .ch-t .res{opacity:1;transform:none}
+  .js .on .ch-t tr>:nth-child(2),.js .on .ch-t tr>:nth-child(2) .res{transition-delay:.6s}
+  .js .on .ch-t tr>:nth-child(3),.js .on .ch-t tr>:nth-child(3) .res{transition-delay:1.3s}
+  .js .on .ch-t tr>:nth-child(4),.js .on .ch-t tr>:nth-child(4) .res{transition-delay:2s}
+  .js .on .ch-t tr>:nth-child(5),.js .on .ch-t tr>:nth-child(5) .res{transition-delay:2.7s}
+  .js .ch-ok{opacity:0;transition:opacity .5s}
+  .js .on .ch-ok{opacity:1;transition-delay:3.3s}
+}
+
 /* ================= inteligencia artificial ================= */
 .replay{display:inline-flex;align-items:center;gap:8px;margin-top:clamp(18px,3vh,30px);padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--strong);font-size:.9rem;font-weight:600}
 .replay:hover{border-color:var(--vino);color:var(--vino)}
@@ -648,7 +697,7 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   .split,.hero .split,.fin .split{grid-template-columns:minmax(0,1fr);gap:34px}
   .vis{padding-top:4px}
   .hero .vis,.fin .vis{padding:0 7% 12% 9%}
-  .rig,.hero .rig,.fin .rig,.big .rig,.cascade,.sv .rig{width:100%}
+  .rig,.hero .rig,.fin .rig,.big .rig,.cascade,.sv .rig,.rig.ar,.choque{width:100%}
   .pasos{grid-template-columns:minmax(0,1fr)}
   .sub{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}
   .sv-grupos{margin-bottom:0}
@@ -679,6 +728,9 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   .cap{font-size:.8rem;gap:6px;white-space:normal;text-align:center;flex-direction:column}
   .map{grid-template-columns:repeat(2,minmax(0,1fr))}
   .cat,.ocho,.mods{grid-template-columns:minmax(0,1fr)}
+  .ch-t thead th:first-child{width:24%}
+  .ch-t tbody th{white-space:normal}
+  .ch-real{width:100%}
   .sv-fam{flex-direction:column}
   .fam-cards{width:100%}
   .sv-fam .tel{--pw:60vw}
@@ -745,6 +797,8 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
     <symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></g></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.9 14 10h5.8a2 2 0 0 1 1.9 2.6l-2.3 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.8a2 2 0 0 0 1.8-1.1L12 2a3.1 3.1 0 0 1 3 3.9z"/></g></symbol>
     <symbol id="i-down2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.1 10 14H4.2a2 2 0 0 1-1.9-2.6l2.3-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.8a2 2 0 0 0-1.8 1.1L12 22a3.1 3.1 0 0 1-3-3.9z"/></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></g></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><path d="M14 12h.01"/></g></symbol>
     <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9B2A52" stop-opacity=".22"/><stop offset="1" stop-color="#9B2A52" stop-opacity="0"/></linearGradient>
     <linearGradient id="hilo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9B9C8"/><stop offset="1" stop-color="#9B2A52"/></linearGradient>
   </defs>
@@ -873,9 +927,9 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
       <ol class="ps-list r" style="--i:3">
         <li><button class="ps-item act" type="button"><b>1</b><span><strong>Estructura</strong><span class="ps-more"><span><small>Se crean las sedes, los niveles, los cursos y sus paralelos.</small><em>Sede Central › Primaria › 3ro de primaria › paralelo 3ro A.</em></span></span></span><i class="ps-bar"></i></button></li>
         <li><button class="ps-item" type="button"><b>2</b><span><strong>Grupos y subgrupos</strong><span class="ps-more"><span><small>Cada paralelo tiene su cupo. Lo que se enseña por separado se arma en subgrupos.</small><em>3ro A: 30 cupos, 10 estudiantes y 20 lugares libres.</em></span></span></span><i class="ps-bar"></i></button></li>
-        <li><button class="ps-item" type="button"><b>3</b><span><strong>Materias</strong><span class="ps-more"><span><small>Se cargan las materias de cada curso con sus horas por semana.</small><em>3ro A lleva 6 materias. Matemática y Comunicación, 5 horas cada una.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>3</b><span><strong>Plan de estudio</strong><span class="ps-more"><span><small>Se arma la malla de cada curso: sus materias y sus horas por semana.</small><em>3ro de primaria: 6 materias y 21 horas por semana.</em></span></span></span><i class="ps-bar"></i></button></li>
         <li><button class="ps-item" type="button"><b>4</b><span><strong>Equivalencias SEDUCA</strong><span class="ps-more"><span><small>Cada materia del colegio se vincula con la materia oficial y su código.</small><em>Ciencias Sociales queda como PCV1-CSO, sin diferencias con SEDUCA.</em></span></span></span><i class="ps-bar"></i></button></li>
-        <li><button class="ps-item" type="button"><b>5</b><span><strong>Docentes y horario</strong><span class="ps-more"><span><small>Se asigna quién dicta cada materia y se arma el horario, sin choques.</small><em>Patricia Mendoza dicta Comunicación y Ciencias Naturales en el aula 13.</em></span></span></span><i class="ps-bar"></i></button></li>
+        <li><button class="ps-item" type="button"><b>5</b><span><strong>Docentes y horario</strong><span class="ps-more"><span><small>Se asigna quién dicta cada materia y se arma el horario. El sistema no deja que nada choque.</small><em>Patricia Mendoza dicta Comunicación y Ciencias Naturales en el aula 13.</em></span></span></span><i class="ps-bar"></i></button></li>
         <li><button class="ps-item" type="button"><b>6</b><span><strong>Estudiantes y familias</strong><span class="ps-more"><span><small>Se matricula a cada estudiante y su familia recibe el acceso a la app.</small><em>Adrián Ticona entra a 3ro A y su mamá, Gladys, ya lo ve en su celular.</em></span></span></span><i class="ps-bar"></i></button></li>
       </ol>
     </div>
@@ -898,10 +952,10 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
           </div>
         </div>
       </figure>
-      <figure class="sv" style="--ar:1.9">
-        <div class="rig" data-spot=".012 .29 .255 .7" data-label="Las 6 materias de 3ro A">
-          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · 3ro Primaria · Paralelo 3ro A</span></div>
-            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-materias.webp" width="1700" height="893" alt="Materias de 3ro A con su área, su docente y sus horas por semana"></div></div>
+      <figure class="sv" style="--ar:1.27">
+        <div class="rig" data-spot=".24 .455 .3 .49" data-label="6 materias · 21 horas">
+          <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Plan de estudio de 3ro Primaria</span></div>
+            <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-plan.webp" width="1500" height="1181" alt="Plan de estudio de 3ro de primaria: materias, horas por semana y áreas"></div></div>
         </div>
       </figure>
       <figure class="sv" style="--ar:2.27">
@@ -953,17 +1007,52 @@ body.notes .slide.actual .note{display:block;position:fixed;left:clamp(14px,2vw,
   <div class="in split">
     <div class="tx">
       <span class="kick r"><b>02</b>Puesta en marcha</span>
-      <h2 class="r" style="--i:1">Cada materia, con su equivalencia <span class="recorte">SEDUCA</span>.</h2>
-      <p class="lead r" style="--i:2">El colegio trabaja con su propia malla, y cada materia queda vinculada a su materia oficial y a su código. Si algo no coincide, el sistema lo marca.</p>
+      <h2 class="r" style="--i:1">El plan de estudio de cada curso, con su equivalencia <span class="recorte">SEDUCA</span>.</h2>
+      <p class="lead r" style="--i:2">Primero se arma la malla: las materias y sus horas, dentro de lo que permite el nivel, y el sistema avisa si falta un área. Después, cada materia se vincula con la oficial. Una vez publicado, el plan queda fijo: los cambios van en una versión nueva.</p>
+      <ol class="flujo r" style="--i:3"><li><b>1</b>Malla curricular</li><li><b>2</b>Equivalencias SEDUCA</li><li><b>3</b>Revisión y publicación</li></ol>
     </div>
     <div class="vis dr r" style="--i:2">
-      <div class="rig" data-zoom=".178 .144 .822 .856">
-        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Materias y pensum</span></div>
-          <div class="scr"><img decoding="async" class="shot" src="pantallas/pm-materias.webp" width="2160" height="1350" loading="lazy" alt="Materias y pensum del colegio por área"></div></div>
-        <div class="float at-r r" style="--i:4"><div class="fh"><i><svg><use href="#i-check"/></svg></i>Equivalencias SEDUCA</div><img decoding="async" class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" loading="lazy" alt="Equivalencias SEDUCA: materia oficial, código y sin divergencia"></div>
+      <div class="rig ar" style="--ar:1.27" data-spot=".0 .205 .745 .065" data-label="Tres pasos, en este orden">
+        <div class="web"><div class="bar"><i></i><i></i><i></i><span><svg><use href="#i-lock"/></svg>PeopleCole · Plan de estudio de 3ro Primaria</span></div>
+          <div class="scr"><img loading="lazy" decoding="async" class="shot" src="pantallas/st-plan.webp" width="1500" height="1181" alt="Plan de estudio de 3ro de primaria: malla curricular con materias y horas"></div></div>
+        <div class="float at-r r" style="--i:4"><div class="fh"><i><svg><use href="#i-check"/></svg></i>Equivalencias SEDUCA</div><img loading="lazy" decoding="async" class="shot" src="pantallas/pm-seduca-recorte.webp" width="1300" height="573" alt="Equivalencias SEDUCA: materia oficial, código y estado"></div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="slide t-rosa" id="horarios" data-chap="puesta">
+  <div class="in split">
+    <div class="tx">
+      <span class="kick r"><b>02</b>Puesta en marcha</span>
+      <h2 class="r" style="--i:1">Los horarios no pueden <span class="recorte">chocar</span>.</h2>
+      <p class="lead r" style="--i:2">Cada clase ocupa, a la misma hora, un curso, un docente y un aula. Al armar el horario, el sistema solo ofrece los bloques donde los tres están libres.</p>
+      <ul class="reglas r" style="--i:3">
+        <li><i><svg><use href="#i-users"/></svg></i><span><b>Un curso</b>, una sola materia por bloque</span></li>
+        <li><i><svg><use href="#i-user"/></svg></i><span><b>Un docente</b>, un solo curso por bloque</span></li>
+        <li><i><svg><use href="#i-door"/></svg></i><span><b>Un aula</b>, una sola clase por bloque</span></li>
+      </ul>
+    </div>
+    <div class="vis r" style="--i:2">
+      <div class="choque">
+        <div class="ch-card ui">
+          <div class="ch-h"><span class="lbl">Ejemplo</span><b>¿En qué bloque puede ir una clase de Ciencias Naturales de 3ro A?</b></div>
+          <table class="ch-t">
+            <thead><tr><th></th><th>Lunes<br>08:00</th><th>Lunes<br>12:15</th><th>Martes<br>12:15</th><th>Miércoles<br>12:15</th></tr></thead>
+            <tbody>
+              <tr><th><i><svg><use href="#i-users"/></svg></i>Curso 3ro A</th><td class="x">Matemática</td><td class="ok">Libre</td><td class="ok">Libre</td><td class="ok">Libre</td></tr>
+              <tr><th><i><svg><use href="#i-user"/></svg></i>Patricia Mendoza</th><td class="ok">Libre</td><td class="x">En otro curso</td><td class="ok">Libre</td><td class="ok">Libre</td></tr>
+              <tr><th><i><svg><use href="#i-door"/></svg></i>Aula 13</th><td class="ok">Libre</td><td class="ok">Libre</td><td class="x">Ocupada</td><td class="ok">Libre</td></tr>
+            </tbody>
+            <tfoot><tr><th>Resultado</th><td><span class="res curso">Curso ocupado</span></td><td><span class="res docente">Docente ocupado</span></td><td><span class="res aula">Sin aula</span></td><td><span class="res libre">Libre</span></td></tr></tfoot>
+          </table>
+          <p class="ch-ok"><svg><use href="#i-check"/></svg><span>La clase solo se puede poner el <b>miércoles a las 12:15, en el aula 13</b>.</span></p>
+        </div>
+        <figure class="ch-real r" style="--i:4"><figcaption>Así lo muestra el sistema al armar el horario</figcaption><img loading="lazy" decoding="async" class="shot" src="pantallas/hor-leyenda.webp" width="1035" height="285" alt="Leyenda de Armar horario: libre, sin aula, curso ocupado, docente ocupado y esta clase"></figure>
+      </div>
+    </div>
+  </div>
+  <aside class="note"><b>Para quien presenta</b>Esta es la diferencia con un Excel: ahí dos clases pueden caer en la misma aula a la misma hora y nadie se entera hasta el primer día. Aquí el sistema ni siquiera ofrece ese bloque.</aside>
 </section>
 
 <section class="slide t-rosa big" id="carga" data-chap="puesta">
@@ -1746,7 +1835,7 @@ Dirección Académica</p>
       <li class="r" style="--i:2"><b>Inscripción en línea</b><span>La familia postula desde el celular y sigue el trámite con un código.</span></li>
       <li class="r" style="--i:2"><b>Pagos con QR</b><span>La cuota se marca como pagada y entra a la caja del día.</span></li>
       <li class="r" style="--i:3"><b>Una app para familias, alumnos y docentes</b><span>Cada uno ve lo que le corresponde.</span></li>
-      <li class="r" style="--i:3"><b>SEDUCA sin doble carga</b><span>Cada materia vinculada a su equivalencia oficial.</span></li>
+      <li class="r" style="--i:3"><b>Horarios sin choques y SEDUCA al día</b><span>El sistema no deja que choquen curso, docente ni aula, y cada materia tiene su equivalencia oficial.</span></li>
       <li class="r" style="--i:4"><b>Alertas antes del cierre</b><span>Docentes atrasados y alumnos en riesgo, con nombre y apellido.</span></li>
       <li class="r" style="--i:4"><b>Ficha médica protegida</b><span>Los datos aparecen ocultos y cada consulta queda registrada.</span></li>
       <li class="r" style="--i:5"><b>Historial de cada alumno</b><span>Qué pasó, quién lo hizo y cuándo, desde la postulación.</span></li>
@@ -1759,9 +1848,9 @@ Dirección Académica</p>
 <section class="slide t-vino fin" id="cierre" data-chap="cierre">
   <div class="in split">
     <div class="tx">
-      <span class="kick r">Siguiente paso</span>
-      <h2 class="r" style="--i:1">¿Por dónde empezamos <em>en su colegio?</em></h2>
-      <p class="lead r" style="--i:2">Podemos preparar una demostración con los datos de su colegio: sus cursos, sus aranceles y su equipo.</p>
+      <span class="kick r">PeopleCole</span>
+      <h2 class="r" style="--i:1">Un colegio ordenado se nota. <em>Y las familias lo recomiendan.</em></h2>
+      <p class="lead r" style="--i:2">Cuando los padres ven las notas al día, pagan desde el celular y reciben cada aviso a tiempo, confían más en el colegio que eligieron. Y se quedan.</p>
     </div>
     <div class="vis r" style="--i:2">
       <div class="rig">
@@ -1772,7 +1861,7 @@ Dirección Académica</p>
       </div>
     </div>
   </div>
-  <aside class="note"><b>Para quien presenta</b>Cierra preguntando por dónde quieren empezar y cuántos estudiantes y sedes tienen.</aside>
+  <aside class="note"><b>Para quien presenta</b>Deja la última frase en el aire. Si preguntan por precio, pregunta cuántos estudiantes y sedes tienen.</aside>
 </section>
 
 </main>
